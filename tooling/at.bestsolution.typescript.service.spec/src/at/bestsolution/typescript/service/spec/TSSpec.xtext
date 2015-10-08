@@ -1,0 +1,50 @@
+grammar at.bestsolution.typescript.service.spec.TSSpec with org.eclipse.xtext.common.Terminals
+
+generate tSSpec "http://www.bestsolution.at/typescript/service/spec/TSSpec"
+
+ServiceDefs:
+	'package' packageName=QualifiedName
+
+	domainElements += DomainElement*
+	commandList += CommandDef*
+	eventList += EventDef*
+;
+
+DomainElement:
+	doc+=DOC*
+	('javatype' name=QualifiedName | (cust?='cust' name=QualifiedName ('extends' superType=[DomainElement|QualifiedName])? '{'
+		attributes+=Attribute*
+	'}'
+	) | ('enum' name=QualifiedName '(' enumValues+=EnumVal* ')') | ('alias' name=QualifiedName 'as' realType=QualifiedName) )
+;
+
+EnumVal:
+	doc+=DOC*
+	name=ID
+;
+
+Attribute:
+	documentation += DOC*
+	optional?='optional'? type=GenericTypeArgument name=ID ('=' value=STRING)?
+;
+
+GenericTypeArgument:
+	type=[DomainElement|QualifiedName] ('<' arguments+=GenericTypeArgument ( ',' arguments+=GenericTypeArgument)* '>')? list?='[]'?
+;
+
+CommandDef:
+	'command' name=ID ('(' attributes+=Attribute+ ')')? 'returns' ('void' | (returnVal=GenericTypeArgument) )
+;
+
+EventDef:
+	documentation += DOC*
+	'event' name=ID type=GenericTypeArgument
+;
+
+QualifiedName:
+	ID (=>'.' ID)*
+;
+
+terminal DOC:
+	'##' !('\n'|'\r')* ('\r'? '\n')?
+;

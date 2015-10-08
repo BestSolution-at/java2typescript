@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: at.bestsolution.typescript.service.spec
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: at.bestsolution.typescript.service.spec; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: at.bestsolution.typescript.service.spec,
+ at.bestsolution.typescript.service.spec.services,
+ at.bestsolution.typescript.service.spec.tSSpec,
+ at.bestsolution.typescript.service.spec.tSSpec.impl,
+ at.bestsolution.typescript.service.spec.tSSpec.util,
+ at.bestsolution.typescript.service.spec.serializer,
+ at.bestsolution.typescript.service.spec.parser.antlr,
+ at.bestsolution.typescript.service.spec.parser.antlr.internal,
+ at.bestsolution.typescript.service.spec.validation,
+ at.bestsolution.typescript.service.spec.scoping,
+ at.bestsolution.typescript.service.spec.generator,
+ at.bestsolution.typescript.service.spec.formatting
+

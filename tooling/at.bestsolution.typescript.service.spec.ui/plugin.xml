@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+    <extension
+            point="org.eclipse.ui.editors">
+        <editor
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            default="true"
+            extensions="tsspec"
+            id="at.bestsolution.typescript.service.spec.TSSpec"
+            name="TSSpec Editor">
+        </editor>
+    </extension>
+    <extension
+        point="org.eclipse.ui.handlers">
+        <handler
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
+            <activeWhen>
+                <reference
+                    definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+        <handler
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="at.bestsolution.typescript.service.spec.TSSpec.validate">
+         <activeWhen>
+            <reference
+                    definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+            </reference>
+         </activeWhen>
+      	</handler>
+      	<!-- copy qualified name -->
+        <handler
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+            commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
+            <activeWhen>
+				<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened" />
+            </activeWhen>
+        </handler>
+        <handler
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+            commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
+            <activeWhen>
+            	<and>
+            		<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.XtextEditor.opened" />
+	                <iterate>
+						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+					</iterate>
+				</and>
+            </activeWhen>
+        </handler>
+    </extension>
+    <extension point="org.eclipse.core.expressions.definitions">
+        <definition id="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+            <and>
+                <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
+                <with variable="activeEditor">
+                    <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
+                        value="at.bestsolution.typescript.service.spec.TSSpec" 
+                        forcePluginActivation="true"/>
+                </with>        
+            </and>
+        </definition>
+        <definition id="at.bestsolution.typescript.service.spec.TSSpec.XtextEditor.opened">
+            <and>
+                <reference definitionId="isXtextEditorActive"/>
+                <with variable="activeEditor">
+                    <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
+                        value="at.bestsolution.typescript.service.spec.TSSpec" 
+                        forcePluginActivation="true"/>
+                </with>        
+            </and>
+        </definition>
+    </extension>
+    <extension
+            point="org.eclipse.ui.preferencePages">
+        <page
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="at.bestsolution.typescript.service.spec.TSSpec"
+            name="TSSpec">
+            <keywordReference id="at.bestsolution.typescript.service.spec.ui.keyword_TSSpec"/>
+        </page>
+        <page
+            category="at.bestsolution.typescript.service.spec.TSSpec"
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="at.bestsolution.typescript.service.spec.TSSpec.coloring"
+            name="Syntax Coloring">
+            <keywordReference id="at.bestsolution.typescript.service.spec.ui.keyword_TSSpec"/>
+        </page>
+        <page
+            category="at.bestsolution.typescript.service.spec.TSSpec"
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="at.bestsolution.typescript.service.spec.TSSpec.templates"
+            name="Templates">
+            <keywordReference id="at.bestsolution.typescript.service.spec.ui.keyword_TSSpec"/>
+        </page>
+    </extension>
+    <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="at.bestsolution.typescript.service.spec.TSSpec"
+            name="TSSpec">
+            <keywordReference id="at.bestsolution.typescript.service.spec.ui.keyword_TSSpec"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+        </page>
+    </extension>
+    <extension
+        point="org.eclipse.ui.keywords">
+        <keyword
+            id="at.bestsolution.typescript.service.spec.ui.keyword_TSSpec"
+            label="TSSpec"/>
+    </extension>
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Trigger expensive validation"
+            id="at.bestsolution.typescript.service.spec.TSSpec.validate"
+            name="Validate">
+      </command>
+      <!-- copy qualified name -->
+      <command
+            id="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+            categoryId="org.eclipse.ui.category.edit"
+            description="Copy the qualified name for the selected element"
+            name="Copy Qualified Name">
+      </command>
+      <command
+            id="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
+            categoryId="org.eclipse.ui.category.edit"
+            description="Copy the qualified name for the selected element"
+            name="Copy Qualified Name">
+      </command>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+        <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+             <command
+                 commandId="at.bestsolution.typescript.service.spec.TSSpec.validate"
+                 style="push"
+                 tooltip="Trigger expensive validation">
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+                </reference>
+            </visibleWhen>
+         </command>  
+         </menuContribution>
+         <!-- copy qualified name -->
+         <menuContribution locationURI="popup:#TextEditorContext?after=copy">
+         	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
+         		style="push" tooltip="Copy Qualified Name">
+            	<visibleWhen checkEnabled="false">
+                	<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened" />
+            	</visibleWhen>
+         	</command>  
+         </menuContribution>
+         <menuContribution locationURI="menu:edit?after=copy">
+         	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+            	style="push" tooltip="Copy Qualified Name">
+            	<visibleWhen checkEnabled="false">
+                	<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened" />
+            	</visibleWhen>
+         	</command>  
+         </menuContribution>
+         <menuContribution locationURI="popup:org.eclipse.xtext.ui.outline?after=additions">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName" 
+				style="push" tooltip="Copy Qualified Name">
+         		<visibleWhen checkEnabled="false">
+	            	<and>
+	            		<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.XtextEditor.opened" />
+						<iterate>
+							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+						</iterate>
+					</and>
+				</visibleWhen>
+			</command>
+         </menuContribution>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
+			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
+				<visibleWhen checkEnabled="false">
+                	<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+                	</reference>
+            	</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+	    <handler
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            commandId="org.eclipse.xtext.ui.editor.FindReferences">
+            <activeWhen>
+                <reference
+                    definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+    </extension>   
+
+<!-- adding resource factories -->
+
+	<extension
+		point="org.eclipse.emf.ecore.extension_parser">
+		<parser
+			class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="tsspec">
+		</parser>
+	</extension>
+	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
+        <resourceServiceProvider
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            uriExtension="tsspec">
+        </resourceServiceProvider>
+    </extension>
+
+
+	<!-- marker definitions for at.bestsolution.typescript.service.spec.TSSpec -->
+	<extension
+	        id="tsspec.check.fast"
+	        name="TSSpec Problem"
+	        point="org.eclipse.core.resources.markers">
+	    <super type="org.eclipse.xtext.ui.check.fast"/>
+	    <persistent value="true"/>
+	</extension>
+	<extension
+	        id="tsspec.check.normal"
+	        name="TSSpec Problem"
+	        point="org.eclipse.core.resources.markers">
+	    <super type="org.eclipse.xtext.ui.check.normal"/>
+	    <persistent value="true"/>
+	</extension>
+	<extension
+	        id="tsspec.check.expensive"
+	        name="TSSpec Problem"
+	        point="org.eclipse.core.resources.markers">
+	    <super type="org.eclipse.xtext.ui.check.expensive"/>
+	    <persistent value="true"/>
+	</extension>
+
+   <extension
+         point="org.eclipse.xtext.builder.participant">
+      <participant
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+            fileExtensions="tsspec"
+            >
+      </participant>
+   </extension>
+   <extension
+            point="org.eclipse.ui.preferencePages">
+        <page
+            category="at.bestsolution.typescript.service.spec.TSSpec"
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="at.bestsolution.typescript.service.spec.TSSpec.compiler.preferencePage"
+            name="Compiler">
+            <keywordReference id="at.bestsolution.typescript.service.spec.ui.keyword_TSSpec"/>
+        </page>
+    </extension>
+    <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            category="at.bestsolution.typescript.service.spec.TSSpec"
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="at.bestsolution.typescript.service.spec.TSSpec.compiler.propertyPage"
+            name="Compiler">
+            <keywordReference id="at.bestsolution.typescript.service.spec.ui.keyword_TSSpec"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+        </page>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
+			<command
+				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
+				id="at.bestsolution.typescript.service.spec.TSSpec.OpenGeneratedCode"
+				style="push">
+					<visibleWhen checkEnabled="false">
+						<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened" />
+					</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
+				<activeWhen>
+					<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened" />
+				</activeWhen>
+		</handler>
+	</extension>
+
+	<!-- Quick Outline -->
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler 
+			class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
+			<activeWhen>
+				<reference
+					definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+		<command
+			description="Open the quick outline."
+			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+			name="Quick Outline">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.open">
+			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+				style="push"
+				tooltip="Open Quick Outline">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened"/>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+    <!-- quickfix marker resolution generator for at.bestsolution.typescript.service.spec.TSSpec -->
+    <extension
+            point="org.eclipse.ui.ide.markerResolution">
+        <markerResolutionGenerator
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="at.bestsolution.typescript.service.spec.ui.tsspec.check.fast">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="at.bestsolution.typescript.service.spec.ui.tsspec.check.normal">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="at.bestsolution.typescript.service.spec.ui.tsspec.check.expensive">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+    </extension>
+   	<!-- Rename Refactoring -->
+	<extension point="org.eclipse.ui.handlers">
+		<handler 
+			class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
+			<activeWhen>
+				<reference
+					definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+    <extension point="org.eclipse.ui.menus">
+         <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+         <command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+               style="push">
+            <visibleWhen checkEnabled="false">
+               <reference
+                     definitionId="at.bestsolution.typescript.service.spec.TSSpec.Editor.opened">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension point="org.eclipse.ui.preferencePages">
+	    <page
+	        category="at.bestsolution.typescript.service.spec.TSSpec"
+	        class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+	        id="at.bestsolution.typescript.service.spec.TSSpec.refactoring"
+	        name="Refactoring">
+	        <keywordReference id="at.bestsolution.typescript.service.spec.ui.keyword_TSSpec"/>
+	    </page>
+	</extension>
+
+  <extension point="org.eclipse.compare.contentViewers">
+    <viewer id="at.bestsolution.typescript.service.spec.TSSpec.compare.contentViewers"
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="tsspec">
+    </viewer>
+  </extension>
+  <extension point="org.eclipse.compare.contentMergeViewers">
+    <viewer id="at.bestsolution.typescript.service.spec.TSSpec.compare.contentMergeViewers"
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="tsspec" label="TSSpec Compare">
+     </viewer>
+  </extension>
+  <extension point="org.eclipse.ui.editors.documentProviders">
+    <provider id="at.bestsolution.typescript.service.spec.TSSpec.editors.documentProviders"
+            class="at.bestsolution.typescript.service.spec.ui.TSSpecExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+            extensions="tsspec">
+    </provider>
+  </extension>
+  <extension point="org.eclipse.team.core.fileTypes">
+    <fileTypes
+            extension="tsspec"
+            type="text">
+    </fileTypes>
+  </extension>
+
+</plugin>

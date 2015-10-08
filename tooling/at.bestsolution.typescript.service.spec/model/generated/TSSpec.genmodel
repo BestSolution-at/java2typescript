@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/at.bestsolution.typescript.service.spec/src-gen"
+    editDirectory="/at.bestsolution.typescript.service.spec.edit/src" editorDirectory="/at.bestsolution.typescript.service.spec.editor/src"
+    modelPluginID="at.bestsolution.typescript.service.spec" forceOverwrite="true"
+    modelName="TSSpec" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="at.bestsolution.typescript.service.spec.edit"
+    editorPluginID="at.bestsolution.typescript.service.spec.editor" runtimeVersion="2.11">
+  <genPackages prefix="TSSpec" basePackage="at.bestsolution.typescript.service.spec"
+      disposableProviderFactory="true" fileExtensions="tsspec" ecorePackage="TSSpec.ecore#/">
+    <genClasses ecoreClass="TSSpec.ecore#//ServiceDefs">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//ServiceDefs/packageName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//ServiceDefs/domainElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//ServiceDefs/commandList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//ServiceDefs/eventList"/>
+    </genClasses>
+    <genClasses ecoreClass="TSSpec.ecore#//DomainElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//DomainElement/doc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//DomainElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//DomainElement/cust"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TSSpec.ecore#//DomainElement/superType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//DomainElement/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//DomainElement/enumValues"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//DomainElement/realType"/>
+    </genClasses>
+    <genClasses ecoreClass="TSSpec.ecore#//EnumVal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//EnumVal/doc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//EnumVal/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TSSpec.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//Attribute/documentation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//Attribute/optional"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//Attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//Attribute/value"/>
+    </genClasses>
+    <genClasses ecoreClass="TSSpec.ecore#//GenericTypeArgument">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TSSpec.ecore#//GenericTypeArgument/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//GenericTypeArgument/arguments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//GenericTypeArgument/list"/>
+    </genClasses>
+    <genClasses ecoreClass="TSSpec.ecore#//CommandDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//CommandDef/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//CommandDef/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//CommandDef/returnVal"/>
+    </genClasses>
+    <genClasses ecoreClass="TSSpec.ecore#//EventDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//EventDef/documentation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//EventDef/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TSSpec.ecore#//EventDef/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

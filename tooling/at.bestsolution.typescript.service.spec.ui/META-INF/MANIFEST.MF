@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: at.bestsolution.typescript.service.spec.ui
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: at.bestsolution.typescript.service.spec.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: at.bestsolution.typescript.service.spec;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext.common.types.ui,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.compare
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: at.bestsolution.typescript.service.spec.ui.quickfix,
+ at.bestsolution.typescript.service.spec.ui.contentassist,
+ at.bestsolution.typescript.service.spec.ui.internal,
+ at.bestsolution.typescript.service.spec.ui.contentassist.antlr
+Bundle-Activator: at.bestsolution.typescript.service.spec.ui.internal.TSSpecActivator
