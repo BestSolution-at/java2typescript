@@ -1,0 +1,315 @@
+package at.bestsolution.typescript.service.api
+
+javatype java.lang.String
+javatype int
+javatype boolean
+
+cust model.NavigationBarItem {
+	java.lang.String text
+	java.lang.String kind
+	optional java.lang.String kindModifiers
+	model.TextSpan[] spans
+	optional model.NavigationBarItem[] childItems
+}
+
+cust model.TextSpan {
+	model.Location start
+	model.Location end
+}
+
+cust model.Location {
+	int line
+	int offset
+}
+
+cust model.FileSpan extends model.TextSpan {
+	java.lang.String file
+}
+
+cust model.CompletionEntry {
+	java.lang.String name
+	java.lang.String kind
+	java.lang.String kindModifiers
+	java.lang.String sortText
+}
+
+cust model.CompletionEntryDetails {
+	java.lang.String name
+	java.lang.String kind
+	java.lang.String kindModifiers
+	model.SymbolDisplayPart[] displayParts
+	model.SymbolDisplayPart[] documentation
+}
+
+cust model.SymbolDisplayPart {
+	java.lang.String text
+	java.lang.String kind
+}
+
+cust model.FormatOptions {
+	optional boolean insertSpaceAfterCommaDelimiter
+	optional boolean insertSpaceAfterSemicolonInForStatements
+	optional boolean insertSpaceBeforeAndAfterBinaryOperators
+	optional boolean insertSpaceAfterKeywordsInControlFlowStatements
+	optional boolean insertSpaceAfterFunctionKeywordForAnonymousFunctions
+	optional boolean insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis
+	optional boolean insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets
+	optional boolean placeOpenBraceOnNewLineForFunctions
+	optional boolean placeOpenBraceOnNewLineForControlBlocks
+}
+
+cust model.CodeEdit {
+	model.Location start
+	model.Location end
+	java.lang.String newText
+}
+
+cust model.NavtoItem {
+	java.lang.String name
+	java.lang.String kind
+	optional java.lang.String matchKind
+	optional boolean isCaseSensitive
+	optional java.lang.String kindModifiers
+	java.lang.String file
+	model.Location start
+	model.Location end
+	optional java.lang.String containerName
+	optional java.lang.String containerKind
+}
+
+cust model.OccurrencesResponseItem extends model.FileSpan {
+	boolean isWriteAccess
+}
+
+cust model.DocumentHighlightsItem {
+	java.lang.String file
+	model.HighlightSpan[] highlightSpans
+}
+
+cust model.HighlightSpan extends model.TextSpan {
+	java.lang.String kind
+}
+
+cust model.QuickInfoResponseBody {
+	java.lang.String kind
+	java.lang.String kindModifiers
+	model.Location start
+	model.Location end
+	java.lang.String displayString
+	java.lang.String documentation
+}
+
+cust model.ReferencesResponseBody {
+	model.ReferencesResponseItem[] refs
+	java.lang.String symbolName
+	int symbolStartOffset
+	java.lang.String symbolDisplayString
+}
+
+cust model.ReferencesResponseItem extends model.FileSpan {
+	java.lang.String lineText
+	boolean isWriteAccess
+}
+
+cust model.RenameResponseBody {
+	model.RenameInfo info
+	model.SpanGroup[] locs
+}
+
+cust model.RenameInfo {
+	boolean canRename
+	optional java.lang.String localizedErrorMessage
+	java.lang.String displayName
+	java.lang.String fullDisplayName
+	java.lang.String kind
+	java.lang.String kindModifiers
+}
+
+cust model.SpanGroup {
+	java.lang.String file
+	model.TextSpan[] locs
+}
+
+cust model.SignatureHelpItems {
+	model.SignatureHelpItem[] items
+	model.TextSpan applicableSpan
+	int selectedItemIndex
+	int argumentIndex
+	int argumentCount
+}
+
+cust model.SignatureHelpItem {
+	boolean isVariadic
+	model.SymbolDisplayPart[] prefixDisplayParts
+	model.SymbolDisplayPart[] suffixDisplayParts
+	model.SymbolDisplayPart[] separatorDisplayParts
+	model.SignatureHelpParameter[] parameters
+	model.SymbolDisplayPart[] documentation
+}
+
+cust model.SignatureHelpParameter {
+	java.lang.String name
+	model.SymbolDisplayPart[] documentation
+	model.SymbolDisplayPart[] displayParts
+	boolean isOptional
+}
+
+cust model.ProjectInfo {
+	java.lang.String configFileName
+	optional java.lang.String[] fileNames
+}
+
+cust model.DiagnosticEventBody {
+	java.lang.String file
+	model.Diagnostic[] diagnostics
+}
+
+cust model.Diagnostic {
+	model.Location start
+	model.Location end
+	java.lang.String text
+}
+
+command brace (
+	int line
+	int offset
+	java.lang.String file
+) returns model.TextSpan[]
+
+command change(
+	int line
+	int offset
+	int endLine
+	int endOffset
+	java.lang.String insertString
+	java.lang.String file
+) returns void
+
+command close(java.lang.String file) returns void
+
+command completions(
+	int line
+	int offset
+	java.lang.String prefix
+	java.lang.String file
+) returns model.CompletionEntry[]
+
+command completionEntryDetails(
+	int line
+	int offset
+	java.lang.String[] entryNames
+	java.lang.String file
+) returns model.CompletionEntryDetails[]
+
+command configure(
+	optional java.lang.String hostInfo
+	optional java.lang.String file
+	optional model.FormatOptions formatOptions
+) returns void
+
+ command definition (
+ 	int line
+ 	int offset
+ 	java.lang.String file
+ ) returns model.FileSpan[]
+
+command exit returns void
+
+command format(
+	int line
+	int offset
+	int endLine
+	int endOffset
+	java.lang.String file
+) returns model.CodeEdit[]
+
+command formatonkey(
+	int line
+	int offset
+	java.lang.String key
+	java.lang.String file
+) returns model.CodeEdit[]
+
+command geterr(
+	int delay
+	java.lang.String[] files
+) returns void
+
+command geterrForProject(
+	int delay
+	java.lang.String file
+) returns void
+
+command navbar ( java.lang.String file ) returns model.NavigationBarItem[]
+
+command navto (
+	java.lang.String searchValue
+	java.lang.String file
+	optional int maxResultCount
+) returns model.NavtoItem[]
+
+command occurrences (
+	int line
+	int offset
+	java.lang.String file
+) returns model.OccurrencesResponseItem[]
+
+command documentHighlights (
+	int line
+	int offset
+	java.lang.String file
+	java.lang.String[] filesToSearch
+) returns model.DocumentHighlightsItem[]
+
+command open ( java.lang.String file ) returns void
+command quickinfo(
+	int line
+	int offset
+	java.lang.String file
+) returns model.QuickInfoResponseBody
+
+command references(
+	int line
+	int offset
+	java.lang.String file
+) returns model.ReferencesResponseBody
+
+command reload(
+	java.lang.String file
+	java.lang.String tmpfile
+) returns void
+
+command rename(
+	int line
+	int offset
+	java.lang.String file
+	boolean findInComments
+	boolean findInStrings
+) returns model.RenameResponseBody
+
+command saveto(
+	java.lang.String file
+	java.lang.String tmpfile
+) returns void
+
+command signatureHelp(
+	int line
+	int offset
+	java.lang.String file
+) returns model.SignatureHelpItems
+
+ command typeDefinition (
+ 	int line
+ 	int offset
+ 	java.lang.String file
+) returns model.FileSpan[]
+
+command projectInfo(
+	java.lang.String file
+	boolean needFileNameList
+) returns model.ProjectInfo
+
+command reloadProjects returns void
+
+event syntaxDiag model.DiagnosticEventBody
+event semanticDiag model.DiagnosticEventBody
