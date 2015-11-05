@@ -2,6 +2,7 @@ package at.bestsolution.typescript.service.api.test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -43,13 +44,24 @@ public class Application implements IApplication {
 
 //		Files.readAllLines(Paths.get(projectLocation+"/sample.ts"));
 
-		service.open(Paths.get(projectLocation+"/sample.ts").toAbsolutePath().toString());
-		List<? extends NavigationBarItem> navbar = service.navbar(Paths.get(projectLocation+"/sample.ts").toAbsolutePath().toString());
+		String filePath = Paths.get(projectLocation+"/sample.ts").toAbsolutePath().toString();
+		System.err.println("1. Open file");
+		service.open(filePath);
+
+		System.err.println("2. Get the outline data");
+		List<? extends NavigationBarItem> navbar = service.navbar(filePath);
 		System.err.println(navbar);
 
-//		service.completions(line, offset, prefix, file);
+		service.syntaxDiag( d -> {
+			System.err.println(d.getDiagnostics());
+		});
 
-		System.err.println(tsServiceFactory);
+		System.err.println("3. Request errors");
+		List<String> paths = new ArrayList<>();
+		paths.add(filePath);
+		service.geterr(1000, paths);
+
+		System.in.read();
 
 		return IApplication.EXIT_OK;
 	}

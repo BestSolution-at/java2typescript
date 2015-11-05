@@ -162,7 +162,10 @@ class TSSpecGenerator implements IGenerator {
 		«ENDFOR»
 		«FOR e : defs.eventList»
 			public at.bestsolution.typescript.service.api.Registration «e.name»(java.util.function.Consumer<«e.type.typeString»> consumer) {
-				return () -> {};
+				«e.name»ConsumerList.add(consumer);
+				return () -> {
+					«e.name»ConsumerList.remove(consumer);
+				};
 			}
 		«ENDFOR»
 
@@ -209,7 +212,7 @@ class TSSpecGenerator implements IGenerator {
 				switch(root.get("event").getAsString()) {
 					«FOR e : defs.eventList»
 						case "«e.name»": {
-							«e.type.typeString» o = new com.google.gson.Gson().fromJson(root.get("body"), «e.type.typeString».class);
+							«e.type.typeString» o = new com.google.gson.Gson().fromJson(root.get("body"), «e.type.typeString»Pojo.class);
 							java.util.List<java.util.function.Consumer<«e.type.typeString»>> l;
 
 							synchronized(«e.name»ConsumerList) {

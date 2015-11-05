@@ -330,10 +330,16 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		sendVoidRequest("reloadProjects",null);
 	}
 	public at.bestsolution.typescript.service.api.Registration syntaxDiag(java.util.function.Consumer<DiagnosticEventBody> consumer) {
-		return () -> {};
+		syntaxDiagConsumerList.add(consumer);
+		return () -> {
+			syntaxDiagConsumerList.remove(consumer);
+		};
 	}
 	public at.bestsolution.typescript.service.api.Registration semanticDiag(java.util.function.Consumer<DiagnosticEventBody> consumer) {
-		return () -> {};
+		semanticDiagConsumerList.add(consumer);
+		return () -> {
+			semanticDiagConsumerList.remove(consumer);
+		};
 	}
 
 	private void startServer() {
@@ -378,7 +384,7 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		if( "event".equals(type) && root.has("event") ) {
 			switch(root.get("event").getAsString()) {
 				case "syntaxDiag": {
-					DiagnosticEventBody o = new com.google.gson.Gson().fromJson(root.get("body"), DiagnosticEventBody.class);
+					DiagnosticEventBody o = new com.google.gson.Gson().fromJson(root.get("body"), DiagnosticEventBodyPojo.class);
 					java.util.List<java.util.function.Consumer<DiagnosticEventBody>> l;
 
 					synchronized(syntaxDiagConsumerList) {
@@ -388,7 +394,7 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 					break;
 				}
 				case "semanticDiag": {
-					DiagnosticEventBody o = new com.google.gson.Gson().fromJson(root.get("body"), DiagnosticEventBody.class);
+					DiagnosticEventBody o = new com.google.gson.Gson().fromJson(root.get("body"), DiagnosticEventBodyPojo.class);
 					java.util.List<java.util.function.Consumer<DiagnosticEventBody>> l;
 
 					synchronized(semanticDiagConsumerList) {
