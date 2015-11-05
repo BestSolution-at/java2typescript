@@ -435,7 +435,6 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		r = r.replace('\n', ' ');
 		r = r.replace('\r', ' ');
 		r += "\n";
-		System.err.println(r);
 		try {
 			p.getOutputStream().write(r.getBytes());
 			p.getOutputStream().flush();
