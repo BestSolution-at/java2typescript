@@ -4,7 +4,7 @@ import java.util.Map;
 import at.bestsolution.typescript.service.api.model.ReferencesResponseBody;
 
 public class ReferencesResponseBodyPojo  implements ReferencesResponseBody {
-	private ReferencesResponseItemPojo[] refs ;
+	private java.util.List<ReferencesResponseItemPojo> refs ;
 	private String symbolName ;
 	private int symbolStartOffset ;
 	private String symbolDisplayString ;
@@ -12,11 +12,11 @@ public class ReferencesResponseBodyPojo  implements ReferencesResponseBody {
 	public ReferencesResponseBodyPojo() {
 	}
 
-	public ReferencesResponseItemPojo[] getRefs() {
+	public java.util.List<ReferencesResponseItemPojo> getRefs() {
 		return this.refs;
 	}
 
-	public void setRefs(ReferencesResponseItemPojo[] refs) {
+	public void setRefs(java.util.List<ReferencesResponseItemPojo> refs) {
 		this.refs = refs;
 	}
 	public String getSymbolName() {

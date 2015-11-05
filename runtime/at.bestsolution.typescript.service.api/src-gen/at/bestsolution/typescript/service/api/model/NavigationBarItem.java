@@ -4,6 +4,6 @@ public interface NavigationBarItem  {
 	public String getText();
 	public String getKind();
 	public String getKindModifiers();
-	public TextSpan[] getSpans();
-	public NavigationBarItem[] getChildItems();
+	public java.util.List<? extends TextSpan> getSpans();
+	public java.util.List<? extends NavigationBarItem> getChildItems();
 }

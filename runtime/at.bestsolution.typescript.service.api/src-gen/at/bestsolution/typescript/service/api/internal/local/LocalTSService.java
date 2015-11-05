@@ -41,15 +41,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		startServer();
 	}
 
-	public TextSpan[] brace(int line, int offset, String file) {
+	public java.util.List<? extends TextSpan> brace(int line, int offset, String file) {
 		try {
 			JsonObject o = sendRequest("brace",new at.bestsolution.typescript.service.api.internal.BraceRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				TextSpan[] rv = new TextSpan[ar.size()];
+				java.util.List<TextSpanPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), TextSpanPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), TextSpanPojo.class));
 				}
 				return rv;
 			} else {
@@ -65,15 +65,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	public void close(String file) {
 		sendVoidRequest("close",new at.bestsolution.typescript.service.api.internal.CloseRequest(file));
 	}
-	public CompletionEntry[] completions(int line, int offset, String prefix, String file) {
+	public java.util.List<? extends CompletionEntry> completions(int line, int offset, String prefix, String file) {
 		try {
 			JsonObject o = sendRequest("completions",new at.bestsolution.typescript.service.api.internal.CompletionsRequest(line, offset, prefix, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				CompletionEntry[] rv = new CompletionEntry[ar.size()];
+				java.util.List<CompletionEntryPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), CompletionEntryPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), CompletionEntryPojo.class));
 				}
 				return rv;
 			} else {
@@ -83,15 +83,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 			throw new IllegalStateException(e);
 		}
 	}
-	public CompletionEntryDetails[] completionEntryDetails(int line, int offset, String[] entryNames, String file) {
+	public java.util.List<? extends CompletionEntryDetails> completionEntryDetails(int line, int offset, java.util.List<? extends String> entryNames, String file) {
 		try {
 			JsonObject o = sendRequest("completionEntryDetails",new at.bestsolution.typescript.service.api.internal.CompletionEntryDetailsRequest(line, offset, entryNames, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				CompletionEntryDetails[] rv = new CompletionEntryDetails[ar.size()];
+				java.util.List<CompletionEntryDetailsPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), CompletionEntryDetailsPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), CompletionEntryDetailsPojo.class));
 				}
 				return rv;
 			} else {
@@ -104,15 +104,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	public void configure(String hostInfo, String file, FormatOptions formatOptions) {
 		sendVoidRequest("configure",new at.bestsolution.typescript.service.api.internal.ConfigureRequest(hostInfo, file, formatOptions));
 	}
-	public FileSpan[] definition(int line, int offset, String file) {
+	public java.util.List<? extends FileSpan> definition(int line, int offset, String file) {
 		try {
 			JsonObject o = sendRequest("definition",new at.bestsolution.typescript.service.api.internal.DefinitionRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				FileSpan[] rv = new FileSpan[ar.size()];
+				java.util.List<FileSpanPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), FileSpanPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), FileSpanPojo.class));
 				}
 				return rv;
 			} else {
@@ -125,15 +125,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	public void exit() {
 		sendVoidRequest("exit",null);
 	}
-	public CodeEdit[] format(int line, int offset, int endLine, int endOffset, String file) {
+	public java.util.List<? extends CodeEdit> format(int line, int offset, int endLine, int endOffset, String file) {
 		try {
 			JsonObject o = sendRequest("format",new at.bestsolution.typescript.service.api.internal.FormatRequest(line, offset, endLine, endOffset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				CodeEdit[] rv = new CodeEdit[ar.size()];
+				java.util.List<CodeEditPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), CodeEditPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), CodeEditPojo.class));
 				}
 				return rv;
 			} else {
@@ -143,15 +143,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 			throw new IllegalStateException(e);
 		}
 	}
-	public CodeEdit[] formatonkey(int line, int offset, String key, String file) {
+	public java.util.List<? extends CodeEdit> formatonkey(int line, int offset, String key, String file) {
 		try {
 			JsonObject o = sendRequest("formatonkey",new at.bestsolution.typescript.service.api.internal.FormatonkeyRequest(line, offset, key, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				CodeEdit[] rv = new CodeEdit[ar.size()];
+				java.util.List<CodeEditPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), CodeEditPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), CodeEditPojo.class));
 				}
 				return rv;
 			} else {
@@ -161,21 +161,21 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 			throw new IllegalStateException(e);
 		}
 	}
-	public void geterr(int delay, String[] files) {
+	public void geterr(int delay, java.util.List<? extends String> files) {
 		sendVoidRequest("geterr",new at.bestsolution.typescript.service.api.internal.GeterrRequest(delay, files));
 	}
 	public void geterrForProject(int delay, String file) {
 		sendVoidRequest("geterrForProject",new at.bestsolution.typescript.service.api.internal.GeterrForProjectRequest(delay, file));
 	}
-	public NavigationBarItem[] navbar(String file) {
+	public java.util.List<? extends NavigationBarItem> navbar(String file) {
 		try {
 			JsonObject o = sendRequest("navbar",new at.bestsolution.typescript.service.api.internal.NavbarRequest(file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				NavigationBarItem[] rv = new NavigationBarItem[ar.size()];
+				java.util.List<NavigationBarItemPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), NavigationBarItemPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), NavigationBarItemPojo.class));
 				}
 				return rv;
 			} else {
@@ -185,15 +185,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 			throw new IllegalStateException(e);
 		}
 	}
-	public NavtoItem[] navto(String searchValue, String file, int maxResultCount) {
+	public java.util.List<? extends NavtoItem> navto(String searchValue, String file, int maxResultCount) {
 		try {
 			JsonObject o = sendRequest("navto",new at.bestsolution.typescript.service.api.internal.NavtoRequest(searchValue, file, maxResultCount)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				NavtoItem[] rv = new NavtoItem[ar.size()];
+				java.util.List<NavtoItemPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), NavtoItemPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), NavtoItemPojo.class));
 				}
 				return rv;
 			} else {
@@ -203,15 +203,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 			throw new IllegalStateException(e);
 		}
 	}
-	public OccurrencesResponseItem[] occurrences(int line, int offset, String file) {
+	public java.util.List<? extends OccurrencesResponseItem> occurrences(int line, int offset, String file) {
 		try {
 			JsonObject o = sendRequest("occurrences",new at.bestsolution.typescript.service.api.internal.OccurrencesRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				OccurrencesResponseItem[] rv = new OccurrencesResponseItem[ar.size()];
+				java.util.List<OccurrencesResponseItemPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), OccurrencesResponseItemPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), OccurrencesResponseItemPojo.class));
 				}
 				return rv;
 			} else {
@@ -221,15 +221,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 			throw new IllegalStateException(e);
 		}
 	}
-	public DocumentHighlightsItem[] documentHighlights(int line, int offset, String file, String[] filesToSearch) {
+	public java.util.List<? extends DocumentHighlightsItem> documentHighlights(int line, int offset, String file, java.util.List<? extends String> filesToSearch) {
 		try {
 			JsonObject o = sendRequest("documentHighlights",new at.bestsolution.typescript.service.api.internal.DocumentHighlightsRequest(line, offset, file, filesToSearch)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				DocumentHighlightsItem[] rv = new DocumentHighlightsItem[ar.size()];
+				java.util.List<DocumentHighlightsItemPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), DocumentHighlightsItemPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), DocumentHighlightsItemPojo.class));
 				}
 				return rv;
 			} else {
@@ -296,15 +296,15 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 			throw new IllegalStateException(e);
 		}
 	}
-	public FileSpan[] typeDefinition(int line, int offset, String file) {
+	public java.util.List<? extends FileSpan> typeDefinition(int line, int offset, String file) {
 		try {
 			JsonObject o = sendRequest("typeDefinition",new at.bestsolution.typescript.service.api.internal.TypeDefinitionRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-				FileSpan[] rv = new FileSpan[ar.size()];
+				java.util.List<FileSpanPojo> rv = new java.util.ArrayList<>(ar.size());
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), FileSpanPojo.class);
+					rv.add(new com.google.gson.Gson().fromJson(ar.get(i), FileSpanPojo.class));
 				}
 				return rv;
 			} else {

@@ -4,6 +4,6 @@ public interface CompletionEntryDetails  {
 	public String getName();
 	public String getKind();
 	public String getKindModifiers();
-	public SymbolDisplayPart[] getDisplayParts();
-	public SymbolDisplayPart[] getDocumentation();
+	public java.util.List<? extends SymbolDisplayPart> getDisplayParts();
+	public java.util.List<? extends SymbolDisplayPart> getDocumentation();
 }

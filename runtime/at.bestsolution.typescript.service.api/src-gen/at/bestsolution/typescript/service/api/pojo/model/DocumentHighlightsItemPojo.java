@@ -5,7 +5,7 @@ import at.bestsolution.typescript.service.api.model.DocumentHighlightsItem;
 
 public class DocumentHighlightsItemPojo  implements DocumentHighlightsItem {
 	private String file ;
-	private HighlightSpanPojo[] highlightSpans ;
+	private java.util.List<HighlightSpanPojo> highlightSpans ;
 
 	public DocumentHighlightsItemPojo() {
 	}
@@ -17,11 +17,11 @@ public class DocumentHighlightsItemPojo  implements DocumentHighlightsItem {
 	public void setFile(String file) {
 		this.file = file;
 	}
-	public HighlightSpanPojo[] getHighlightSpans() {
+	public java.util.List<HighlightSpanPojo> getHighlightSpans() {
 		return this.highlightSpans;
 	}
 
-	public void setHighlightSpans(HighlightSpanPojo[] highlightSpans) {
+	public void setHighlightSpans(java.util.List<HighlightSpanPojo> highlightSpans) {
 		this.highlightSpans = highlightSpans;
 	}
 

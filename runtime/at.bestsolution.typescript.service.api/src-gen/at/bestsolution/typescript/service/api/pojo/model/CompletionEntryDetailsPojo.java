@@ -7,8 +7,8 @@ public class CompletionEntryDetailsPojo  implements CompletionEntryDetails {
 	private String name ;
 	private String kind ;
 	private String kindModifiers ;
-	private SymbolDisplayPartPojo[] displayParts ;
-	private SymbolDisplayPartPojo[] documentation ;
+	private java.util.List<SymbolDisplayPartPojo> displayParts ;
+	private java.util.List<SymbolDisplayPartPojo> documentation ;
 
 	public CompletionEntryDetailsPojo() {
 	}
@@ -34,18 +34,18 @@ public class CompletionEntryDetailsPojo  implements CompletionEntryDetails {
 	public void setKindModifiers(String kindModifiers) {
 		this.kindModifiers = kindModifiers;
 	}
-	public SymbolDisplayPartPojo[] getDisplayParts() {
+	public java.util.List<SymbolDisplayPartPojo> getDisplayParts() {
 		return this.displayParts;
 	}
 
-	public void setDisplayParts(SymbolDisplayPartPojo[] displayParts) {
+	public void setDisplayParts(java.util.List<SymbolDisplayPartPojo> displayParts) {
 		this.displayParts = displayParts;
 	}
-	public SymbolDisplayPartPojo[] getDocumentation() {
+	public java.util.List<SymbolDisplayPartPojo> getDocumentation() {
 		return this.documentation;
 	}
 
-	public void setDocumentation(SymbolDisplayPartPojo[] documentation) {
+	public void setDocumentation(java.util.List<SymbolDisplayPartPojo> documentation) {
 		this.documentation = documentation;
 	}
 

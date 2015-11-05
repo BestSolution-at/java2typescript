@@ -4,10 +4,10 @@ package at.bestsolution.typescript.service.api.internal;
 public class CompletionEntryDetailsRequest {
 	private int line;
 	private int offset;
-	private String[] entryNames;
+	private java.util.List<? extends String> entryNames;
 	private String file;
 
-	public CompletionEntryDetailsRequest(int line, int offset, String[] entryNames, String file) {
+	public CompletionEntryDetailsRequest(int line, int offset, java.util.List<? extends String> entryNames, String file) {
 		this.line = line;
 		this.offset = offset;
 		this.entryNames = entryNames;
@@ -28,11 +28,11 @@ public class CompletionEntryDetailsRequest {
 	public int getOffset() {
 		return this.offset;
 	}
-	public void setEntryNames(String[] entryNames) {
+	public void setEntryNames(java.util.List<? extends String> entryNames) {
 		this.entryNames = entryNames;
 	}
 
-	public String[] getEntryNames() {
+	public java.util.List<? extends String> getEntryNames() {
 		return this.entryNames;
 	}
 	public void setFile(String file) {

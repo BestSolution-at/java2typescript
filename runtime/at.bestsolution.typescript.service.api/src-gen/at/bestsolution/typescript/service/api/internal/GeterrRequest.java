@@ -3,9 +3,9 @@ package at.bestsolution.typescript.service.api.internal;
 
 public class GeterrRequest {
 	private int delay;
-	private String[] files;
+	private java.util.List<? extends String> files;
 
-	public GeterrRequest(int delay, String[] files) {
+	public GeterrRequest(int delay, java.util.List<? extends String> files) {
 		this.delay = delay;
 		this.files = files;
 	}
@@ -17,11 +17,11 @@ public class GeterrRequest {
 	public int getDelay() {
 		return this.delay;
 	}
-	public void setFiles(String[] files) {
+	public void setFiles(java.util.List<? extends String> files) {
 		this.files = files;
 	}
 
-	public String[] getFiles() {
+	public java.util.List<? extends String> getFiles() {
 		return this.files;
 	}
 }

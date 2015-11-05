@@ -5,7 +5,7 @@ import at.bestsolution.typescript.service.api.model.DiagnosticEventBody;
 
 public class DiagnosticEventBodyPojo  implements DiagnosticEventBody {
 	private String file ;
-	private DiagnosticPojo[] diagnostics ;
+	private java.util.List<DiagnosticPojo> diagnostics ;
 
 	public DiagnosticEventBodyPojo() {
 	}
@@ -17,11 +17,11 @@ public class DiagnosticEventBodyPojo  implements DiagnosticEventBody {
 	public void setFile(String file) {
 		this.file = file;
 	}
-	public DiagnosticPojo[] getDiagnostics() {
+	public java.util.List<DiagnosticPojo> getDiagnostics() {
 		return this.diagnostics;
 	}
 
-	public void setDiagnostics(DiagnosticPojo[] diagnostics) {
+	public void setDiagnostics(java.util.List<DiagnosticPojo> diagnostics) {
 		this.diagnostics = diagnostics;
 	}
 

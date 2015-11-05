@@ -4,7 +4,7 @@ import java.util.Map;
 import at.bestsolution.typescript.service.api.model.SignatureHelpItems;
 
 public class SignatureHelpItemsPojo  implements SignatureHelpItems {
-	private SignatureHelpItemPojo[] items ;
+	private java.util.List<SignatureHelpItemPojo> items ;
 	private TextSpanPojo applicableSpan ;
 	private int selectedItemIndex ;
 	private int argumentIndex ;
@@ -13,11 +13,11 @@ public class SignatureHelpItemsPojo  implements SignatureHelpItems {
 	public SignatureHelpItemsPojo() {
 	}
 
-	public SignatureHelpItemPojo[] getItems() {
+	public java.util.List<SignatureHelpItemPojo> getItems() {
 		return this.items;
 	}
 
-	public void setItems(SignatureHelpItemPojo[] items) {
+	public void setItems(java.util.List<SignatureHelpItemPojo> items) {
 		this.items = items;
 	}
 	public TextSpanPojo getApplicableSpan() {

@@ -5,7 +5,7 @@ import at.bestsolution.typescript.service.api.model.SpanGroup;
 
 public class SpanGroupPojo  implements SpanGroup {
 	private String file ;
-	private TextSpanPojo[] locs ;
+	private java.util.List<TextSpanPojo> locs ;
 
 	public SpanGroupPojo() {
 	}
@@ -17,11 +17,11 @@ public class SpanGroupPojo  implements SpanGroup {
 	public void setFile(String file) {
 		this.file = file;
 	}
-	public TextSpanPojo[] getLocs() {
+	public java.util.List<TextSpanPojo> getLocs() {
 		return this.locs;
 	}
 
-	public void setLocs(TextSpanPojo[] locs) {
+	public void setLocs(java.util.List<TextSpanPojo> locs) {
 		this.locs = locs;
 	}
 

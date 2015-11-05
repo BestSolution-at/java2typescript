@@ -5,7 +5,7 @@ import at.bestsolution.typescript.service.api.model.RenameResponseBody;
 
 public class RenameResponseBodyPojo  implements RenameResponseBody {
 	private RenameInfoPojo info ;
-	private SpanGroupPojo[] locs ;
+	private java.util.List<SpanGroupPojo> locs ;
 
 	public RenameResponseBodyPojo() {
 	}
@@ -17,11 +17,11 @@ public class RenameResponseBodyPojo  implements RenameResponseBody {
 	public void setInfo(RenameInfoPojo info) {
 		this.info = info;
 	}
-	public SpanGroupPojo[] getLocs() {
+	public java.util.List<SpanGroupPojo> getLocs() {
 		return this.locs;
 	}
 
-	public void setLocs(SpanGroupPojo[] locs) {
+	public void setLocs(java.util.List<SpanGroupPojo> locs) {
 		this.locs = locs;
 	}
 

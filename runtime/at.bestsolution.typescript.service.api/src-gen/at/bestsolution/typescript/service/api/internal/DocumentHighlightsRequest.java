@@ -5,9 +5,9 @@ public class DocumentHighlightsRequest {
 	private int line;
 	private int offset;
 	private String file;
-	private String[] filesToSearch;
+	private java.util.List<? extends String> filesToSearch;
 
-	public DocumentHighlightsRequest(int line, int offset, String file, String[] filesToSearch) {
+	public DocumentHighlightsRequest(int line, int offset, String file, java.util.List<? extends String> filesToSearch) {
 		this.line = line;
 		this.offset = offset;
 		this.file = file;
@@ -35,11 +35,11 @@ public class DocumentHighlightsRequest {
 	public String getFile() {
 		return this.file;
 	}
-	public void setFilesToSearch(String[] filesToSearch) {
+	public void setFilesToSearch(java.util.List<? extends String> filesToSearch) {
 		this.filesToSearch = filesToSearch;
 	}
 
-	public String[] getFilesToSearch() {
+	public java.util.List<? extends String> getFilesToSearch() {
 		return this.filesToSearch;
 	}
 }

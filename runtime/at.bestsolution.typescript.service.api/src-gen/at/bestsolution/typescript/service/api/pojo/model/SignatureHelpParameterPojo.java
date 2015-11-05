@@ -5,8 +5,8 @@ import at.bestsolution.typescript.service.api.model.SignatureHelpParameter;
 
 public class SignatureHelpParameterPojo  implements SignatureHelpParameter {
 	private String name ;
-	private SymbolDisplayPartPojo[] documentation ;
-	private SymbolDisplayPartPojo[] displayParts ;
+	private java.util.List<SymbolDisplayPartPojo> documentation ;
+	private java.util.List<SymbolDisplayPartPojo> displayParts ;
 	private boolean isOptional ;
 
 	public SignatureHelpParameterPojo() {
@@ -19,18 +19,18 @@ public class SignatureHelpParameterPojo  implements SignatureHelpParameter {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public SymbolDisplayPartPojo[] getDocumentation() {
+	public java.util.List<SymbolDisplayPartPojo> getDocumentation() {
 		return this.documentation;
 	}
 
-	public void setDocumentation(SymbolDisplayPartPojo[] documentation) {
+	public void setDocumentation(java.util.List<SymbolDisplayPartPojo> documentation) {
 		this.documentation = documentation;
 	}
-	public SymbolDisplayPartPojo[] getDisplayParts() {
+	public java.util.List<SymbolDisplayPartPojo> getDisplayParts() {
 		return this.displayParts;
 	}
 
-	public void setDisplayParts(SymbolDisplayPartPojo[] displayParts) {
+	public void setDisplayParts(java.util.List<SymbolDisplayPartPojo> displayParts) {
 		this.displayParts = displayParts;
 	}
 	public boolean getIsOptional() {

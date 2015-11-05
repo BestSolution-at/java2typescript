@@ -5,7 +5,7 @@ import at.bestsolution.typescript.service.api.model.ProjectInfo;
 
 public class ProjectInfoPojo  implements ProjectInfo {
 	private String configFileName ;
-	private String[] fileNames ;
+	private java.util.List<String> fileNames ;
 
 	public ProjectInfoPojo() {
 	}
@@ -17,11 +17,11 @@ public class ProjectInfoPojo  implements ProjectInfo {
 	public void setConfigFileName(String configFileName) {
 		this.configFileName = configFileName;
 	}
-	public String[] getFileNames() {
+	public java.util.List<String> getFileNames() {
 		return this.fileNames;
 	}
 
-	public void setFileNames(String[] fileNames) {
+	public void setFileNames(java.util.List<String> fileNames) {
 		this.fileNames = fileNames;
 	}
 

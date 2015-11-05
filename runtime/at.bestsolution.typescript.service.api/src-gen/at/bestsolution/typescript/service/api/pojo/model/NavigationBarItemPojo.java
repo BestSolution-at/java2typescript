@@ -7,8 +7,8 @@ public class NavigationBarItemPojo  implements NavigationBarItem {
 	private String text ;
 	private String kind ;
 	private String kindModifiers ;
-	private TextSpanPojo[] spans ;
-	private NavigationBarItemPojo[] childItems ;
+	private java.util.List<TextSpanPojo> spans ;
+	private java.util.List<NavigationBarItemPojo> childItems ;
 
 	public NavigationBarItemPojo() {
 	}
@@ -34,18 +34,18 @@ public class NavigationBarItemPojo  implements NavigationBarItem {
 	public void setKindModifiers(String kindModifiers) {
 		this.kindModifiers = kindModifiers;
 	}
-	public TextSpanPojo[] getSpans() {
+	public java.util.List<TextSpanPojo> getSpans() {
 		return this.spans;
 	}
 
-	public void setSpans(TextSpanPojo[] spans) {
+	public void setSpans(java.util.List<TextSpanPojo> spans) {
 		this.spans = spans;
 	}
-	public NavigationBarItemPojo[] getChildItems() {
+	public java.util.List<NavigationBarItemPojo> getChildItems() {
 		return this.childItems;
 	}
 
-	public void setChildItems(NavigationBarItemPojo[] childItems) {
+	public void setChildItems(java.util.List<NavigationBarItemPojo> childItems) {
 		this.childItems = childItems;
 	}
 
