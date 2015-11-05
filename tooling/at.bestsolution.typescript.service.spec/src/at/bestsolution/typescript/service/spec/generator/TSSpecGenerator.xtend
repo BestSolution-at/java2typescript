@@ -10,6 +10,7 @@ import at.bestsolution.typescript.service.spec.tSSpec.DomainElement
 import at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs
 import at.bestsolution.typescript.service.spec.tSSpec.GenericTypeArgument
 import java.util.concurrent.ExecutionException
+import at.bestsolution.typescript.service.spec.tSSpec.CommandDef
 
 /**
  * Generates code from your model files on save.
@@ -24,7 +25,13 @@ class TSSpecGenerator implements IGenerator {
 			fsa.generateFile((defs.packageName+"."+name).replace('.','/')+".java", generateEnumType)
 		]
 		defs.domainElements.filter[cust].forEach[
-			fsa.generateFile((defs.packageName+"."+name).replace('.','/')+".java", generateCustType)
+			fsa.generateFile((defs.packageName+"."+name).replace('.','/')+".java", generateInterface)
+		]
+		defs.domainElements.filter[cust].forEach[
+			fsa.generateFile((defs.packageName+".pojo"+"."+name+"Pojo").replace('.','/')+".java", generateCustType)
+		]
+		defs.commandList.filter[ !attributes.isEmpty ].forEach[
+			fsa.generateFile((defs.packageName+".internal."+name.toFirstUpper+"Request").replace('.','/')+".java", generateRequestType)
 		]
 
 //		defs.commandList.forEach[s|
@@ -34,6 +41,36 @@ class TSSpecGenerator implements IGenerator {
 		fsa.generateFile((defs.packageName+".internal.local.LocalTSService").replace(".","/")+".java", defs.generateLocalService)
 		fsa.generateFile((defs.packageName+".services.TSService").replace('.','/')+".java", defs.generateServiceAPI)
 	}
+
+	def generateRequestType(CommandDef d) '''
+	package «(d.eContainer as ServiceDefs).packageName».internal;
+
+	«IF d.attributes.exists[a| a.type.type.cust]»
+	import «(d.eContainer as ServiceDefs).packageName».model.*;
+	«ENDIF»
+
+	public class «d.name.toFirstUpper»Request {
+		«FOR a : d.attributes»
+			private «a.type.typeString» «a.name»;
+		«ENDFOR»
+
+		public «d.name.toFirstUpper»Request(«d.attributes.map[a| a.type.typeString + " " + a.name].join(", ")») {
+			«FOR a : d.attributes»
+			this.«a.name» = «a.name»;
+			«ENDFOR»
+		}
+
+		«FOR a : d.attributes»
+			public void set«a.name.toFirstUpper»(«a.type.typeString» «a.name») {
+				this.«a.name» = «a.name»;
+			}
+
+			public «a.type.typeString» get«a.name.toFirstUpper»() {
+				return this.«a.name»;
+			}
+		«ENDFOR»
+	}
+	'''
 
 	def generateServiceAPI(ServiceDefs defs) '''
 	package «defs.packageName».services;
@@ -55,6 +92,7 @@ class TSSpecGenerator implements IGenerator {
 
 	import «defs.packageName».TSServerConfiguration;
 	import «defs.packageName».model.*;
+	import «defs.packageName».pojo.model.*;
 	import com.google.gson.JsonObject;
 	import com.google.gson.Gson;
 	import java.util.concurrent.Future;
@@ -72,8 +110,9 @@ class TSSpecGenerator implements IGenerator {
 		private Map<Integer,CompletableFuture<JsonObject>> waitingResponseConsumerMap = new HashMap<>();
 		private Process p;
 		private TSServerConfiguration configuration;
-		private String tsServer = "";
+		private String tsServer = "/usr/local/bin/tsserver";
 		private String id;
+		private int seqCount;
 
 		«FOR e : defs.eventList»
 		private final java.util.List<java.util.function.Consumer<«e.type.typeString»>> «e.name»ConsumerList = new java.util.ArrayList<>();
@@ -97,18 +136,18 @@ class TSSpecGenerator implements IGenerator {
 			public «c.returnVal.typeString» «c.name»(«c.attributes.map[a|a.type.typeString + " " + a.name].join(", ")») {
 				«IF c.returnVal.typeString != "void"»
 				try {
-					JsonObject o = sendRequest("«c.name»",«IF c.attributes.isEmpty»null«ELSE»/* requestObject */ null«ENDIF»).get();
+					JsonObject o = sendRequest("«c.name»",«IF c.attributes.isEmpty»null«ELSE»new «defs.packageName».internal.«c.name.toFirstUpper»Request(«c.attributes.map[a|a.name].join(", ")»)«ENDIF»).get();
 					if( o.has("success") && o.get("success").getAsBoolean() ) {
 						«IF c.returnVal.isList»
 							com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 							«c.returnVal.typeString» rv = new «c.returnVal.type.name.simpleName»[ar.size()];
 
 							for( int i = 0; i < ar.size(); i++ ) {
-								rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), «c.returnVal.type.name.simpleName».class);
+								rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), «c.returnVal.type.name.simpleName»Pojo.class);
 							}
 							return rv;
 						«ELSE»
-							return new com.google.gson.Gson().fromJson(o.get("body"), «c.returnVal.type.name.simpleName».class);
+							return new com.google.gson.Gson().fromJson(o.get("body"), «c.returnVal.type.name.simpleName»Pojo.class);
 						«ENDIF»
 					} else {
 						throw new IllegalStateException("Requested failed");
@@ -117,7 +156,7 @@ class TSSpecGenerator implements IGenerator {
 					throw new IllegalStateException(e);
 				}
 				«ELSE»
-				sendVoidRequest("«c.name»",«IF c.attributes.isEmpty»null«ELSE»/* requestObject */ null«ENDIF»);
+				sendVoidRequest("«c.name»",«IF c.attributes.isEmpty»null«ELSE»new «defs.packageName».internal.«c.name.toFirstUpper»Request(«c.attributes.map[a|a.name].join(", ")»)«ENDIF»);
 				«ENDIF»
 			}
 		«ENDFOR»
@@ -134,7 +173,7 @@ class TSSpecGenerator implements IGenerator {
 			String binary = configuration == null ? tsServer : configuration.getServerBinary();
 
 			try {
-				p = Runtime.getRuntime().exec(binary);
+				p = Runtime.getRuntime().exec(binary, new String[] { "PATH=$PATH:/usr/local/bin" }); //TODO Linux & Windows???
 
 				Thread t = new Thread() {
 					public void run() {
@@ -142,7 +181,9 @@ class TSSpecGenerator implements IGenerator {
 							BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
 							String l = null;
 							while( (l = r.readLine()) != null ) {
-								dispatch(l);
+								if( l.startsWith("{") ) {
+									dispatch(l);
+								}
 							}
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
@@ -208,7 +249,7 @@ class TSSpecGenerator implements IGenerator {
 		}
 
 		private void sendVoidRequest(String method, Object request) {
-			String r = "{ \"seq\" : seq, \"type\" : \"command\"";
+			String r = "{ \"seq\" : "+ seqCount++ +", \"type\" : \"request\", \"command\" : \""+method+"\"";
 			if( request != null ) {
 				r += ", \"arguments\" :  " + new Gson().toJson(request);
 			}
@@ -216,6 +257,7 @@ class TSSpecGenerator implements IGenerator {
 			r = r.replace('\n', ' ');
 			r = r.replace('\r', ' ');
 			r += "\n";
+			System.err.println(r);
 			try {
 				p.getOutputStream().write(r.getBytes());
 				p.getOutputStream().flush();
@@ -237,25 +279,36 @@ class TSSpecGenerator implements IGenerator {
 	}
 	'''
 
-	def generateCustType(DomainElement e) '''
+	def generateInterface(DomainElement e) '''
 	package «(e.eContainer as ServiceDefs).packageName».«e.name.substring(0,e.name.lastIndexOf('.'))»;
 
-	import java.util.Map;
-
-	public class «e.name.simpleName» «IF e.superType != null»extends «e.superType.name.simpleName»«ENDIF» {
+	public interface «e.name.simpleName» «IF e.superType != null»extends «e.superType.name.simpleName»«ENDIF» {
 		«FOR a : e.attributes»
-			private «a.type.typeString» «a.name.simpleName» «IF a.value != null» = «a.value»«ENDIF»;
+			public «a.type.typeString» get«a.name.simpleName.toFirstUpper»();
+		«ENDFOR»
+	}
+	'''
+
+	def generateCustType(DomainElement e) '''
+	package «(e.eContainer as ServiceDefs).packageName».pojo.«e.name.substring(0,e.name.lastIndexOf('.'))»;
+
+	import java.util.Map;
+	import «(e.eContainer as ServiceDefs).packageName».«e.name.substring(0,e.name.lastIndexOf('.'))».«e.name.simpleName»;
+
+	public class «e.name.simpleName»Pojo «IF e.superType != null»extends «e.superType.name.simpleName»Pojo«ENDIF» implements «e.name.simpleName» {
+		«FOR a : e.attributes»
+			private «a.type.typeStringPojo» «a.name.simpleName» «IF a.value != null» = «a.value»«ENDIF»;
 		«ENDFOR»
 
-		public «e.name.simpleName»() {
+		public «e.name.simpleName»Pojo() {
 		}
 
 		«FOR a : e.attributes»
-			public «a.type.typeString» get«a.name.simpleName.toFirstUpper»() {
+			public «a.type.typeStringPojo» get«a.name.simpleName.toFirstUpper»() {
 				return this.«a.name.simpleName»;
 			}
 
-			public void set«a.name.simpleName.toFirstUpper»(«a.type.typeString» «a.name.simpleName») {
+			public void set«a.name.simpleName.toFirstUpper»(«a.type.typeStringPojo» «a.name.simpleName») {
 				this.«a.name.simpleName» = «a.name.simpleName»;
 			}
 		«ENDFOR»
@@ -265,6 +318,41 @@ class TSSpecGenerator implements IGenerator {
 		}
 	}
 	'''
+
+	def String typeStringPojo(GenericTypeArgument type) {
+		if( type == null ) {
+			return "void"
+		}
+
+		var name = type.type.name.simpleName;
+
+		if( type.type.isCust ) {
+			name += "Pojo";
+		}
+
+		if( type.type.realType != null) {
+			name = type.type.realType
+		}
+
+		if( ! type.arguments.empty ) {
+			var rv = name
+			if( ! type.arguments.empty ) {
+				rv += "<"
+				rv += type.arguments.map[typeString].join(",")
+				rv += ">"
+			}
+			if( type.list ) {
+				rv += "[]"
+			}
+			return rv
+		} else {
+			var rv = name;
+			if( type.list ) {
+				rv += "[]"
+			}
+			return rv
+		}
+	}
 
 	def String typeString(GenericTypeArgument type) {
 		if( type == null ) {
