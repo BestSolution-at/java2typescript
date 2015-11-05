@@ -6,3 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: libs/gson-2.3.1.jar,
  .
+Import-Package: org.osgi.service.component.annotations;version="1.2.0"
+Service-Component: OSGI-INF/at.bestsolution.typescript.service.api.internal.local.LocalTSServiceFactory.xml
+Export-Package: at.bestsolution.typescript.service.api.model,
+ at.bestsolution.typescript.service.api.services
+Bundle-ActivationPolicy: lazy

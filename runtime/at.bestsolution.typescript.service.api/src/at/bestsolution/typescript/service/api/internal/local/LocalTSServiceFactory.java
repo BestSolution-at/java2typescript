@@ -3,6 +3,11 @@ package at.bestsolution.typescript.service.api.internal.local;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
+
 import at.bestsolution.typescript.service.api.TSServerConfiguration;
 import at.bestsolution.typescript.service.api.services.TSService;
 import at.bestsolution.typescript.service.api.services.TSServiceFactory;

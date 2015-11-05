@@ -2,6 +2,7 @@ package at.bestsolution.typescript.service.api.internal.local;
 
 import at.bestsolution.typescript.service.api.TSServerConfiguration;
 import at.bestsolution.typescript.service.api.model.*;
+import at.bestsolution.typescript.service.api.pojo.model.*;
 import com.google.gson.JsonObject;
 import com.google.gson.Gson;
 import java.util.concurrent.Future;
@@ -19,8 +20,9 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	private Map<Integer,CompletableFuture<JsonObject>> waitingResponseConsumerMap = new HashMap<>();
 	private Process p;
 	private TSServerConfiguration configuration;
-	private String tsServer = "";
+	private String tsServer = "/usr/local/bin/tsserver";
 	private String id;
+	private int seqCount;
 
 	private final java.util.List<java.util.function.Consumer<DiagnosticEventBody>> syntaxDiagConsumerList = new java.util.ArrayList<>();
 	private final java.util.List<java.util.function.Consumer<DiagnosticEventBody>> semanticDiagConsumerList = new java.util.ArrayList<>();
@@ -41,13 +43,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 
 	public TextSpan[] brace(int line, int offset, String file) {
 		try {
-			JsonObject o = sendRequest("brace",/* requestObject */ null).get();
+			JsonObject o = sendRequest("brace",new at.bestsolution.typescript.service.api.internal.BraceRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				TextSpan[] rv = new TextSpan[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), TextSpan.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), TextSpanPojo.class);
 				}
 				return rv;
 			} else {
@@ -58,20 +60,20 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		}
 	}
 	public void change(int line, int offset, int endLine, int endOffset, String insertString, String file) {
-		sendVoidRequest("change",/* requestObject */ null);
+		sendVoidRequest("change",new at.bestsolution.typescript.service.api.internal.ChangeRequest(line, offset, endLine, endOffset, insertString, file));
 	}
 	public void close(String file) {
-		sendVoidRequest("close",/* requestObject */ null);
+		sendVoidRequest("close",new at.bestsolution.typescript.service.api.internal.CloseRequest(file));
 	}
 	public CompletionEntry[] completions(int line, int offset, String prefix, String file) {
 		try {
-			JsonObject o = sendRequest("completions",/* requestObject */ null).get();
+			JsonObject o = sendRequest("completions",new at.bestsolution.typescript.service.api.internal.CompletionsRequest(line, offset, prefix, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				CompletionEntry[] rv = new CompletionEntry[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), CompletionEntry.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), CompletionEntryPojo.class);
 				}
 				return rv;
 			} else {
@@ -83,13 +85,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public CompletionEntryDetails[] completionEntryDetails(int line, int offset, String[] entryNames, String file) {
 		try {
-			JsonObject o = sendRequest("completionEntryDetails",/* requestObject */ null).get();
+			JsonObject o = sendRequest("completionEntryDetails",new at.bestsolution.typescript.service.api.internal.CompletionEntryDetailsRequest(line, offset, entryNames, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				CompletionEntryDetails[] rv = new CompletionEntryDetails[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), CompletionEntryDetails.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), CompletionEntryDetailsPojo.class);
 				}
 				return rv;
 			} else {
@@ -100,17 +102,17 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		}
 	}
 	public void configure(String hostInfo, String file, FormatOptions formatOptions) {
-		sendVoidRequest("configure",/* requestObject */ null);
+		sendVoidRequest("configure",new at.bestsolution.typescript.service.api.internal.ConfigureRequest(hostInfo, file, formatOptions));
 	}
 	public FileSpan[] definition(int line, int offset, String file) {
 		try {
-			JsonObject o = sendRequest("definition",/* requestObject */ null).get();
+			JsonObject o = sendRequest("definition",new at.bestsolution.typescript.service.api.internal.DefinitionRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				FileSpan[] rv = new FileSpan[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), FileSpan.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), FileSpanPojo.class);
 				}
 				return rv;
 			} else {
@@ -125,13 +127,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public CodeEdit[] format(int line, int offset, int endLine, int endOffset, String file) {
 		try {
-			JsonObject o = sendRequest("format",/* requestObject */ null).get();
+			JsonObject o = sendRequest("format",new at.bestsolution.typescript.service.api.internal.FormatRequest(line, offset, endLine, endOffset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				CodeEdit[] rv = new CodeEdit[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), CodeEdit.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), CodeEditPojo.class);
 				}
 				return rv;
 			} else {
@@ -143,13 +145,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public CodeEdit[] formatonkey(int line, int offset, String key, String file) {
 		try {
-			JsonObject o = sendRequest("formatonkey",/* requestObject */ null).get();
+			JsonObject o = sendRequest("formatonkey",new at.bestsolution.typescript.service.api.internal.FormatonkeyRequest(line, offset, key, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				CodeEdit[] rv = new CodeEdit[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), CodeEdit.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), CodeEditPojo.class);
 				}
 				return rv;
 			} else {
@@ -160,20 +162,20 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		}
 	}
 	public void geterr(int delay, String[] files) {
-		sendVoidRequest("geterr",/* requestObject */ null);
+		sendVoidRequest("geterr",new at.bestsolution.typescript.service.api.internal.GeterrRequest(delay, files));
 	}
 	public void geterrForProject(int delay, String file) {
-		sendVoidRequest("geterrForProject",/* requestObject */ null);
+		sendVoidRequest("geterrForProject",new at.bestsolution.typescript.service.api.internal.GeterrForProjectRequest(delay, file));
 	}
 	public NavigationBarItem[] navbar(String file) {
 		try {
-			JsonObject o = sendRequest("navbar",/* requestObject */ null).get();
+			JsonObject o = sendRequest("navbar",new at.bestsolution.typescript.service.api.internal.NavbarRequest(file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				NavigationBarItem[] rv = new NavigationBarItem[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), NavigationBarItem.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), NavigationBarItemPojo.class);
 				}
 				return rv;
 			} else {
@@ -185,13 +187,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public NavtoItem[] navto(String searchValue, String file, int maxResultCount) {
 		try {
-			JsonObject o = sendRequest("navto",/* requestObject */ null).get();
+			JsonObject o = sendRequest("navto",new at.bestsolution.typescript.service.api.internal.NavtoRequest(searchValue, file, maxResultCount)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				NavtoItem[] rv = new NavtoItem[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), NavtoItem.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), NavtoItemPojo.class);
 				}
 				return rv;
 			} else {
@@ -203,13 +205,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public OccurrencesResponseItem[] occurrences(int line, int offset, String file) {
 		try {
-			JsonObject o = sendRequest("occurrences",/* requestObject */ null).get();
+			JsonObject o = sendRequest("occurrences",new at.bestsolution.typescript.service.api.internal.OccurrencesRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				OccurrencesResponseItem[] rv = new OccurrencesResponseItem[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), OccurrencesResponseItem.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), OccurrencesResponseItemPojo.class);
 				}
 				return rv;
 			} else {
@@ -221,13 +223,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public DocumentHighlightsItem[] documentHighlights(int line, int offset, String file, String[] filesToSearch) {
 		try {
-			JsonObject o = sendRequest("documentHighlights",/* requestObject */ null).get();
+			JsonObject o = sendRequest("documentHighlights",new at.bestsolution.typescript.service.api.internal.DocumentHighlightsRequest(line, offset, file, filesToSearch)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				DocumentHighlightsItem[] rv = new DocumentHighlightsItem[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), DocumentHighlightsItem.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), DocumentHighlightsItemPojo.class);
 				}
 				return rv;
 			} else {
@@ -238,13 +240,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		}
 	}
 	public void open(String file) {
-		sendVoidRequest("open",/* requestObject */ null);
+		sendVoidRequest("open",new at.bestsolution.typescript.service.api.internal.OpenRequest(file));
 	}
 	public QuickInfoResponseBody quickinfo(int line, int offset, String file) {
 		try {
-			JsonObject o = sendRequest("quickinfo",/* requestObject */ null).get();
+			JsonObject o = sendRequest("quickinfo",new at.bestsolution.typescript.service.api.internal.QuickinfoRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
-				return new com.google.gson.Gson().fromJson(o.get("body"), QuickInfoResponseBody.class);
+				return new com.google.gson.Gson().fromJson(o.get("body"), QuickInfoResponseBodyPojo.class);
 			} else {
 				throw new IllegalStateException("Requested failed");
 			}
@@ -254,9 +256,9 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public ReferencesResponseBody references(int line, int offset, String file) {
 		try {
-			JsonObject o = sendRequest("references",/* requestObject */ null).get();
+			JsonObject o = sendRequest("references",new at.bestsolution.typescript.service.api.internal.ReferencesRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
-				return new com.google.gson.Gson().fromJson(o.get("body"), ReferencesResponseBody.class);
+				return new com.google.gson.Gson().fromJson(o.get("body"), ReferencesResponseBodyPojo.class);
 			} else {
 				throw new IllegalStateException("Requested failed");
 			}
@@ -265,13 +267,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		}
 	}
 	public void reload(String file, String tmpfile) {
-		sendVoidRequest("reload",/* requestObject */ null);
+		sendVoidRequest("reload",new at.bestsolution.typescript.service.api.internal.ReloadRequest(file, tmpfile));
 	}
 	public RenameResponseBody rename(int line, int offset, String file, boolean findInComments, boolean findInStrings) {
 		try {
-			JsonObject o = sendRequest("rename",/* requestObject */ null).get();
+			JsonObject o = sendRequest("rename",new at.bestsolution.typescript.service.api.internal.RenameRequest(line, offset, file, findInComments, findInStrings)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
-				return new com.google.gson.Gson().fromJson(o.get("body"), RenameResponseBody.class);
+				return new com.google.gson.Gson().fromJson(o.get("body"), RenameResponseBodyPojo.class);
 			} else {
 				throw new IllegalStateException("Requested failed");
 			}
@@ -280,13 +282,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		}
 	}
 	public void saveto(String file, String tmpfile) {
-		sendVoidRequest("saveto",/* requestObject */ null);
+		sendVoidRequest("saveto",new at.bestsolution.typescript.service.api.internal.SavetoRequest(file, tmpfile));
 	}
 	public SignatureHelpItems signatureHelp(int line, int offset, String file) {
 		try {
-			JsonObject o = sendRequest("signatureHelp",/* requestObject */ null).get();
+			JsonObject o = sendRequest("signatureHelp",new at.bestsolution.typescript.service.api.internal.SignatureHelpRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
-				return new com.google.gson.Gson().fromJson(o.get("body"), SignatureHelpItems.class);
+				return new com.google.gson.Gson().fromJson(o.get("body"), SignatureHelpItemsPojo.class);
 			} else {
 				throw new IllegalStateException("Requested failed");
 			}
@@ -296,13 +298,13 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public FileSpan[] typeDefinition(int line, int offset, String file) {
 		try {
-			JsonObject o = sendRequest("typeDefinition",/* requestObject */ null).get();
+			JsonObject o = sendRequest("typeDefinition",new at.bestsolution.typescript.service.api.internal.TypeDefinitionRequest(line, offset, file)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
 				com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
 				FileSpan[] rv = new FileSpan[ar.size()];
 
 				for( int i = 0; i < ar.size(); i++ ) {
-					rv[i] = new com.google.gson.Gson().fromJson(o.get("body"), FileSpan.class);
+					rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), FileSpanPojo.class);
 				}
 				return rv;
 			} else {
@@ -314,9 +316,9 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 	public ProjectInfo projectInfo(String file, boolean needFileNameList) {
 		try {
-			JsonObject o = sendRequest("projectInfo",/* requestObject */ null).get();
+			JsonObject o = sendRequest("projectInfo",new at.bestsolution.typescript.service.api.internal.ProjectInfoRequest(file, needFileNameList)).get();
 			if( o.has("success") && o.get("success").getAsBoolean() ) {
-				return new com.google.gson.Gson().fromJson(o.get("body"), ProjectInfo.class);
+				return new com.google.gson.Gson().fromJson(o.get("body"), ProjectInfoPojo.class);
 			} else {
 				throw new IllegalStateException("Requested failed");
 			}
@@ -341,7 +343,7 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		String binary = configuration == null ? tsServer : configuration.getServerBinary();
 
 		try {
-			p = Runtime.getRuntime().exec(binary);
+			p = Runtime.getRuntime().exec(binary, new String[] { "PATH=$PATH:/usr/local/bin" }); //TODO Linux & Windows???
 
 			Thread t = new Thread() {
 				public void run() {
@@ -349,7 +351,9 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 						BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
 						String l = null;
 						while( (l = r.readLine()) != null ) {
-							dispatch(l);
+							if( l.startsWith("{") ) {
+								dispatch(l);
+							}
 						}
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -423,7 +427,7 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 	}
 
 	private void sendVoidRequest(String method, Object request) {
-		String r = "{ \"seq\" : seq, \"type\" : \"command\"";
+		String r = "{ \"seq\" : "+ seqCount++ +", \"type\" : \"request\", \"command\" : \""+method+"\"";
 		if( request != null ) {
 			r += ", \"arguments\" :  " + new Gson().toJson(request);
 		}
@@ -431,6 +435,7 @@ public class LocalTSService implements at.bestsolution.typescript.service.api.se
 		r = r.replace('\n', ' ');
 		r = r.replace('\r', ' ');
 		r += "\n";
+		System.err.println(r);
 		try {
 			p.getOutputStream().write(r.getBytes());
 			p.getOutputStream().flush();
