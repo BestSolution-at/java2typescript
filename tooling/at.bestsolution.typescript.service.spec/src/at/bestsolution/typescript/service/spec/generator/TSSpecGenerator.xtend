@@ -9,7 +9,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import at.bestsolution.typescript.service.spec.tSSpec.DomainElement
 import at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs
 import at.bestsolution.typescript.service.spec.tSSpec.GenericTypeArgument
-import java.util.concurrent.ExecutionException
 import at.bestsolution.typescript.service.spec.tSSpec.CommandDef
 
 /**
@@ -240,19 +239,33 @@ class TSSpecGenerator implements IGenerator {
 
 		private Future<JsonObject> sendRequest(String method, Object request) {
 			CompletableFuture<JsonObject> f = new CompletableFuture<>();
-			Integer seq = requestCount.incrementAndGet();
+			Integer seq = requestCount.getAndIncrement();
 
 			synchronized(waitingResponseConsumerMap) {
 				waitingResponseConsumerMap.put(seq, f);
 			}
 
-			sendVoidRequest(method,request);
+			String r = "{ \"seq\" : "+ seq +", \"type\" : \"request\", \"command\" : \""+method+"\"";
+			if( request != null ) {
+				r += ", \"arguments\" :  " + new Gson().toJson(request);
+			}
+			r += "}";
+			r = r.replace('\n', ' ');
+			r = r.replace('\r', ' ');
+			r += "\n";
+			try {
+				p.getOutputStream().write(r.getBytes());
+				p.getOutputStream().flush();
+			} catch (java.io.IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			return f;
 		}
 
 		private void sendVoidRequest(String method, Object request) {
-			String r = "{ \"seq\" : "+ seqCount++ +", \"type\" : \"request\", \"command\" : \""+method+"\"";
+			String r = "{ \"seq\" : "+ requestCount.getAndIncrement() +", \"type\" : \"request\", \"command\" : \""+method+"\"";
 			if( request != null ) {
 				r += ", \"arguments\" :  " + new Gson().toJson(request);
 			}
