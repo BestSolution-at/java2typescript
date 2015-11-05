@@ -140,10 +140,10 @@ class TSSpecGenerator implements IGenerator {
 					if( o.has("success") && o.get("success").getAsBoolean() ) {
 						«IF c.returnVal.isList»
 							com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-							«c.returnVal.typeString» rv = new «c.returnVal.type.name.simpleName»[ar.size()];
+							«c.returnVal.typeStringPojo» rv = new java.util.ArrayList<>(ar.size());
 
 							for( int i = 0; i < ar.size(); i++ ) {
-								rv[i] = new com.google.gson.Gson().fromJson(ar.get(i), «c.returnVal.type.name.simpleName»Pojo.class);
+								rv.add(new com.google.gson.Gson().fromJson(ar.get(i), «c.returnVal.type.name.simpleName»Pojo.class));
 							}
 							return rv;
 						«ELSE»
@@ -342,13 +342,13 @@ class TSSpecGenerator implements IGenerator {
 				rv += ">"
 			}
 			if( type.list ) {
-				rv += "[]"
+				rv = "java.util.List<"+rv+">"
 			}
 			return rv
 		} else {
 			var rv = name;
 			if( type.list ) {
-				rv += "[]"
+				rv = "java.util.List<"+rv+">"
 			}
 			return rv
 		}
@@ -372,13 +372,13 @@ class TSSpecGenerator implements IGenerator {
 				rv += ">"
 			}
 			if( type.list ) {
-				rv += "[]"
+				rv = "java.util.List<? extends "+rv+">"
 			}
 			return rv
 		} else {
 			var rv = name;
 			if( type.list ) {
-				rv += "[]"
+				rv = "java.util.List<? extends "+rv+">"
 			}
 			return rv
 		}
