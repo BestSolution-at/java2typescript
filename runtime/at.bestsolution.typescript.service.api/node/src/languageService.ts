@@ -638,6 +638,8 @@ namespace TypeScriptServiceAPI {
         details : ts.CompletionEntryDetails[];
     }
 
+    // Taken from 
+    // https://github.com/palantir/eclipse-typescript
     class FileInfo {
 
         private changes: ts.TextChangeRange[];
@@ -699,7 +701,9 @@ namespace TypeScriptServiceAPI {
             this.changes.push(change);
         }
     }
-
+    
+    // Taken from 
+    // https://github.com/palantir/eclipse-typescript
 	class ScriptSnapshot implements ts.IScriptSnapshot {
 
         private changes: ts.TextChangeRange[];
