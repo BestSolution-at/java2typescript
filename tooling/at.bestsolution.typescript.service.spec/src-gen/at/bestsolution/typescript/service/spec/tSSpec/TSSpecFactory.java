@@ -68,6 +68,15 @@ public interface TSSpecFactory extends EFactory
   GenericTypeArgument createGenericTypeArgument();
 
   /**
+   * Returns a new object of class '<em>Service Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Service Def</em>'.
+   * @generated
+   */
+  ServiceDef createServiceDef();
+
+  /**
    * Returns a new object of class '<em>Command Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

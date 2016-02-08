@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#isCust <em>Cust</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#isIsEnum <em>Is Enum</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#getEnumValues <em>Enum Values</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#getRealType <em>Real Type</em>}</li>
  * </ul>
@@ -139,6 +140,32 @@ public interface DomainElement extends EObject
    * @generated
    */
   EList<Attribute> getAttributes();
+
+  /**
+   * Returns the value of the '<em><b>Is Enum</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Is Enum</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Is Enum</em>' attribute.
+   * @see #setIsEnum(boolean)
+   * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getDomainElement_IsEnum()
+   * @model
+   * @generated
+   */
+  boolean isIsEnum();
+
+  /**
+   * Sets the value of the '{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#isIsEnum <em>Is Enum</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Is Enum</em>' attribute.
+   * @see #isIsEnum()
+   * @generated
+   */
+  void setIsEnum(boolean value);
 
   /**
    * Returns the value of the '<em><b>Enum Values</b></em>' containment reference list.

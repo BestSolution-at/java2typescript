@@ -3,7 +3,7 @@
 ','=26
 '.'=33
 '<'=25
-'='=24
+'='=23
 '>'=27
 '[]'=28
 'alias'=21
@@ -14,7 +14,7 @@
 'event'=32
 'extends'=15
 'javatype'=13
-'optional'=23
+'optional'=24
 'package'=12
 'returns'=30
 'void'=31

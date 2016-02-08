@@ -8,6 +8,7 @@ import at.bestsolution.typescript.service.spec.tSSpec.DomainElement;
 import at.bestsolution.typescript.service.spec.tSSpec.EnumVal;
 import at.bestsolution.typescript.service.spec.tSSpec.EventDef;
 import at.bestsolution.typescript.service.spec.tSSpec.GenericTypeArgument;
+import at.bestsolution.typescript.service.spec.tSSpec.ServiceDef;
 import at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs;
 import at.bestsolution.typescript.service.spec.tSSpec.TSSpecFactory;
 import at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage;
@@ -61,6 +62,13 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
    * @generated
    */
   private EClass genericTypeArgumentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass serviceDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -174,19 +182,9 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getServiceDefs_CommandList()
+  public EReference getServiceDefs_ServiceDefs()
   {
     return (EReference)serviceDefsEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getServiceDefs_EventList()
-  {
-    return (EReference)serviceDefsEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -254,9 +252,19 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getDomainElement_IsEnum()
+  {
+    return (EAttribute)domainElementEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getDomainElement_EnumValues()
   {
-    return (EReference)domainElementEClass.getEStructuralFeatures().get(5);
+    return (EReference)domainElementEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -266,7 +274,7 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
    */
   public EAttribute getDomainElement_RealType()
   {
-    return (EAttribute)domainElementEClass.getEStructuralFeatures().get(6);
+    return (EAttribute)domainElementEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -297,6 +305,16 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
   public EAttribute getEnumVal_Name()
   {
     return (EAttribute)enumValEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEnumVal_Value()
+  {
+    return (EAttribute)enumValEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -397,6 +415,46 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
   public EAttribute getGenericTypeArgument_List()
   {
     return (EAttribute)genericTypeArgumentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getServiceDef()
+  {
+    return serviceDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getServiceDef_Name()
+  {
+    return (EAttribute)serviceDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getServiceDef_CommandList()
+  {
+    return (EReference)serviceDefEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getServiceDef_EventList()
+  {
+    return (EReference)serviceDefEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -512,8 +570,7 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
     serviceDefsEClass = createEClass(SERVICE_DEFS);
     createEAttribute(serviceDefsEClass, SERVICE_DEFS__PACKAGE_NAME);
     createEReference(serviceDefsEClass, SERVICE_DEFS__DOMAIN_ELEMENTS);
-    createEReference(serviceDefsEClass, SERVICE_DEFS__COMMAND_LIST);
-    createEReference(serviceDefsEClass, SERVICE_DEFS__EVENT_LIST);
+    createEReference(serviceDefsEClass, SERVICE_DEFS__SERVICE_DEFS);
 
     domainElementEClass = createEClass(DOMAIN_ELEMENT);
     createEAttribute(domainElementEClass, DOMAIN_ELEMENT__DOC);
@@ -521,12 +578,14 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
     createEAttribute(domainElementEClass, DOMAIN_ELEMENT__CUST);
     createEReference(domainElementEClass, DOMAIN_ELEMENT__SUPER_TYPE);
     createEReference(domainElementEClass, DOMAIN_ELEMENT__ATTRIBUTES);
+    createEAttribute(domainElementEClass, DOMAIN_ELEMENT__IS_ENUM);
     createEReference(domainElementEClass, DOMAIN_ELEMENT__ENUM_VALUES);
     createEAttribute(domainElementEClass, DOMAIN_ELEMENT__REAL_TYPE);
 
     enumValEClass = createEClass(ENUM_VAL);
     createEAttribute(enumValEClass, ENUM_VAL__DOC);
     createEAttribute(enumValEClass, ENUM_VAL__NAME);
+    createEAttribute(enumValEClass, ENUM_VAL__VALUE);
 
     attributeEClass = createEClass(ATTRIBUTE);
     createEAttribute(attributeEClass, ATTRIBUTE__DOCUMENTATION);
@@ -539,6 +598,11 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
     createEReference(genericTypeArgumentEClass, GENERIC_TYPE_ARGUMENT__TYPE);
     createEReference(genericTypeArgumentEClass, GENERIC_TYPE_ARGUMENT__ARGUMENTS);
     createEAttribute(genericTypeArgumentEClass, GENERIC_TYPE_ARGUMENT__LIST);
+
+    serviceDefEClass = createEClass(SERVICE_DEF);
+    createEAttribute(serviceDefEClass, SERVICE_DEF__NAME);
+    createEReference(serviceDefEClass, SERVICE_DEF__COMMAND_LIST);
+    createEReference(serviceDefEClass, SERVICE_DEF__EVENT_LIST);
 
     commandDefEClass = createEClass(COMMAND_DEF);
     createEAttribute(commandDefEClass, COMMAND_DEF__NAME);
@@ -585,8 +649,7 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
     initEClass(serviceDefsEClass, ServiceDefs.class, "ServiceDefs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getServiceDefs_PackageName(), ecorePackage.getEString(), "packageName", null, 0, 1, ServiceDefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getServiceDefs_DomainElements(), this.getDomainElement(), null, "domainElements", null, 0, -1, ServiceDefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getServiceDefs_CommandList(), this.getCommandDef(), null, "commandList", null, 0, -1, ServiceDefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getServiceDefs_EventList(), this.getEventDef(), null, "eventList", null, 0, -1, ServiceDefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getServiceDefs_ServiceDefs(), this.getServiceDef(), null, "serviceDefs", null, 0, -1, ServiceDefs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(domainElementEClass, DomainElement.class, "DomainElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDomainElement_Doc(), ecorePackage.getEString(), "doc", null, 0, -1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -594,12 +657,14 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
     initEAttribute(getDomainElement_Cust(), ecorePackage.getEBoolean(), "cust", null, 0, 1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomainElement_SuperType(), this.getDomainElement(), null, "superType", null, 0, 1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomainElement_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDomainElement_IsEnum(), ecorePackage.getEBoolean(), "isEnum", null, 0, 1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomainElement_EnumValues(), this.getEnumVal(), null, "enumValues", null, 0, -1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDomainElement_RealType(), ecorePackage.getEString(), "realType", null, 0, 1, DomainElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumValEClass, EnumVal.class, "EnumVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEnumVal_Doc(), ecorePackage.getEString(), "doc", null, 0, -1, EnumVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEnumVal_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEnumVal_Value(), ecorePackage.getEString(), "value", null, 0, 1, EnumVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttribute_Documentation(), ecorePackage.getEString(), "documentation", null, 0, -1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -612,6 +677,11 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
     initEReference(getGenericTypeArgument_Type(), this.getDomainElement(), null, "type", null, 0, 1, GenericTypeArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGenericTypeArgument_Arguments(), this.getGenericTypeArgument(), null, "arguments", null, 0, -1, GenericTypeArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGenericTypeArgument_List(), ecorePackage.getEBoolean(), "list", null, 0, 1, GenericTypeArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(serviceDefEClass, ServiceDef.class, "ServiceDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getServiceDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, ServiceDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getServiceDef_CommandList(), this.getCommandDef(), null, "commandList", null, 0, -1, ServiceDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getServiceDef_EventList(), this.getEventDef(), null, "eventList", null, 0, -1, ServiceDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commandDefEClass, CommandDef.class, "CommandDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCommandDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, CommandDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

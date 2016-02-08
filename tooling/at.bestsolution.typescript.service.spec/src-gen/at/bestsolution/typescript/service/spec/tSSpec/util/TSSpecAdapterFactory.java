@@ -100,6 +100,11 @@ public class TSSpecAdapterFactory extends AdapterFactoryImpl
         return createGenericTypeArgumentAdapter();
       }
       @Override
+      public Adapter caseServiceDef(ServiceDef object)
+      {
+        return createServiceDefAdapter();
+      }
+      @Override
       public Adapter caseCommandDef(CommandDef object)
       {
         return createCommandDefAdapter();
@@ -202,6 +207,21 @@ public class TSSpecAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createGenericTypeArgumentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDef <em>Service Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.ServiceDef
+   * @generated
+   */
+  public Adapter createServiceDefAdapter()
   {
     return null;
   }

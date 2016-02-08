@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalTSSpecLexer extends Lexer {
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=5;
     public static final int RULE_SL_COMMENT=9;
     public static final int T__19=19;
     public static final int T__15=15;
@@ -30,7 +30,7 @@ public class InternalTSSpecLexer extends Lexer {
     public static final int RULE_ID=4;
     public static final int RULE_WS=10;
     public static final int RULE_ANY_OTHER=11;
-    public static final int RULE_DOC=5;
+    public static final int RULE_DOC=6;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -55,15 +55,15 @@ public class InternalTSSpecLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g"; }
+    public String getGrammarFileName() { return "InternalTSSpec.g"; }
 
     // $ANTLR start "T__12"
     public final void mT__12() throws RecognitionException {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:11:7: ( 'void' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:11:9: 'void'
+            // InternalTSSpec.g:11:7: ( 'void' )
+            // InternalTSSpec.g:11:9: 'void'
             {
             match("void"); 
 
@@ -83,8 +83,8 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:12:7: ( 'package' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:12:9: 'package'
+            // InternalTSSpec.g:12:7: ( 'package' )
+            // InternalTSSpec.g:12:9: 'package'
             {
             match("package"); 
 
@@ -104,8 +104,8 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:13:7: ( 'javatype' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:13:9: 'javatype'
+            // InternalTSSpec.g:13:7: ( 'javatype' )
+            // InternalTSSpec.g:13:9: 'javatype'
             {
             match("javatype"); 
 
@@ -125,8 +125,8 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:14:7: ( '{' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:14:9: '{'
+            // InternalTSSpec.g:14:7: ( '{' )
+            // InternalTSSpec.g:14:9: '{'
             {
             match('{'); 
 
@@ -145,8 +145,8 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:15:7: ( '}' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:15:9: '}'
+            // InternalTSSpec.g:15:7: ( '}' )
+            // InternalTSSpec.g:15:9: '}'
             {
             match('}'); 
 
@@ -165,8 +165,8 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:16:7: ( 'extends' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:16:9: 'extends'
+            // InternalTSSpec.g:16:7: ( 'extends' )
+            // InternalTSSpec.g:16:9: 'extends'
             {
             match("extends"); 
 
@@ -186,11 +186,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:17:7: ( 'enum' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:17:9: 'enum'
+            // InternalTSSpec.g:17:7: ( '(' )
+            // InternalTSSpec.g:17:9: '('
             {
-            match("enum"); 
-
+            match('('); 
 
             }
 
@@ -207,10 +206,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:18:7: ( '(' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:18:9: '('
+            // InternalTSSpec.g:18:7: ( ')' )
+            // InternalTSSpec.g:18:9: ')'
             {
-            match('('); 
+            match(')'); 
 
             }
 
@@ -227,10 +226,11 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:19:7: ( ')' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:19:9: ')'
+            // InternalTSSpec.g:19:7: ( 'alias' )
+            // InternalTSSpec.g:19:9: 'alias'
             {
-            match(')'); 
+            match("alias"); 
+
 
             }
 
@@ -247,10 +247,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:20:7: ( 'alias' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:20:9: 'alias'
+            // InternalTSSpec.g:20:7: ( 'as' )
+            // InternalTSSpec.g:20:9: 'as'
             {
-            match("alias"); 
+            match("as"); 
 
 
             }
@@ -268,11 +268,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:21:7: ( 'as' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:21:9: 'as'
+            // InternalTSSpec.g:21:7: ( '=' )
+            // InternalTSSpec.g:21:9: '='
             {
-            match("as"); 
-
+            match('='); 
 
             }
 
@@ -289,10 +288,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:22:7: ( '=' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:22:9: '='
+            // InternalTSSpec.g:22:7: ( '<' )
+            // InternalTSSpec.g:22:9: '<'
             {
-            match('='); 
+            match('<'); 
 
             }
 
@@ -309,10 +308,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:23:7: ( '<' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:23:9: '<'
+            // InternalTSSpec.g:23:7: ( '>' )
+            // InternalTSSpec.g:23:9: '>'
             {
-            match('<'); 
+            match('>'); 
 
             }
 
@@ -329,10 +328,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:24:7: ( '>' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:24:9: '>'
+            // InternalTSSpec.g:24:7: ( ',' )
+            // InternalTSSpec.g:24:9: ','
             {
-            match('>'); 
+            match(','); 
 
             }
 
@@ -349,10 +348,11 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:25:7: ( ',' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:25:9: ','
+            // InternalTSSpec.g:25:7: ( 'command' )
+            // InternalTSSpec.g:25:9: 'command'
             {
-            match(','); 
+            match("command"); 
+
 
             }
 
@@ -369,10 +369,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:26:7: ( 'command' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:26:9: 'command'
+            // InternalTSSpec.g:26:7: ( 'returns' )
+            // InternalTSSpec.g:26:9: 'returns'
             {
-            match("command"); 
+            match("returns"); 
 
 
             }
@@ -390,10 +390,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:27:7: ( 'returns' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:27:9: 'returns'
+            // InternalTSSpec.g:27:7: ( 'event' )
+            // InternalTSSpec.g:27:9: 'event'
             {
-            match("returns"); 
+            match("event"); 
 
 
             }
@@ -411,11 +411,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:28:7: ( 'event' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:28:9: 'event'
+            // InternalTSSpec.g:28:7: ( '.' )
+            // InternalTSSpec.g:28:9: '.'
             {
-            match("event"); 
-
+            match('.'); 
 
             }
 
@@ -432,10 +431,11 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:29:7: ( '.' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:29:9: '.'
+            // InternalTSSpec.g:29:7: ( 'cust' )
+            // InternalTSSpec.g:29:9: 'cust'
             {
-            match('.'); 
+            match("cust"); 
+
 
             }
 
@@ -452,10 +452,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:30:7: ( 'cust' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:30:9: 'cust'
+            // InternalTSSpec.g:30:7: ( 'enum' )
+            // InternalTSSpec.g:30:9: 'enum'
             {
-            match("cust"); 
+            match("enum"); 
 
 
             }
@@ -473,8 +473,8 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:31:7: ( 'optional' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:31:9: 'optional'
+            // InternalTSSpec.g:31:7: ( 'optional' )
+            // InternalTSSpec.g:31:9: 'optional'
             {
             match("optional"); 
 
@@ -494,8 +494,8 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:32:7: ( '[]' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:32:9: '[]'
+            // InternalTSSpec.g:32:7: ( '[]' )
+            // InternalTSSpec.g:32:9: '[]'
             {
             match("[]"); 
 
@@ -515,12 +515,12 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = RULE_DOC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2733:10: ( '##' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2733:12: '##' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalTSSpec.g:3041:10: ( '##' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalTSSpec.g:3041:12: '##' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("##"); 
 
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2733:17: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalTSSpec.g:3041:17: (~ ( ( '\\n' | '\\r' ) ) )*
             loop1:
             do {
                 int alt1=2;
@@ -533,7 +533,7 @@ public class InternalTSSpecLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2733:17: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalTSSpec.g:3041:17: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -553,7 +553,7 @@ public class InternalTSSpecLexer extends Lexer {
                 }
             } while (true);
 
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2733:33: ( ( '\\r' )? '\\n' )?
+            // InternalTSSpec.g:3041:33: ( ( '\\r' )? '\\n' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -562,9 +562,9 @@ public class InternalTSSpecLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2733:34: ( '\\r' )? '\\n'
+                    // InternalTSSpec.g:3041:34: ( '\\r' )? '\\n'
                     {
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2733:34: ( '\\r' )?
+                    // InternalTSSpec.g:3041:34: ( '\\r' )?
                     int alt2=2;
                     int LA2_0 = input.LA(1);
 
@@ -573,7 +573,7 @@ public class InternalTSSpecLexer extends Lexer {
                     }
                     switch (alt2) {
                         case 1 :
-                            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2733:34: '\\r'
+                            // InternalTSSpec.g:3041:34: '\\r'
                             {
                             match('\r'); 
 
@@ -605,10 +605,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2735:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2735:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalTSSpec.g:3043:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalTSSpec.g:3043:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2735:11: ( '^' )?
+            // InternalTSSpec.g:3043:11: ( '^' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -617,7 +617,7 @@ public class InternalTSSpecLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2735:11: '^'
+                    // InternalTSSpec.g:3043:11: '^'
                     {
                     match('^'); 
 
@@ -635,7 +635,7 @@ public class InternalTSSpecLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2735:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalTSSpec.g:3043:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop5:
             do {
                 int alt5=2;
@@ -648,7 +648,7 @@ public class InternalTSSpecLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:
+            	    // InternalTSSpec.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -684,10 +684,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2737:10: ( ( '0' .. '9' )+ )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2737:12: ( '0' .. '9' )+
+            // InternalTSSpec.g:3045:10: ( ( '0' .. '9' )+ )
+            // InternalTSSpec.g:3045:12: ( '0' .. '9' )+
             {
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2737:12: ( '0' .. '9' )+
+            // InternalTSSpec.g:3045:12: ( '0' .. '9' )+
             int cnt6=0;
             loop6:
             do {
@@ -701,7 +701,7 @@ public class InternalTSSpecLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2737:13: '0' .. '9'
+            	    // InternalTSSpec.g:3045:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -733,10 +733,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalTSSpec.g:3047:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalTSSpec.g:3047:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalTSSpec.g:3047:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -754,10 +754,10 @@ public class InternalTSSpecLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalTSSpec.g:3047:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalTSSpec.g:3047:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop7:
                     do {
                         int alt7=3;
@@ -773,7 +773,7 @@ public class InternalTSSpecLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:21: '\\\\' .
+                    	    // InternalTSSpec.g:3047:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -781,7 +781,7 @@ public class InternalTSSpecLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalTSSpec.g:3047:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -806,10 +806,10 @@ public class InternalTSSpecLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalTSSpec.g:3047:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalTSSpec.g:3047:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop8:
                     do {
                         int alt8=3;
@@ -825,7 +825,7 @@ public class InternalTSSpecLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:54: '\\\\' .
+                    	    // InternalTSSpec.g:3047:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -833,7 +833,7 @@ public class InternalTSSpecLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2739:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalTSSpec.g:3047:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -876,12 +876,12 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2741:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2741:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalTSSpec.g:3049:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalTSSpec.g:3049:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2741:24: ( options {greedy=false; } : . )*
+            // InternalTSSpec.g:3049:24: ( options {greedy=false; } : . )*
             loop10:
             do {
                 int alt10=2;
@@ -906,7 +906,7 @@ public class InternalTSSpecLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2741:52: .
+            	    // InternalTSSpec.g:3049:52: .
             	    {
             	    matchAny(); 
 
@@ -936,12 +936,12 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2743:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2743:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalTSSpec.g:3051:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalTSSpec.g:3051:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2743:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalTSSpec.g:3051:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop11:
             do {
                 int alt11=2;
@@ -954,7 +954,7 @@ public class InternalTSSpecLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2743:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalTSSpec.g:3051:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -974,7 +974,7 @@ public class InternalTSSpecLexer extends Lexer {
                 }
             } while (true);
 
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2743:40: ( ( '\\r' )? '\\n' )?
+            // InternalTSSpec.g:3051:40: ( ( '\\r' )? '\\n' )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -983,9 +983,9 @@ public class InternalTSSpecLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2743:41: ( '\\r' )? '\\n'
+                    // InternalTSSpec.g:3051:41: ( '\\r' )? '\\n'
                     {
-                    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2743:41: ( '\\r' )?
+                    // InternalTSSpec.g:3051:41: ( '\\r' )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -994,7 +994,7 @@ public class InternalTSSpecLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2743:41: '\\r'
+                            // InternalTSSpec.g:3051:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1026,10 +1026,10 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2745:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2745:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalTSSpec.g:3053:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalTSSpec.g:3053:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2745:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalTSSpec.g:3053:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt14=0;
             loop14:
             do {
@@ -1043,7 +1043,7 @@ public class InternalTSSpecLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:
+            	    // InternalTSSpec.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -1083,8 +1083,8 @@ public class InternalTSSpecLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2747:16: ( . )
-            // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:2747:18: .
+            // InternalTSSpec.g:3055:16: ( . )
+            // InternalTSSpec.g:3055:18: .
             {
             matchAny(); 
 
@@ -1099,215 +1099,215 @@ public class InternalTSSpecLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | RULE_DOC | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // InternalTSSpec.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | RULE_DOC | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt15=30;
         alt15 = dfa15.predict(input);
         switch (alt15) {
             case 1 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:10: T__12
+                // InternalTSSpec.g:1:10: T__12
                 {
                 mT__12(); 
 
                 }
                 break;
             case 2 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:16: T__13
+                // InternalTSSpec.g:1:16: T__13
                 {
                 mT__13(); 
 
                 }
                 break;
             case 3 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:22: T__14
+                // InternalTSSpec.g:1:22: T__14
                 {
                 mT__14(); 
 
                 }
                 break;
             case 4 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:28: T__15
+                // InternalTSSpec.g:1:28: T__15
                 {
                 mT__15(); 
 
                 }
                 break;
             case 5 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:34: T__16
+                // InternalTSSpec.g:1:34: T__16
                 {
                 mT__16(); 
 
                 }
                 break;
             case 6 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:40: T__17
+                // InternalTSSpec.g:1:40: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
             case 7 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:46: T__18
+                // InternalTSSpec.g:1:46: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
             case 8 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:52: T__19
+                // InternalTSSpec.g:1:52: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
             case 9 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:58: T__20
+                // InternalTSSpec.g:1:58: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
             case 10 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:64: T__21
+                // InternalTSSpec.g:1:64: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
             case 11 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:70: T__22
+                // InternalTSSpec.g:1:70: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
             case 12 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:76: T__23
+                // InternalTSSpec.g:1:76: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
             case 13 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:82: T__24
+                // InternalTSSpec.g:1:82: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
             case 14 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:88: T__25
+                // InternalTSSpec.g:1:88: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
             case 15 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:94: T__26
+                // InternalTSSpec.g:1:94: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
             case 16 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:100: T__27
+                // InternalTSSpec.g:1:100: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
             case 17 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:106: T__28
+                // InternalTSSpec.g:1:106: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
             case 18 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:112: T__29
+                // InternalTSSpec.g:1:112: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
             case 19 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:118: T__30
+                // InternalTSSpec.g:1:118: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
             case 20 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:124: T__31
+                // InternalTSSpec.g:1:124: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
             case 21 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:130: T__32
+                // InternalTSSpec.g:1:130: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
             case 22 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:136: T__33
+                // InternalTSSpec.g:1:136: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
             case 23 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:142: RULE_DOC
+                // InternalTSSpec.g:1:142: RULE_DOC
                 {
                 mRULE_DOC(); 
 
                 }
                 break;
             case 24 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:151: RULE_ID
+                // InternalTSSpec.g:1:151: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 25 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:159: RULE_INT
+                // InternalTSSpec.g:1:159: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
             case 26 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:168: RULE_STRING
+                // InternalTSSpec.g:1:168: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
             case 27 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:180: RULE_ML_COMMENT
+                // InternalTSSpec.g:1:180: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 28 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:196: RULE_SL_COMMENT
+                // InternalTSSpec.g:1:196: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 29 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:212: RULE_WS
+                // InternalTSSpec.g:1:212: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 30 :
-                // ../at.bestsolution.typescript.service.spec.ui/src-gen/at/bestsolution/typescript/service/spec/ui/contentassist/antlr/internal/InternalTSSpec.g:1:220: RULE_ANY_OTHER
+                // InternalTSSpec.g:1:220: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1321,15 +1321,15 @@ public class InternalTSSpecLexer extends Lexer {
 
     protected DFA15 dfa15 = new DFA15(this);
     static final String DFA15_eotS =
-        "\1\uffff\3\35\2\uffff\1\35\2\uffff\1\35\4\uffff\2\35\1\uffff\1\35\3\33\2\uffff\3\33\2\uffff\1\35\1\uffff\2\35\2\uffff\3\35\2\uffff\1\35\1\100\4\uffff\3\35\1\uffff\1\35\7\uffff\7\35\1\uffff\4\35\1\120\3\35\1\124\3\35\1\130\2\35\1\uffff\3\35\1\uffff\1\136\1\137\1\35\1\uffff\5\35\2\uffff\3\35\1\151\1\35\1\153\1\154\1\155\1\35\1\uffff\1\157\3\uffff\1\160\2\uffff";
+        "\1\uffff\3\35\2\uffff\1\35\2\uffff\1\35\4\uffff\2\35\1\uffff\1\35\3\33\2\uffff\3\33\2\uffff\1\35\1\uffff\2\35\2\uffff\3\35\2\uffff\1\35\1\100\4\uffff\3\35\1\uffff\1\35\7\uffff\7\35\1\uffff\4\35\1\120\4\35\1\125\2\35\1\130\2\35\1\uffff\3\35\1\136\1\uffff\1\137\1\35\1\uffff\5\35\2\uffff\3\35\1\151\1\35\1\153\1\154\1\155\1\35\1\uffff\1\157\3\uffff\1\160\2\uffff";
     static final String DFA15_eofS =
         "\161\uffff";
     static final String DFA15_minS =
-        "\1\0\1\157\2\141\2\uffff\1\156\2\uffff\1\154\4\uffff\1\157\1\145\1\uffff\1\160\1\135\1\43\1\101\2\uffff\2\0\1\52\2\uffff\1\151\1\uffff\1\143\1\166\2\uffff\1\164\1\165\1\145\2\uffff\1\151\1\60\4\uffff\1\155\1\163\1\164\1\uffff\1\164\7\uffff\1\144\1\153\1\141\1\145\1\155\1\156\1\141\1\uffff\1\155\1\164\1\165\1\151\1\60\1\141\1\164\1\156\1\60\1\164\1\163\1\141\1\60\1\162\1\157\1\uffff\1\147\1\171\1\144\1\uffff\2\60\1\156\1\uffff\2\156\1\145\1\160\1\163\2\uffff\1\144\1\163\1\141\1\60\1\145\3\60\1\154\1\uffff\1\60\3\uffff\1\60\2\uffff";
+        "\1\0\1\157\2\141\2\uffff\1\156\2\uffff\1\154\4\uffff\1\157\1\145\1\uffff\1\160\1\135\1\43\1\101\2\uffff\2\0\1\52\2\uffff\1\151\1\uffff\1\143\1\166\2\uffff\1\164\1\145\1\165\2\uffff\1\151\1\60\4\uffff\1\155\1\163\1\164\1\uffff\1\164\7\uffff\1\144\1\153\1\141\1\145\1\156\1\155\1\141\1\uffff\1\155\1\164\1\165\1\151\1\60\1\141\1\164\1\156\1\164\1\60\1\163\1\141\1\60\1\162\1\157\1\uffff\1\147\1\171\1\144\1\60\1\uffff\1\60\1\156\1\uffff\2\156\1\145\1\160\1\163\2\uffff\1\144\1\163\1\141\1\60\1\145\3\60\1\154\1\uffff\1\60\3\uffff\1\60\2\uffff";
     static final String DFA15_maxS =
-        "\1\uffff\1\157\2\141\2\uffff\1\170\2\uffff\1\163\4\uffff\1\165\1\145\1\uffff\1\160\1\135\1\43\1\172\2\uffff\2\uffff\1\57\2\uffff\1\151\1\uffff\1\143\1\166\2\uffff\1\164\1\165\1\145\2\uffff\1\151\1\172\4\uffff\1\155\1\163\1\164\1\uffff\1\164\7\uffff\1\144\1\153\1\141\1\145\1\155\1\156\1\141\1\uffff\1\155\1\164\1\165\1\151\1\172\1\141\1\164\1\156\1\172\1\164\1\163\1\141\1\172\1\162\1\157\1\uffff\1\147\1\171\1\144\1\uffff\2\172\1\156\1\uffff\2\156\1\145\1\160\1\163\2\uffff\1\144\1\163\1\141\1\172\1\145\3\172\1\154\1\uffff\1\172\3\uffff\1\172\2\uffff";
+        "\1\uffff\1\157\2\141\2\uffff\1\170\2\uffff\1\163\4\uffff\1\165\1\145\1\uffff\1\160\1\135\1\43\1\172\2\uffff\2\uffff\1\57\2\uffff\1\151\1\uffff\1\143\1\166\2\uffff\1\164\1\145\1\165\2\uffff\1\151\1\172\4\uffff\1\155\1\163\1\164\1\uffff\1\164\7\uffff\1\144\1\153\1\141\1\145\1\156\1\155\1\141\1\uffff\1\155\1\164\1\165\1\151\1\172\1\141\1\164\1\156\1\164\1\172\1\163\1\141\1\172\1\162\1\157\1\uffff\1\147\1\171\1\144\1\172\1\uffff\1\172\1\156\1\uffff\2\156\1\145\1\160\1\163\2\uffff\1\144\1\163\1\141\1\172\1\145\3\172\1\154\1\uffff\1\172\3\uffff\1\172\2\uffff";
     static final String DFA15_acceptS =
-        "\4\uffff\1\4\1\5\1\uffff\1\10\1\11\1\uffff\1\14\1\15\1\16\1\17\2\uffff\1\23\4\uffff\1\30\1\31\3\uffff\1\35\1\36\1\uffff\1\30\2\uffff\1\4\1\5\3\uffff\1\10\1\11\2\uffff\1\14\1\15\1\16\1\17\3\uffff\1\23\1\uffff\1\26\1\27\1\31\1\32\1\33\1\34\1\35\7\uffff\1\13\17\uffff\1\1\3\uffff\1\7\3\uffff\1\24\5\uffff\1\22\1\12\11\uffff\1\2\1\uffff\1\6\1\20\1\21\1\uffff\1\3\1\25";
+        "\4\uffff\1\4\1\5\1\uffff\1\7\1\10\1\uffff\1\13\1\14\1\15\1\16\2\uffff\1\22\4\uffff\1\30\1\31\3\uffff\1\35\1\36\1\uffff\1\30\2\uffff\1\4\1\5\3\uffff\1\7\1\10\2\uffff\1\13\1\14\1\15\1\16\3\uffff\1\22\1\uffff\1\26\1\27\1\31\1\32\1\33\1\34\1\35\7\uffff\1\12\17\uffff\1\1\4\uffff\1\24\2\uffff\1\23\5\uffff\1\21\1\11\11\uffff\1\2\1\uffff\1\6\1\17\1\20\1\uffff\1\3\1\25";
     static final String DFA15_specialS =
         "\1\2\26\uffff\1\1\1\0\130\uffff}>";
     static final String[] DFA15_transitionS = {
@@ -1339,7 +1339,7 @@ public class InternalTSSpecLexer extends Lexer {
             "\1\37",
             "",
             "",
-            "\1\43\7\uffff\1\44\1\uffff\1\42",
+            "\1\44\7\uffff\1\43\1\uffff\1\42",
             "",
             "",
             "\1\47\6\uffff\1\50",
@@ -1406,8 +1406,8 @@ public class InternalTSSpecLexer extends Lexer {
             "\1\121",
             "\1\122",
             "\1\123",
+            "\1\124",
             "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
-            "\1\125",
             "\1\126",
             "\1\127",
             "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
@@ -1417,8 +1417,8 @@ public class InternalTSSpecLexer extends Lexer {
             "\1\133",
             "\1\134",
             "\1\135",
-            "",
             "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "",
             "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
             "\1\140",
             "",

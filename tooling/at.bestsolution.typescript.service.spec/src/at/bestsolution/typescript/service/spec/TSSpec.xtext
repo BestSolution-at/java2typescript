@@ -4,10 +4,8 @@ generate tSSpec "http://www.bestsolution.at/typescript/service/spec/TSSpec"
 
 ServiceDefs:
 	'package' packageName=QualifiedName
-
 	domainElements += DomainElement*
-	commandList += CommandDef*
-	eventList += EventDef*
+	serviceDefs+=ServiceDef*
 ;
 
 DomainElement:
@@ -15,12 +13,12 @@ DomainElement:
 	('javatype' name=QualifiedName | (cust?='cust' name=QualifiedName ('extends' superType=[DomainElement|QualifiedName])? '{'
 		attributes+=Attribute*
 	'}'
-	) | ('enum' name=QualifiedName '(' enumValues+=EnumVal* ')') | ('alias' name=QualifiedName 'as' realType=QualifiedName) )
+	) | ( isEnum?='enum' name=QualifiedName '(' enumValues+=EnumVal* ')') | ('alias' name=QualifiedName 'as' realType=QualifiedName) )
 ;
 
 EnumVal:
 	doc+=DOC*
-	name=ID
+	name=ID '=' value=(ID|STRING)
 ;
 
 Attribute:
@@ -30,6 +28,13 @@ Attribute:
 
 GenericTypeArgument:
 	type=[DomainElement|QualifiedName] ('<' arguments+=GenericTypeArgument ( ',' arguments+=GenericTypeArgument)* '>')? list?='[]'?
+;
+
+ServiceDef:
+	name=ID '{'
+		commandList += CommandDef*
+		eventList += EventDef*
+	'}'
 ;
 
 CommandDef:

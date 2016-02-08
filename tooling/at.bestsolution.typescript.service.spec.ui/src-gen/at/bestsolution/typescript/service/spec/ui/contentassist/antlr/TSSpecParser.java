@@ -38,6 +38,7 @@ public class TSSpecParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getDomainElementAccess().getAlternatives_1(), "rule__DomainElement__Alternatives_1");
+					put(grammarAccess.getEnumValAccess().getValueAlternatives_3_0(), "rule__EnumVal__ValueAlternatives_3_0");
 					put(grammarAccess.getCommandDefAccess().getAlternatives_4(), "rule__CommandDef__Alternatives_4");
 					put(grammarAccess.getServiceDefsAccess().getGroup(), "rule__ServiceDefs__Group__0");
 					put(grammarAccess.getDomainElementAccess().getGroup(), "rule__DomainElement__Group__0");
@@ -52,6 +53,7 @@ public class TSSpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getGenericTypeArgumentAccess().getGroup(), "rule__GenericTypeArgument__Group__0");
 					put(grammarAccess.getGenericTypeArgumentAccess().getGroup_1(), "rule__GenericTypeArgument__Group_1__0");
 					put(grammarAccess.getGenericTypeArgumentAccess().getGroup_1_2(), "rule__GenericTypeArgument__Group_1_2__0");
+					put(grammarAccess.getServiceDefAccess().getGroup(), "rule__ServiceDef__Group__0");
 					put(grammarAccess.getCommandDefAccess().getGroup(), "rule__CommandDef__Group__0");
 					put(grammarAccess.getCommandDefAccess().getGroup_2(), "rule__CommandDef__Group_2__0");
 					put(grammarAccess.getEventDefAccess().getGroup(), "rule__EventDef__Group__0");
@@ -59,20 +61,21 @@ public class TSSpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 					put(grammarAccess.getServiceDefsAccess().getPackageNameAssignment_1(), "rule__ServiceDefs__PackageNameAssignment_1");
 					put(grammarAccess.getServiceDefsAccess().getDomainElementsAssignment_2(), "rule__ServiceDefs__DomainElementsAssignment_2");
-					put(grammarAccess.getServiceDefsAccess().getCommandListAssignment_3(), "rule__ServiceDefs__CommandListAssignment_3");
-					put(grammarAccess.getServiceDefsAccess().getEventListAssignment_4(), "rule__ServiceDefs__EventListAssignment_4");
+					put(grammarAccess.getServiceDefsAccess().getServiceDefsAssignment_3(), "rule__ServiceDefs__ServiceDefsAssignment_3");
 					put(grammarAccess.getDomainElementAccess().getDocAssignment_0(), "rule__DomainElement__DocAssignment_0");
 					put(grammarAccess.getDomainElementAccess().getNameAssignment_1_0_1(), "rule__DomainElement__NameAssignment_1_0_1");
 					put(grammarAccess.getDomainElementAccess().getCustAssignment_1_1_0(), "rule__DomainElement__CustAssignment_1_1_0");
 					put(grammarAccess.getDomainElementAccess().getNameAssignment_1_1_1(), "rule__DomainElement__NameAssignment_1_1_1");
 					put(grammarAccess.getDomainElementAccess().getSuperTypeAssignment_1_1_2_1(), "rule__DomainElement__SuperTypeAssignment_1_1_2_1");
 					put(grammarAccess.getDomainElementAccess().getAttributesAssignment_1_1_4(), "rule__DomainElement__AttributesAssignment_1_1_4");
+					put(grammarAccess.getDomainElementAccess().getIsEnumAssignment_1_2_0(), "rule__DomainElement__IsEnumAssignment_1_2_0");
 					put(grammarAccess.getDomainElementAccess().getNameAssignment_1_2_1(), "rule__DomainElement__NameAssignment_1_2_1");
 					put(grammarAccess.getDomainElementAccess().getEnumValuesAssignment_1_2_3(), "rule__DomainElement__EnumValuesAssignment_1_2_3");
 					put(grammarAccess.getDomainElementAccess().getNameAssignment_1_3_1(), "rule__DomainElement__NameAssignment_1_3_1");
 					put(grammarAccess.getDomainElementAccess().getRealTypeAssignment_1_3_3(), "rule__DomainElement__RealTypeAssignment_1_3_3");
 					put(grammarAccess.getEnumValAccess().getDocAssignment_0(), "rule__EnumVal__DocAssignment_0");
 					put(grammarAccess.getEnumValAccess().getNameAssignment_1(), "rule__EnumVal__NameAssignment_1");
+					put(grammarAccess.getEnumValAccess().getValueAssignment_3(), "rule__EnumVal__ValueAssignment_3");
 					put(grammarAccess.getAttributeAccess().getDocumentationAssignment_0(), "rule__Attribute__DocumentationAssignment_0");
 					put(grammarAccess.getAttributeAccess().getOptionalAssignment_1(), "rule__Attribute__OptionalAssignment_1");
 					put(grammarAccess.getAttributeAccess().getTypeAssignment_2(), "rule__Attribute__TypeAssignment_2");
@@ -82,6 +85,9 @@ public class TSSpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getGenericTypeArgumentAccess().getArgumentsAssignment_1_1(), "rule__GenericTypeArgument__ArgumentsAssignment_1_1");
 					put(grammarAccess.getGenericTypeArgumentAccess().getArgumentsAssignment_1_2_1(), "rule__GenericTypeArgument__ArgumentsAssignment_1_2_1");
 					put(grammarAccess.getGenericTypeArgumentAccess().getListAssignment_2(), "rule__GenericTypeArgument__ListAssignment_2");
+					put(grammarAccess.getServiceDefAccess().getNameAssignment_0(), "rule__ServiceDef__NameAssignment_0");
+					put(grammarAccess.getServiceDefAccess().getCommandListAssignment_2(), "rule__ServiceDef__CommandListAssignment_2");
+					put(grammarAccess.getServiceDefAccess().getEventListAssignment_3(), "rule__ServiceDef__EventListAssignment_3");
 					put(grammarAccess.getCommandDefAccess().getNameAssignment_1(), "rule__CommandDef__NameAssignment_1");
 					put(grammarAccess.getCommandDefAccess().getAttributesAssignment_2_1(), "rule__CommandDef__AttributesAssignment_2_1");
 					put(grammarAccess.getCommandDefAccess().getReturnValAssignment_4_1(), "rule__CommandDef__ReturnValAssignment_4_1");

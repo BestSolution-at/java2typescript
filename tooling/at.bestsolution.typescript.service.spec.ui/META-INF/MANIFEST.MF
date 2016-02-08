@@ -21,5 +21,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: at.bestsolution.typescript.service.spec.ui.quickfix,
  at.bestsolution.typescript.service.spec.ui.contentassist,
  at.bestsolution.typescript.service.spec.ui.internal,
- at.bestsolution.typescript.service.spec.ui.contentassist.antlr
+ at.bestsolution.typescript.service.spec.ui.contentassist.antlr,
+ at.bestsolution.typescript.service.spec.ui.contentassist.antlr.internal
 Bundle-Activator: at.bestsolution.typescript.service.spec.ui.internal.TSSpecActivator

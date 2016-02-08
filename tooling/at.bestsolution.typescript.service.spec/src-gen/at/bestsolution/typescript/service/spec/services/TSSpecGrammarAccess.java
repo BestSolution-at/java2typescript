@@ -19,26 +19,26 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	public class ServiceDefsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ServiceDefs");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.ServiceDefs");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cPackageNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cPackageNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cPackageNameAssignment_1.eContents().get(0);
 		private final Assignment cDomainElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDomainElementsDomainElementParserRuleCall_2_0 = (RuleCall)cDomainElementsAssignment_2.eContents().get(0);
-		private final Assignment cCommandListAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cCommandListCommandDefParserRuleCall_3_0 = (RuleCall)cCommandListAssignment_3.eContents().get(0);
-		private final Assignment cEventListAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cEventListEventDefParserRuleCall_4_0 = (RuleCall)cEventListAssignment_4.eContents().get(0);
+		private final Assignment cServiceDefsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cServiceDefsServiceDefParserRuleCall_3_0 = (RuleCall)cServiceDefsAssignment_3.eContents().get(0);
 		
 		//ServiceDefs:
-		//	"package" packageName=QualifiedName domainElements+=DomainElement* commandList+=CommandDef* eventList+=EventDef*;
+		//	'package' packageName=QualifiedName
+		//	domainElements+=DomainElement*
+		//	serviceDefs+=ServiceDef*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"package" packageName=QualifiedName domainElements+=DomainElement* commandList+=CommandDef* eventList+=EventDef*
+		//'package' packageName=QualifiedName domainElements+=DomainElement* serviceDefs+=ServiceDef*
 		public Group getGroup() { return cGroup; }
 
-		//"package"
+		//'package'
 		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
 
 		//packageName=QualifiedName
@@ -53,21 +53,15 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//DomainElement
 		public RuleCall getDomainElementsDomainElementParserRuleCall_2_0() { return cDomainElementsDomainElementParserRuleCall_2_0; }
 
-		//commandList+=CommandDef*
-		public Assignment getCommandListAssignment_3() { return cCommandListAssignment_3; }
+		//serviceDefs+=ServiceDef*
+		public Assignment getServiceDefsAssignment_3() { return cServiceDefsAssignment_3; }
 
-		//CommandDef
-		public RuleCall getCommandListCommandDefParserRuleCall_3_0() { return cCommandListCommandDefParserRuleCall_3_0; }
-
-		//eventList+=EventDef*
-		public Assignment getEventListAssignment_4() { return cEventListAssignment_4; }
-
-		//EventDef
-		public RuleCall getEventListEventDefParserRuleCall_4_0() { return cEventListEventDefParserRuleCall_4_0; }
+		//ServiceDef
+		public RuleCall getServiceDefsServiceDefParserRuleCall_3_0() { return cServiceDefsServiceDefParserRuleCall_3_0; }
 	}
 
 	public class DomainElementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DomainElement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.DomainElement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocDOCTerminalRuleCall_0_0 = (RuleCall)cDocAssignment_0.eContents().get(0);
@@ -91,7 +85,8 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAttributesAttributeParserRuleCall_1_1_4_0 = (RuleCall)cAttributesAssignment_1_1_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_1_5 = (Keyword)cGroup_1_1.eContents().get(5);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
-		private final Keyword cEnumKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cIsEnumAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
+		private final Keyword cIsEnumEnumKeyword_1_2_0_0 = (Keyword)cIsEnumAssignment_1_2_0.eContents().get(0);
 		private final Assignment cNameAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
 		private final RuleCall cNameQualifiedNameParserRuleCall_1_2_1_0 = (RuleCall)cNameAssignment_1_2_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1_2_2 = (Keyword)cGroup_1_2.eContents().get(2);
@@ -107,14 +102,17 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRealTypeQualifiedNameParserRuleCall_1_3_3_0 = (RuleCall)cRealTypeAssignment_1_3_3.eContents().get(0);
 		
 		//DomainElement:
-		//	doc+=DOC* ("javatype" name=QualifiedName | cust?="cust" name=QualifiedName ("extends"
-		//	superType=[DomainElement|QualifiedName])? "{" attributes+=Attribute* "}" | "enum" name=QualifiedName "("
-		//	enumValues+=EnumVal* ")" | "alias" name=QualifiedName "as" realType=QualifiedName);
+		//	doc+=DOC* ('javatype' name=QualifiedName | cust?='cust' name=QualifiedName ('extends'
+		//	superType=[DomainElement|QualifiedName])? '{'
+		//	attributes+=Attribute*
+		//	'}'
+		//	| isEnum?='enum' name=QualifiedName '(' enumValues+=EnumVal* ')' | 'alias' name=QualifiedName 'as'
+		//	realType=QualifiedName);
 		@Override public ParserRule getRule() { return rule; }
 
-		//doc+=DOC* ("javatype" name=QualifiedName | cust?="cust" name=QualifiedName ("extends"
-		//superType=[DomainElement|QualifiedName])? "{" attributes+=Attribute* "}" | "enum" name=QualifiedName "("
-		//enumValues+=EnumVal* ")" | "alias" name=QualifiedName "as" realType=QualifiedName)
+		//doc+=DOC* ('javatype' name=QualifiedName | cust?='cust' name=QualifiedName ('extends'
+		//superType=[DomainElement|QualifiedName])? '{' attributes+=Attribute* '}' | isEnum?='enum' name=QualifiedName '('
+		//enumValues+=EnumVal* ')' | 'alias' name=QualifiedName 'as' realType=QualifiedName)
 		public Group getGroup() { return cGroup; }
 
 		//doc+=DOC*
@@ -123,15 +121,15 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//DOC
 		public RuleCall getDocDOCTerminalRuleCall_0_0() { return cDocDOCTerminalRuleCall_0_0; }
 
-		//"javatype" name=QualifiedName | cust?="cust" name=QualifiedName ("extends" superType=[DomainElement|QualifiedName])? "{"
-		//attributes+=Attribute* "}" | "enum" name=QualifiedName "(" enumValues+=EnumVal* ")" | "alias" name=QualifiedName "as"
-		//realType=QualifiedName
+		//('javatype' name=QualifiedName | cust?='cust' name=QualifiedName ('extends' superType=[DomainElement|QualifiedName])?
+		//'{' attributes+=Attribute* '}' | isEnum?='enum' name=QualifiedName '(' enumValues+=EnumVal* ')' | 'alias'
+		//name=QualifiedName 'as' realType=QualifiedName)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//"javatype" name=QualifiedName
+		//'javatype' name=QualifiedName
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//"javatype"
+		//'javatype'
 		public Keyword getJavatypeKeyword_1_0_0() { return cJavatypeKeyword_1_0_0; }
 
 		//name=QualifiedName
@@ -140,13 +138,13 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getNameQualifiedNameParserRuleCall_1_0_1_0() { return cNameQualifiedNameParserRuleCall_1_0_1_0; }
 
-		//cust?="cust" name=QualifiedName ("extends" superType=[DomainElement|QualifiedName])? "{" attributes+=Attribute* "}"
+		//cust?='cust' name=QualifiedName ('extends' superType=[DomainElement|QualifiedName])? '{' attributes+=Attribute* '}'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//cust?="cust"
+		//cust?='cust'
 		public Assignment getCustAssignment_1_1_0() { return cCustAssignment_1_1_0; }
 
-		//"cust"
+		//'cust'
 		public Keyword getCustCustKeyword_1_1_0_0() { return cCustCustKeyword_1_1_0_0; }
 
 		//name=QualifiedName
@@ -155,10 +153,10 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getNameQualifiedNameParserRuleCall_1_1_1_0() { return cNameQualifiedNameParserRuleCall_1_1_1_0; }
 
-		//("extends" superType=[DomainElement|QualifiedName])?
+		//('extends' superType=[DomainElement|QualifiedName])?
 		public Group getGroup_1_1_2() { return cGroup_1_1_2; }
 
-		//"extends"
+		//'extends'
 		public Keyword getExtendsKeyword_1_1_2_0() { return cExtendsKeyword_1_1_2_0; }
 
 		//superType=[DomainElement|QualifiedName]
@@ -170,7 +168,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getSuperTypeDomainElementQualifiedNameParserRuleCall_1_1_2_1_0_1() { return cSuperTypeDomainElementQualifiedNameParserRuleCall_1_1_2_1_0_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_1_3() { return cLeftCurlyBracketKeyword_1_1_3; }
 
 		//attributes+=Attribute*
@@ -179,14 +177,17 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//Attribute
 		public RuleCall getAttributesAttributeParserRuleCall_1_1_4_0() { return cAttributesAttributeParserRuleCall_1_1_4_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_1_5() { return cRightCurlyBracketKeyword_1_1_5; }
 
-		//"enum" name=QualifiedName "(" enumValues+=EnumVal* ")"
+		//isEnum?='enum' name=QualifiedName '(' enumValues+=EnumVal* ')'
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
-		//"enum"
-		public Keyword getEnumKeyword_1_2_0() { return cEnumKeyword_1_2_0; }
+		//isEnum?='enum'
+		public Assignment getIsEnumAssignment_1_2_0() { return cIsEnumAssignment_1_2_0; }
+
+		//'enum'
+		public Keyword getIsEnumEnumKeyword_1_2_0_0() { return cIsEnumEnumKeyword_1_2_0_0; }
 
 		//name=QualifiedName
 		public Assignment getNameAssignment_1_2_1() { return cNameAssignment_1_2_1; }
@@ -194,7 +195,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getNameQualifiedNameParserRuleCall_1_2_1_0() { return cNameQualifiedNameParserRuleCall_1_2_1_0; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_1_2_2() { return cLeftParenthesisKeyword_1_2_2; }
 
 		//enumValues+=EnumVal*
@@ -203,13 +204,13 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumVal
 		public RuleCall getEnumValuesEnumValParserRuleCall_1_2_3_0() { return cEnumValuesEnumValParserRuleCall_1_2_3_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_1_2_4() { return cRightParenthesisKeyword_1_2_4; }
 
-		//"alias" name=QualifiedName "as" realType=QualifiedName
+		//'alias' name=QualifiedName 'as' realType=QualifiedName
 		public Group getGroup_1_3() { return cGroup_1_3; }
 
-		//"alias"
+		//'alias'
 		public Keyword getAliasKeyword_1_3_0() { return cAliasKeyword_1_3_0; }
 
 		//name=QualifiedName
@@ -218,7 +219,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getNameQualifiedNameParserRuleCall_1_3_1_0() { return cNameQualifiedNameParserRuleCall_1_3_1_0; }
 
-		//"as"
+		//'as'
 		public Keyword getAsKeyword_1_3_2() { return cAsKeyword_1_3_2; }
 
 		//realType=QualifiedName
@@ -229,18 +230,24 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class EnumValElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumVal");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.EnumVal");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocDOCTerminalRuleCall_0_0 = (RuleCall)cDocAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Alternatives cValueAlternatives_3_0 = (Alternatives)cValueAssignment_3.eContents().get(0);
+		private final RuleCall cValueIDTerminalRuleCall_3_0_0 = (RuleCall)cValueAlternatives_3_0.eContents().get(0);
+		private final RuleCall cValueSTRINGTerminalRuleCall_3_0_1 = (RuleCall)cValueAlternatives_3_0.eContents().get(1);
 		
 		//EnumVal:
-		//	doc+=DOC* name=ID;
+		//	doc+=DOC*
+		//	name=ID '=' value=(ID | STRING);
 		@Override public ParserRule getRule() { return rule; }
 
-		//doc+=DOC* name=ID
+		//doc+=DOC* name=ID '=' value=(ID | STRING)
 		public Group getGroup() { return cGroup; }
 
 		//doc+=DOC*
@@ -254,10 +261,25 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+
+		//'='
+		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+
+		//value=(ID | STRING)
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+
+		//(ID | STRING)
+		public Alternatives getValueAlternatives_3_0() { return cValueAlternatives_3_0; }
+
+		//ID
+		public RuleCall getValueIDTerminalRuleCall_3_0_0() { return cValueIDTerminalRuleCall_3_0_0; }
+
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_3_0_1() { return cValueSTRINGTerminalRuleCall_3_0_1; }
 	}
 
 	public class AttributeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Attribute");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.Attribute");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
@@ -273,10 +295,11 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cValueAssignment_4_1.eContents().get(0);
 		
 		//Attribute:
-		//	documentation+=DOC* optional?="optional"? type=GenericTypeArgument name=ID ("=" value=STRING)?;
+		//	documentation+=DOC*
+		//	optional?='optional'? type=GenericTypeArgument name=ID ('=' value=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//documentation+=DOC* optional?="optional"? type=GenericTypeArgument name=ID ("=" value=STRING)?
+		//documentation+=DOC* optional?='optional'? type=GenericTypeArgument name=ID ('=' value=STRING)?
 		public Group getGroup() { return cGroup; }
 
 		//documentation+=DOC*
@@ -285,10 +308,10 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//DOC
 		public RuleCall getDocumentationDOCTerminalRuleCall_0_0() { return cDocumentationDOCTerminalRuleCall_0_0; }
 
-		//optional?="optional"?
+		//optional?='optional'?
 		public Assignment getOptionalAssignment_1() { return cOptionalAssignment_1; }
 
-		//"optional"
+		//'optional'
 		public Keyword getOptionalOptionalKeyword_1_0() { return cOptionalOptionalKeyword_1_0; }
 
 		//type=GenericTypeArgument
@@ -303,10 +326,10 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
 
-		//("=" value=STRING)?
+		//('=' value=STRING)?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//"="
+		//'='
 		public Keyword getEqualsSignKeyword_4_0() { return cEqualsSignKeyword_4_0; }
 
 		//value=STRING
@@ -317,7 +340,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class GenericTypeArgumentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "GenericTypeArgument");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.GenericTypeArgument");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cTypeDomainElementCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
@@ -335,12 +358,12 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cListLeftSquareBracketRightSquareBracketKeyword_2_0 = (Keyword)cListAssignment_2.eContents().get(0);
 		
 		//GenericTypeArgument:
-		//	type=[DomainElement|QualifiedName] ("<" arguments+=GenericTypeArgument ("," arguments+=GenericTypeArgument)* ">")?
-		//	list?="[]"?;
+		//	type=[DomainElement|QualifiedName] ('<' arguments+=GenericTypeArgument (',' arguments+=GenericTypeArgument)* '>')?
+		//	list?='[]'?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=[DomainElement|QualifiedName] ("<" arguments+=GenericTypeArgument ("," arguments+=GenericTypeArgument)* ">")?
-		//list?="[]"?
+		//type=[DomainElement|QualifiedName] ('<' arguments+=GenericTypeArgument (',' arguments+=GenericTypeArgument)* '>')?
+		//list?='[]'?
 		public Group getGroup() { return cGroup; }
 
 		//type=[DomainElement|QualifiedName]
@@ -352,10 +375,10 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getTypeDomainElementQualifiedNameParserRuleCall_0_0_1() { return cTypeDomainElementQualifiedNameParserRuleCall_0_0_1; }
 
-		//("<" arguments+=GenericTypeArgument ("," arguments+=GenericTypeArgument)* ">")?
+		//('<' arguments+=GenericTypeArgument (',' arguments+=GenericTypeArgument)* '>')?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
 
 		//arguments+=GenericTypeArgument
@@ -364,10 +387,10 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//GenericTypeArgument
 		public RuleCall getArgumentsGenericTypeArgumentParserRuleCall_1_1_0() { return cArgumentsGenericTypeArgumentParserRuleCall_1_1_0; }
 
-		//("," arguments+=GenericTypeArgument)*
+		//(',' arguments+=GenericTypeArgument)*
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
 
 		//arguments+=GenericTypeArgument
@@ -376,18 +399,65 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//GenericTypeArgument
 		public RuleCall getArgumentsGenericTypeArgumentParserRuleCall_1_2_1_0() { return cArgumentsGenericTypeArgumentParserRuleCall_1_2_1_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_1_3() { return cGreaterThanSignKeyword_1_3; }
 
-		//list?="[]"?
+		//list?='[]'?
 		public Assignment getListAssignment_2() { return cListAssignment_2; }
 
-		//"[]"
+		//'[]'
 		public Keyword getListLeftSquareBracketRightSquareBracketKeyword_2_0() { return cListLeftSquareBracketRightSquareBracketKeyword_2_0; }
 	}
 
+	public class ServiceDefElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.ServiceDef");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cCommandListAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCommandListCommandDefParserRuleCall_2_0 = (RuleCall)cCommandListAssignment_2.eContents().get(0);
+		private final Assignment cEventListAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cEventListEventDefParserRuleCall_3_0 = (RuleCall)cEventListAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//ServiceDef:
+		//	name=ID '{'
+		//	commandList+=CommandDef*
+		//	eventList+=EventDef*
+		//	'}';
+		@Override public ParserRule getRule() { return rule; }
+
+		//name=ID '{' commandList+=CommandDef* eventList+=EventDef* '}'
+		public Group getGroup() { return cGroup; }
+
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+
+		//commandList+=CommandDef*
+		public Assignment getCommandListAssignment_2() { return cCommandListAssignment_2; }
+
+		//CommandDef
+		public RuleCall getCommandListCommandDefParserRuleCall_2_0() { return cCommandListCommandDefParserRuleCall_2_0; }
+
+		//eventList+=EventDef*
+		public Assignment getEventListAssignment_3() { return cEventListAssignment_3; }
+
+		//EventDef
+		public RuleCall getEventListEventDefParserRuleCall_3_0() { return cEventListEventDefParserRuleCall_3_0; }
+
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+
 	public class CommandDefElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CommandDef");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.CommandDef");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cCommandKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -404,13 +474,13 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReturnValGenericTypeArgumentParserRuleCall_4_1_0 = (RuleCall)cReturnValAssignment_4_1.eContents().get(0);
 		
 		//CommandDef:
-		//	"command" name=ID ("(" attributes+=Attribute+ ")")? "returns" ("void" | returnVal=GenericTypeArgument);
+		//	'command' name=ID ('(' attributes+=Attribute+ ')')? 'returns' ('void' | returnVal=GenericTypeArgument);
 		@Override public ParserRule getRule() { return rule; }
 
-		//"command" name=ID ("(" attributes+=Attribute+ ")")? "returns" ("void" | returnVal=GenericTypeArgument)
+		//'command' name=ID ('(' attributes+=Attribute+ ')')? 'returns' ('void' | returnVal=GenericTypeArgument)
 		public Group getGroup() { return cGroup; }
 
-		//"command"
+		//'command'
 		public Keyword getCommandKeyword_0() { return cCommandKeyword_0; }
 
 		//name=ID
@@ -419,10 +489,10 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//("(" attributes+=Attribute+ ")")?
+		//('(' attributes+=Attribute+ ')')?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_2_0() { return cLeftParenthesisKeyword_2_0; }
 
 		//attributes+=Attribute+
@@ -431,16 +501,16 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//Attribute
 		public RuleCall getAttributesAttributeParserRuleCall_2_1_0() { return cAttributesAttributeParserRuleCall_2_1_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_2_2() { return cRightParenthesisKeyword_2_2; }
 
-		//"returns"
+		//'returns'
 		public Keyword getReturnsKeyword_3() { return cReturnsKeyword_3; }
 
-		//"void" | returnVal=GenericTypeArgument
+		//('void' | returnVal=GenericTypeArgument)
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 
-		//"void"
+		//'void'
 		public Keyword getVoidKeyword_4_0() { return cVoidKeyword_4_0; }
 
 		//returnVal=GenericTypeArgument
@@ -451,7 +521,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class EventDefElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EventDef");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.EventDef");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
@@ -462,10 +532,11 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeGenericTypeArgumentParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
 		
 		//EventDef:
-		//	documentation+=DOC* "event" name=ID type=GenericTypeArgument;
+		//	documentation+=DOC*
+		//	'event' name=ID type=GenericTypeArgument;
 		@Override public ParserRule getRule() { return rule; }
 
-		//documentation+=DOC* "event" name=ID type=GenericTypeArgument
+		//documentation+=DOC* 'event' name=ID type=GenericTypeArgument
 		public Group getGroup() { return cGroup; }
 
 		//documentation+=DOC*
@@ -474,7 +545,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//DOC
 		public RuleCall getDocumentationDOCTerminalRuleCall_0_0() { return cDocumentationDOCTerminalRuleCall_0_0; }
 
-		//"event"
+		//'event'
 		public Keyword getEventKeyword_1() { return cEventKeyword_1; }
 
 		//name=ID
@@ -491,7 +562,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.QualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -499,19 +570,19 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//QualifiedName:
-		//	ID ("." ID)*;
+		//	ID (=> '.' ID)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//ID ("." ID)*
+		//ID (=> '.' ID)*
 		public Group getGroup() { return cGroup; }
 
 		//ID
 		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
 
-		//(=> "." ID)*
+		//(=> '.' ID)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//=> "."
+		//=> '.'
 		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 
 		//ID
@@ -524,6 +595,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	private final EnumValElements pEnumVal;
 	private final AttributeElements pAttribute;
 	private final GenericTypeArgumentElements pGenericTypeArgument;
+	private final ServiceDefElements pServiceDef;
 	private final CommandDefElements pCommandDef;
 	private final EventDefElements pEventDef;
 	private final QualifiedNameElements pQualifiedName;
@@ -543,10 +615,11 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEnumVal = new EnumValElements();
 		this.pAttribute = new AttributeElements();
 		this.pGenericTypeArgument = new GenericTypeArgumentElements();
+		this.pServiceDef = new ServiceDefElements();
 		this.pCommandDef = new CommandDefElements();
 		this.pEventDef = new EventDefElements();
 		this.pQualifiedName = new QualifiedNameElements();
-		this.tDOC = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOC");
+		this.tDOC = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "at.bestsolution.typescript.service.spec.TSSpec.DOC");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -577,7 +650,9 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//ServiceDefs:
-	//	"package" packageName=QualifiedName domainElements+=DomainElement* commandList+=CommandDef* eventList+=EventDef*;
+	//	'package' packageName=QualifiedName
+	//	domainElements+=DomainElement*
+	//	serviceDefs+=ServiceDef*;
 	public ServiceDefsElements getServiceDefsAccess() {
 		return pServiceDefs;
 	}
@@ -587,9 +662,12 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DomainElement:
-	//	doc+=DOC* ("javatype" name=QualifiedName | cust?="cust" name=QualifiedName ("extends"
-	//	superType=[DomainElement|QualifiedName])? "{" attributes+=Attribute* "}" | "enum" name=QualifiedName "("
-	//	enumValues+=EnumVal* ")" | "alias" name=QualifiedName "as" realType=QualifiedName);
+	//	doc+=DOC* ('javatype' name=QualifiedName | cust?='cust' name=QualifiedName ('extends'
+	//	superType=[DomainElement|QualifiedName])? '{'
+	//	attributes+=Attribute*
+	//	'}'
+	//	| isEnum?='enum' name=QualifiedName '(' enumValues+=EnumVal* ')' | 'alias' name=QualifiedName 'as'
+	//	realType=QualifiedName);
 	public DomainElementElements getDomainElementAccess() {
 		return pDomainElement;
 	}
@@ -599,7 +677,8 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumVal:
-	//	doc+=DOC* name=ID;
+	//	doc+=DOC*
+	//	name=ID '=' value=(ID | STRING);
 	public EnumValElements getEnumValAccess() {
 		return pEnumVal;
 	}
@@ -609,7 +688,8 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Attribute:
-	//	documentation+=DOC* optional?="optional"? type=GenericTypeArgument name=ID ("=" value=STRING)?;
+	//	documentation+=DOC*
+	//	optional?='optional'? type=GenericTypeArgument name=ID ('=' value=STRING)?;
 	public AttributeElements getAttributeAccess() {
 		return pAttribute;
 	}
@@ -619,8 +699,8 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GenericTypeArgument:
-	//	type=[DomainElement|QualifiedName] ("<" arguments+=GenericTypeArgument ("," arguments+=GenericTypeArgument)* ">")?
-	//	list?="[]"?;
+	//	type=[DomainElement|QualifiedName] ('<' arguments+=GenericTypeArgument (',' arguments+=GenericTypeArgument)* '>')?
+	//	list?='[]'?;
 	public GenericTypeArgumentElements getGenericTypeArgumentAccess() {
 		return pGenericTypeArgument;
 	}
@@ -629,8 +709,21 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		return getGenericTypeArgumentAccess().getRule();
 	}
 
+	//ServiceDef:
+	//	name=ID '{'
+	//	commandList+=CommandDef*
+	//	eventList+=EventDef*
+	//	'}';
+	public ServiceDefElements getServiceDefAccess() {
+		return pServiceDef;
+	}
+	
+	public ParserRule getServiceDefRule() {
+		return getServiceDefAccess().getRule();
+	}
+
 	//CommandDef:
-	//	"command" name=ID ("(" attributes+=Attribute+ ")")? "returns" ("void" | returnVal=GenericTypeArgument);
+	//	'command' name=ID ('(' attributes+=Attribute+ ')')? 'returns' ('void' | returnVal=GenericTypeArgument);
 	public CommandDefElements getCommandDefAccess() {
 		return pCommandDef;
 	}
@@ -640,7 +733,8 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EventDef:
-	//	documentation+=DOC* "event" name=ID type=GenericTypeArgument;
+	//	documentation+=DOC*
+	//	'event' name=ID type=GenericTypeArgument;
 	public EventDefElements getEventDefAccess() {
 		return pEventDef;
 	}
@@ -650,7 +744,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedName:
-	//	ID ("." ID)*;
+	//	ID (=> '.' ID)*;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return pQualifiedName;
 	}
@@ -660,44 +754,44 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DOC:
-	//	"##" !("\n" | "\r")* ("\r"? "\n")?;
+	//	'##' !('\n' | '\r')* ('\r'? '\n')?;
 	public TerminalRule getDOCRule() {
 		return tDOC;
 	} 
 
 	//terminal ID:
-	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return gaTerminals.getIDRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//	"0".."9"+;
+	//	'0'..'9'+;
 	public TerminalRule getINTRule() {
 		return gaTerminals.getINTRule();
 	} 
 
 	//terminal STRING:
-	//	"\"" ("\\" . / * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\""))* "\"" | "\'" ("\\" .
-	//	/ * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\'"))* "\'";
+	//	'"' ('\\' . | !('\\' | '"'))* '"' |
+	//	"'" ('\\' . | !('\\' | "'"))* "'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//	"/ *"->"* /";
+	//	'/ *'->'* /';
 	public TerminalRule getML_COMMENTRule() {
 		return gaTerminals.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
+	//	'//' !('\n' | '\r')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaTerminals.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//	(" " | "\t" | "\r" | "\n")+;
+	//	' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
 		return gaTerminals.getWSRule();
 	} 

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getDoc <em>Doc</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getName <em>Name</em>}</li>
+ *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getEnumVal()
@@ -66,5 +67,31 @@ public interface EnumVal extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Value</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
+   * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getEnumVal_Value()
+   * @model
+   * @generated
+   */
+  String getValue();
+
+  /**
+   * Sets the value of the '{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getValue <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(String value);
 
 } // EnumVal

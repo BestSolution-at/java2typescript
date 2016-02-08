@@ -17,8 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getDomainElements <em>Domain Elements</em>}</li>
- *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getCommandList <em>Command List</em>}</li>
- *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getEventList <em>Event List</em>}</li>
+ *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getServiceDefs <em>Service Defs</em>}</li>
  * </ul>
  *
  * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getServiceDefs()
@@ -70,35 +69,19 @@ public interface ServiceDefs extends EObject
   EList<DomainElement> getDomainElements();
 
   /**
-   * Returns the value of the '<em><b>Command List</b></em>' containment reference list.
-   * The list contents are of type {@link at.bestsolution.typescript.service.spec.tSSpec.CommandDef}.
+   * Returns the value of the '<em><b>Service Defs</b></em>' containment reference list.
+   * The list contents are of type {@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDef}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Command List</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Service Defs</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Command List</em>' containment reference list.
-   * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getServiceDefs_CommandList()
+   * @return the value of the '<em>Service Defs</em>' containment reference list.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getServiceDefs_ServiceDefs()
    * @model containment="true"
    * @generated
    */
-  EList<CommandDef> getCommandList();
-
-  /**
-   * Returns the value of the '<em><b>Event List</b></em>' containment reference list.
-   * The list contents are of type {@link at.bestsolution.typescript.service.spec.tSSpec.EventDef}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Event List</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Event List</em>' containment reference list.
-   * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getServiceDefs_EventList()
-   * @model containment="true"
-   * @generated
-   */
-  EList<EventDef> getEventList();
+  EList<ServiceDef> getServiceDefs();
 
 } // ServiceDefs

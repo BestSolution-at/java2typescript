@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.DomainElementImpl#isCust <em>Cust</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.DomainElementImpl#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.DomainElementImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.DomainElementImpl#isIsEnum <em>Is Enum</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.DomainElementImpl#getEnumValues <em>Enum Values</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.DomainElementImpl#getRealType <em>Real Type</em>}</li>
  * </ul>
@@ -114,6 +115,26 @@ public class DomainElementImpl extends MinimalEObjectImpl.Container implements D
    * @ordered
    */
   protected EList<Attribute> attributes;
+
+  /**
+   * The default value of the '{@link #isIsEnum() <em>Is Enum</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isIsEnum()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean IS_ENUM_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isIsEnum() <em>Is Enum</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isIsEnum()
+   * @generated
+   * @ordered
+   */
+  protected boolean isEnum = IS_ENUM_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getEnumValues() <em>Enum Values</em>}' containment reference list.
@@ -288,6 +309,29 @@ public class DomainElementImpl extends MinimalEObjectImpl.Container implements D
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isIsEnum()
+  {
+    return isEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIsEnum(boolean newIsEnum)
+  {
+    boolean oldIsEnum = isEnum;
+    isEnum = newIsEnum;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TSSpecPackage.DOMAIN_ELEMENT__IS_ENUM, oldIsEnum, isEnum));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<EnumVal> getEnumValues()
   {
     if (enumValues == null)
@@ -359,6 +403,8 @@ public class DomainElementImpl extends MinimalEObjectImpl.Container implements D
         return basicGetSuperType();
       case TSSpecPackage.DOMAIN_ELEMENT__ATTRIBUTES:
         return getAttributes();
+      case TSSpecPackage.DOMAIN_ELEMENT__IS_ENUM:
+        return isIsEnum();
       case TSSpecPackage.DOMAIN_ELEMENT__ENUM_VALUES:
         return getEnumValues();
       case TSSpecPackage.DOMAIN_ELEMENT__REAL_TYPE:
@@ -394,6 +440,9 @@ public class DomainElementImpl extends MinimalEObjectImpl.Container implements D
       case TSSpecPackage.DOMAIN_ELEMENT__ATTRIBUTES:
         getAttributes().clear();
         getAttributes().addAll((Collection<? extends Attribute>)newValue);
+        return;
+      case TSSpecPackage.DOMAIN_ELEMENT__IS_ENUM:
+        setIsEnum((Boolean)newValue);
         return;
       case TSSpecPackage.DOMAIN_ELEMENT__ENUM_VALUES:
         getEnumValues().clear();
@@ -431,6 +480,9 @@ public class DomainElementImpl extends MinimalEObjectImpl.Container implements D
       case TSSpecPackage.DOMAIN_ELEMENT__ATTRIBUTES:
         getAttributes().clear();
         return;
+      case TSSpecPackage.DOMAIN_ELEMENT__IS_ENUM:
+        setIsEnum(IS_ENUM_EDEFAULT);
+        return;
       case TSSpecPackage.DOMAIN_ELEMENT__ENUM_VALUES:
         getEnumValues().clear();
         return;
@@ -461,6 +513,8 @@ public class DomainElementImpl extends MinimalEObjectImpl.Container implements D
         return superType != null;
       case TSSpecPackage.DOMAIN_ELEMENT__ATTRIBUTES:
         return attributes != null && !attributes.isEmpty();
+      case TSSpecPackage.DOMAIN_ELEMENT__IS_ENUM:
+        return isEnum != IS_ENUM_EDEFAULT;
       case TSSpecPackage.DOMAIN_ELEMENT__ENUM_VALUES:
         return enumValues != null && !enumValues.isEmpty();
       case TSSpecPackage.DOMAIN_ELEMENT__REAL_TYPE:
@@ -486,6 +540,8 @@ public class DomainElementImpl extends MinimalEObjectImpl.Container implements D
     result.append(name);
     result.append(", cust: ");
     result.append(cust);
+    result.append(", isEnum: ");
+    result.append(isEnum);
     result.append(", realType: ");
     result.append(realType);
     result.append(')');

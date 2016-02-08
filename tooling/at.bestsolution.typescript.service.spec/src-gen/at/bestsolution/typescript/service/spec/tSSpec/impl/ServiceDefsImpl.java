@@ -2,9 +2,8 @@
  */
 package at.bestsolution.typescript.service.spec.tSSpec.impl;
 
-import at.bestsolution.typescript.service.spec.tSSpec.CommandDef;
 import at.bestsolution.typescript.service.spec.tSSpec.DomainElement;
-import at.bestsolution.typescript.service.spec.tSSpec.EventDef;
+import at.bestsolution.typescript.service.spec.tSSpec.ServiceDef;
 import at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs;
 import at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage;
 
@@ -34,8 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefsImpl#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefsImpl#getDomainElements <em>Domain Elements</em>}</li>
- *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefsImpl#getCommandList <em>Command List</em>}</li>
- *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefsImpl#getEventList <em>Event List</em>}</li>
+ *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefsImpl#getServiceDefs <em>Service Defs</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,24 +71,14 @@ public class ServiceDefsImpl extends MinimalEObjectImpl.Container implements Ser
   protected EList<DomainElement> domainElements;
 
   /**
-   * The cached value of the '{@link #getCommandList() <em>Command List</em>}' containment reference list.
+   * The cached value of the '{@link #getServiceDefs() <em>Service Defs</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getCommandList()
+   * @see #getServiceDefs()
    * @generated
    * @ordered
    */
-  protected EList<CommandDef> commandList;
-
-  /**
-   * The cached value of the '{@link #getEventList() <em>Event List</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEventList()
-   * @generated
-   * @ordered
-   */
-  protected EList<EventDef> eventList;
+  protected EList<ServiceDef> serviceDefs;
 
   /**
    * <!-- begin-user-doc -->
@@ -155,27 +143,13 @@ public class ServiceDefsImpl extends MinimalEObjectImpl.Container implements Ser
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<CommandDef> getCommandList()
+  public EList<ServiceDef> getServiceDefs()
   {
-    if (commandList == null)
+    if (serviceDefs == null)
     {
-      commandList = new EObjectContainmentEList<CommandDef>(CommandDef.class, this, TSSpecPackage.SERVICE_DEFS__COMMAND_LIST);
+      serviceDefs = new EObjectContainmentEList<ServiceDef>(ServiceDef.class, this, TSSpecPackage.SERVICE_DEFS__SERVICE_DEFS);
     }
-    return commandList;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<EventDef> getEventList()
-  {
-    if (eventList == null)
-    {
-      eventList = new EObjectContainmentEList<EventDef>(EventDef.class, this, TSSpecPackage.SERVICE_DEFS__EVENT_LIST);
-    }
-    return eventList;
+    return serviceDefs;
   }
 
   /**
@@ -190,10 +164,8 @@ public class ServiceDefsImpl extends MinimalEObjectImpl.Container implements Ser
     {
       case TSSpecPackage.SERVICE_DEFS__DOMAIN_ELEMENTS:
         return ((InternalEList<?>)getDomainElements()).basicRemove(otherEnd, msgs);
-      case TSSpecPackage.SERVICE_DEFS__COMMAND_LIST:
-        return ((InternalEList<?>)getCommandList()).basicRemove(otherEnd, msgs);
-      case TSSpecPackage.SERVICE_DEFS__EVENT_LIST:
-        return ((InternalEList<?>)getEventList()).basicRemove(otherEnd, msgs);
+      case TSSpecPackage.SERVICE_DEFS__SERVICE_DEFS:
+        return ((InternalEList<?>)getServiceDefs()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -212,10 +184,8 @@ public class ServiceDefsImpl extends MinimalEObjectImpl.Container implements Ser
         return getPackageName();
       case TSSpecPackage.SERVICE_DEFS__DOMAIN_ELEMENTS:
         return getDomainElements();
-      case TSSpecPackage.SERVICE_DEFS__COMMAND_LIST:
-        return getCommandList();
-      case TSSpecPackage.SERVICE_DEFS__EVENT_LIST:
-        return getEventList();
+      case TSSpecPackage.SERVICE_DEFS__SERVICE_DEFS:
+        return getServiceDefs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -238,13 +208,9 @@ public class ServiceDefsImpl extends MinimalEObjectImpl.Container implements Ser
         getDomainElements().clear();
         getDomainElements().addAll((Collection<? extends DomainElement>)newValue);
         return;
-      case TSSpecPackage.SERVICE_DEFS__COMMAND_LIST:
-        getCommandList().clear();
-        getCommandList().addAll((Collection<? extends CommandDef>)newValue);
-        return;
-      case TSSpecPackage.SERVICE_DEFS__EVENT_LIST:
-        getEventList().clear();
-        getEventList().addAll((Collection<? extends EventDef>)newValue);
+      case TSSpecPackage.SERVICE_DEFS__SERVICE_DEFS:
+        getServiceDefs().clear();
+        getServiceDefs().addAll((Collection<? extends ServiceDef>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -266,11 +232,8 @@ public class ServiceDefsImpl extends MinimalEObjectImpl.Container implements Ser
       case TSSpecPackage.SERVICE_DEFS__DOMAIN_ELEMENTS:
         getDomainElements().clear();
         return;
-      case TSSpecPackage.SERVICE_DEFS__COMMAND_LIST:
-        getCommandList().clear();
-        return;
-      case TSSpecPackage.SERVICE_DEFS__EVENT_LIST:
-        getEventList().clear();
+      case TSSpecPackage.SERVICE_DEFS__SERVICE_DEFS:
+        getServiceDefs().clear();
         return;
     }
     super.eUnset(featureID);
@@ -290,10 +253,8 @@ public class ServiceDefsImpl extends MinimalEObjectImpl.Container implements Ser
         return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
       case TSSpecPackage.SERVICE_DEFS__DOMAIN_ELEMENTS:
         return domainElements != null && !domainElements.isEmpty();
-      case TSSpecPackage.SERVICE_DEFS__COMMAND_LIST:
-        return commandList != null && !commandList.isEmpty();
-      case TSSpecPackage.SERVICE_DEFS__EVENT_LIST:
-        return eventList != null && !eventList.isEmpty();
+      case TSSpecPackage.SERVICE_DEFS__SERVICE_DEFS:
+        return serviceDefs != null && !serviceDefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -94,7 +94,7 @@ ruleServiceDefs returns [EObject current=null]
        			$current, 
        			"packageName",
         		lv_packageName_1_0, 
-        		"QualifiedName");
+        		"at.bestsolution.typescript.service.spec.TSSpec.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -112,7 +112,7 @@ ruleServiceDefs returns [EObject current=null]
        			$current, 
        			"domainElements",
         		lv_domainElements_2_0, 
-        		"DomainElement");
+        		"at.bestsolution.typescript.service.spec.TSSpec.DomainElement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -120,35 +120,17 @@ ruleServiceDefs returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getServiceDefsAccess().getCommandListCommandDefParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getServiceDefsAccess().getServiceDefsServiceDefParserRuleCall_3_0()); 
 	    }
-		lv_commandList_3_0=ruleCommandDef		{
+		lv_serviceDefs_3_0=ruleServiceDef		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getServiceDefsRule());
 	        }
        		add(
        			$current, 
-       			"commandList",
-        		lv_commandList_3_0, 
-        		"CommandDef");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)*(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getServiceDefsAccess().getEventListEventDefParserRuleCall_4_0()); 
-	    }
-		lv_eventList_4_0=ruleEventDef		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getServiceDefsRule());
-	        }
-       		add(
-       			$current, 
-       			"eventList",
-        		lv_eventList_4_0, 
-        		"EventDef");
+       			"serviceDefs",
+        		lv_serviceDefs_3_0, 
+        		"at.bestsolution.typescript.service.spec.TSSpec.ServiceDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -188,7 +170,7 @@ ruleDomainElement returns [EObject current=null]
        			$current, 
        			"doc",
         		lv_doc_0_0, 
-        		"DOC");
+        		"at.bestsolution.typescript.service.spec.TSSpec.DOC");
 	    }
 
 )
@@ -209,7 +191,7 @@ ruleDomainElement returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"QualifiedName");
+        		"at.bestsolution.typescript.service.spec.TSSpec.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -243,7 +225,7 @@ ruleDomainElement returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_4_0, 
-        		"QualifiedName");
+        		"at.bestsolution.typescript.service.spec.TSSpec.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -284,7 +266,7 @@ ruleDomainElement returns [EObject current=null]
        			$current, 
        			"attributes",
         		lv_attributes_8_0, 
-        		"Attribute");
+        		"at.bestsolution.typescript.service.spec.TSSpec.Attribute");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -294,11 +276,22 @@ ruleDomainElement returns [EObject current=null]
     	newLeafNode(otherlv_9, grammarAccess.getDomainElementAccess().getRightCurlyBracketKeyword_1_1_5());
     }
 )
-    |(	otherlv_10='enum' 
-    {
-    	newLeafNode(otherlv_10, grammarAccess.getDomainElementAccess().getEnumKeyword_1_2_0());
-    }
+    |((
 (
+		lv_isEnum_10_0=	'enum' 
+    {
+        newLeafNode(lv_isEnum_10_0, grammarAccess.getDomainElementAccess().getIsEnumEnumKeyword_1_2_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDomainElementRule());
+	        }
+       		setWithLastConsumed($current, "isEnum", true, "enum");
+	    }
+
+)
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDomainElementAccess().getNameQualifiedNameParserRuleCall_1_2_1_0()); 
@@ -311,7 +304,7 @@ ruleDomainElement returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_11_0, 
-        		"QualifiedName");
+        		"at.bestsolution.typescript.service.spec.TSSpec.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -333,7 +326,7 @@ ruleDomainElement returns [EObject current=null]
        			$current, 
        			"enumValues",
         		lv_enumValues_13_0, 
-        		"EnumVal");
+        		"at.bestsolution.typescript.service.spec.TSSpec.EnumVal");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -360,7 +353,7 @@ ruleDomainElement returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_16_0, 
-        		"QualifiedName");
+        		"at.bestsolution.typescript.service.spec.TSSpec.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -382,7 +375,7 @@ ruleDomainElement returns [EObject current=null]
        			$current, 
        			"realType",
         		lv_realType_18_0, 
-        		"QualifiedName");
+        		"at.bestsolution.typescript.service.spec.TSSpec.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -422,7 +415,7 @@ ruleEnumVal returns [EObject current=null]
        			$current, 
        			"doc",
         		lv_doc_0_0, 
-        		"DOC");
+        		"at.bestsolution.typescript.service.spec.TSSpec.DOC");
 	    }
 
 )
@@ -440,8 +433,48 @@ ruleEnumVal returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
+
+)
+)	otherlv_2='=' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getEnumValAccess().getEqualsSignKeyword_2());
+    }
+(
+(
+(
+		lv_value_3_1=RULE_ID
+		{
+			newLeafNode(lv_value_3_1, grammarAccess.getEnumValAccess().getValueIDTerminalRuleCall_3_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumValRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_3_1, 
+        		"org.eclipse.xtext.common.Terminals.ID");
+	    }
+
+    |		lv_value_3_2=RULE_STRING
+		{
+			newLeafNode(lv_value_3_2, grammarAccess.getEnumValAccess().getValueSTRINGTerminalRuleCall_3_0_1()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumValRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_3_2, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
 
 )
 ))
@@ -479,7 +512,7 @@ ruleAttribute returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOC");
+        		"at.bestsolution.typescript.service.spec.TSSpec.DOC");
 	    }
 
 )
@@ -511,7 +544,7 @@ ruleAttribute returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_2_0, 
-        		"GenericTypeArgument");
+        		"at.bestsolution.typescript.service.spec.TSSpec.GenericTypeArgument");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -530,7 +563,7 @@ ruleAttribute returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_3_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -552,7 +585,7 @@ ruleAttribute returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_5_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -609,7 +642,7 @@ ruleGenericTypeArgument returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_2_0, 
-        		"GenericTypeArgument");
+        		"at.bestsolution.typescript.service.spec.TSSpec.GenericTypeArgument");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -631,7 +664,7 @@ ruleGenericTypeArgument returns [EObject current=null]
        			$current, 
        			"arguments",
         		lv_arguments_4_0, 
-        		"GenericTypeArgument");
+        		"at.bestsolution.typescript.service.spec.TSSpec.GenericTypeArgument");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -656,6 +689,89 @@ ruleGenericTypeArgument returns [EObject current=null]
 
 )
 )?)
+;
+
+
+
+
+
+// Entry rule entryRuleServiceDef
+entryRuleServiceDef returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getServiceDefRule()); }
+	 iv_ruleServiceDef=ruleServiceDef 
+	 { $current=$iv_ruleServiceDef.current; } 
+	 EOF 
+;
+
+// Rule ServiceDef
+ruleServiceDef returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_name_0_0=RULE_ID
+		{
+			newLeafNode(lv_name_0_0, grammarAccess.getServiceDefAccess().getNameIDTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getServiceDefRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"org.eclipse.xtext.common.Terminals.ID");
+	    }
+
+)
+)	otherlv_1='{' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getServiceDefAccess().getLeftCurlyBracketKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getServiceDefAccess().getCommandListCommandDefParserRuleCall_2_0()); 
+	    }
+		lv_commandList_2_0=ruleCommandDef		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getServiceDefRule());
+	        }
+       		add(
+       			$current, 
+       			"commandList",
+        		lv_commandList_2_0, 
+        		"at.bestsolution.typescript.service.spec.TSSpec.CommandDef");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getServiceDefAccess().getEventListEventDefParserRuleCall_3_0()); 
+	    }
+		lv_eventList_3_0=ruleEventDef		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getServiceDefRule());
+	        }
+       		add(
+       			$current, 
+       			"eventList",
+        		lv_eventList_3_0, 
+        		"at.bestsolution.typescript.service.spec.TSSpec.EventDef");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*	otherlv_4='}' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getServiceDefAccess().getRightCurlyBracketKeyword_4());
+    }
+)
 ;
 
 
@@ -694,7 +810,7 @@ ruleCommandDef returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -715,7 +831,7 @@ ruleCommandDef returns [EObject current=null]
        			$current, 
        			"attributes",
         		lv_attributes_3_0, 
-        		"Attribute");
+        		"at.bestsolution.typescript.service.spec.TSSpec.Attribute");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -746,7 +862,7 @@ ruleCommandDef returns [EObject current=null]
        			$current, 
        			"returnVal",
         		lv_returnVal_7_0, 
-        		"GenericTypeArgument");
+        		"at.bestsolution.typescript.service.spec.TSSpec.GenericTypeArgument");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -786,7 +902,7 @@ ruleEventDef returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOC");
+        		"at.bestsolution.typescript.service.spec.TSSpec.DOC");
 	    }
 
 )
@@ -808,7 +924,7 @@ ruleEventDef returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -825,7 +941,7 @@ ruleEventDef returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_3_0, 
-        		"GenericTypeArgument");
+        		"at.bestsolution.typescript.service.spec.TSSpec.GenericTypeArgument");
 	        afterParserOrEnumRuleCall();
 	    }
 

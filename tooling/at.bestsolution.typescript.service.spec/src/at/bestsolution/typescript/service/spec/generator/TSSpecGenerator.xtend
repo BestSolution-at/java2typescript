@@ -10,6 +10,7 @@ import at.bestsolution.typescript.service.spec.tSSpec.DomainElement
 import at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs
 import at.bestsolution.typescript.service.spec.tSSpec.GenericTypeArgument
 import at.bestsolution.typescript.service.spec.tSSpec.CommandDef
+import at.bestsolution.typescript.service.spec.tSSpec.ServiceDef
 
 /**
  * Generates code from your model files on save.
@@ -29,16 +30,23 @@ class TSSpecGenerator implements IGenerator {
 		defs.domainElements.filter[cust].forEach[
 			fsa.generateFile((defs.packageName+".pojo"+"."+name+"Pojo").replace('.','/')+".java", generateCustType)
 		]
-		defs.commandList.filter[ !attributes.isEmpty ].forEach[
-			fsa.generateFile((defs.packageName+".internal."+name.toFirstUpper+"Request").replace('.','/')+".java", generateRequestType)
-		]
-
+//		defs.serviceDefs.forEach[ s |
+//			s.commandList.filter[ !attributes.isEmpty ].forEach[
+//				fsa.generateFile((defs.packageName+".internal."+name.toFirstUpper+"Request").replace('.','/')+".java", generateRequestType)
+//			]
+//		]
 //		defs.commandList.forEach[s|
 //			fsa.generateFile((defs.packageName+".model."+s.name.toFirstUpper+"Result").replace('.','/')+".java", s.generateRequestResultType)
 //			fsa.generateFile((defs.packageName+".model."+s.name.toFirstUpper+"Request").replace('.','/')+".java", s.generateRequestType)
 //		]
-		fsa.generateFile((defs.packageName+".internal.local.LocalTSService").replace(".","/")+".java", defs.generateLocalService)
-		fsa.generateFile((defs.packageName+".services.TSService").replace('.','/')+".java", defs.generateServiceAPI)
+//		fsa.generateFile((defs.packageName+".internal.local.LocalTSService").replace(".","/")+".java", defs.generateLocalService)
+//		fsa.generateFile((defs.packageName+".services.TSService").replace('.','/')+".java", defs.generateServiceAPI)
+
+		defs.serviceDefs.forEach[s|
+			fsa.generateFile((defs.packageName+".services." + s.name).replace('.','/')+".java", s.generateServiceAPI)
+			fsa.generateFile((defs.packageName+".internal.impl." + s.name+"Impl").replace('.','/')+".java", s.generateServiceImpl)
+		]
+
 	}
 
 	def generateRequestType(CommandDef d) '''
@@ -71,226 +79,283 @@ class TSSpecGenerator implements IGenerator {
 	}
 	'''
 
-	def generateServiceAPI(ServiceDefs defs) '''
-	package «defs.packageName».services;
+	def generateServiceAPI(ServiceDef d) '''
+	package «(d.eContainer as ServiceDefs).packageName».services;
 
-	import «defs.packageName».model.*;
+	import «(d.eContainer as ServiceDefs).packageName».model.*;
 
-	public interface TSService {
-		«FOR c : defs.commandList»
+	public interface «d.name» {
+		«FOR c : d.commandList»
 			public «c.returnVal.typeString» «c.name»(«c.attributes.map[a|a.type.typeString + " " + a.name].join(", ")»);
 		«ENDFOR»
-		«FOR e : defs.eventList»
+		«FOR e : d.eventList»
 			public at.bestsolution.typescript.service.api.Registration «e.name»(java.util.function.Consumer<«e.type.typeString»> consumer);
 		«ENDFOR»
 	}
 	'''
 
-	def generateLocalService(ServiceDefs defs) '''
-	package «defs.packageName».internal.local;
+	def generateServiceImpl(ServiceDef d) '''
+	package «(d.eContainer as ServiceDefs).packageName».internal.impl;
 
-	import «defs.packageName».TSServerConfiguration;
-	import «defs.packageName».model.*;
-	import «defs.packageName».pojo.model.*;
-	import com.google.gson.JsonObject;
-	import com.google.gson.Gson;
-	import java.util.concurrent.Future;
-	import java.util.concurrent.CompletableFuture;
-	import java.util.concurrent.atomic.AtomicInteger;
-	import java.util.HashMap;
-	import java.util.Map;
-	import java.io.IOException;
-	import java.io.BufferedReader;
-	import java.io.InputStreamReader;
+	import «(d.eContainer as ServiceDefs).packageName».model.*;
+	import «(d.eContainer as ServiceDefs).packageName».pojo.model.*;
+	import at.bestsolution.typescript.service.api.services.Dispatcher;
 
+	public class «d.name»Impl implements «(d.eContainer as ServiceDefs).packageName».services.«d.name» {
+		private final Dispatcher dispatcher;
+		private final String projectId;
 
-	public class LocalTSService implements «defs.packageName».services.TSService {
-		private AtomicInteger requestCount = new AtomicInteger();
-		private Map<Integer,CompletableFuture<JsonObject>> waitingResponseConsumerMap = new HashMap<>();
-		private Process p;
-		private TSServerConfiguration configuration;
-		private String tsServer = "/usr/local/bin/tsserver";
-		private String id;
-		private int seqCount;
-
-		«FOR e : defs.eventList»
-		private final java.util.List<java.util.function.Consumer<«e.type.typeString»>> «e.name»ConsumerList = new java.util.ArrayList<>();
-		«ENDFOR»
-
-		public LocalTSService(TSServerConfiguration configuration, String id) {
-			this.id = id;
-			this.configuration = configuration;
-
-			if( this.configuration != null ) {
-				configuration.addConfigurationChangeConsumer(this::handleConfigurationChange);
-			}
-			startServer();
+		public «d.name»Impl(String projectId, Dispatcher dispatcher) {
+			this.projectId = projectId;
+			this.dispatcher = dispatcher;
 		}
 
-		private void handleConfigurationChange(String serverBinary) {
-			startServer();
-		}
-
-		«FOR c : defs.commandList»
+		«FOR c : d.commandList»
 			public «c.returnVal.typeString» «c.name»(«c.attributes.map[a|a.type.typeString + " " + a.name].join(", ")») {
 				«IF c.returnVal.typeString != "void"»
 				try {
-					JsonObject o = sendRequest("«c.name»",«IF c.attributes.isEmpty»null«ELSE»new «defs.packageName».internal.«c.name.toFirstUpper»Request(«c.attributes.map[a|a.name].join(", ")»)«ENDIF»).get();
-					if( o.has("success") && o.get("success").getAsBoolean() ) {
-						«IF c.returnVal.isList»
-							com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
-							«c.returnVal.typeStringPojo» rv = new java.util.ArrayList<>(ar.size());
-
-							for( int i = 0; i < ar.size(); i++ ) {
-								rv.add(new com.google.gson.Gson().fromJson(ar.get(i), «c.returnVal.type.name.simpleName»Pojo.class));
-							}
-							return rv;
-						«ELSE»
-							return new com.google.gson.Gson().fromJson(o.get("body"), «c.returnVal.type.name.simpleName»Pojo.class);
-						«ENDIF»
-					} else {
-						throw new IllegalStateException("Requested failed");
-					}
-				} catch (InterruptedException | java.util.concurrent.ExecutionException e) {
-					throw new IllegalStateException(e);
+					«IF c.returnVal.list»
+					return dispatcher.sendMultiValueRequest("«d.name»","«c.name»",«c.returnVal.type.name.simpleName»Pojo.class, projectId«IF !c.attributes.empty»,«c.attributes.map[a|a.name].join(", ")»«ENDIF»).get();
+					«ELSE»
+					return dispatcher.sendSingleValueRequest("«d.name»","«c.name»",«c.returnVal.typeStringPojo».class, projectId«IF !c.attributes.empty»,«c.attributes.map[a|a.name].join(", ")»«ENDIF»).get();
+					«ENDIF»
+				} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
+					throw new RuntimeException(e);
 				}
 				«ELSE»
-				sendVoidRequest("«c.name»",«IF c.attributes.isEmpty»null«ELSE»new «defs.packageName».internal.«c.name.toFirstUpper»Request(«c.attributes.map[a|a.name].join(", ")»)«ENDIF»);
+				dispatcher.sendVoidRequest("«d.name»","«c.name»", projectId«IF !c.attributes.empty»,«c.attributes.map[a|a.name].join(", ")»«ENDIF»);
 				«ENDIF»
 			}
+
 		«ENDFOR»
-		«FOR e : defs.eventList»
-			public at.bestsolution.typescript.service.api.Registration «e.name»(java.util.function.Consumer<«e.type.typeString»> consumer) {
-				«e.name»ConsumerList.add(consumer);
-				return () -> {
-					«e.name»ConsumerList.remove(consumer);
-				};
-			}
-		«ENDFOR»
-
-		private void startServer() {
-			if(p != null && p.isAlive() ) {
-				p.destroy();
-			}
-			String binary = configuration == null ? tsServer : configuration.getServerBinary();
-
-			try {
-				p = Runtime.getRuntime().exec(binary, new String[] { "PATH=$PATH:/usr/local/bin" }); //TODO Linux & Windows???
-
-				Thread t = new Thread() {
-					public void run() {
-						try {
-							BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-							String l = null;
-							while( (l = r.readLine()) != null ) {
-								if( l.startsWith("{") ) {
-									dispatch(l);
-								}
-							}
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				};
-				t.setDaemon(true);
-				t.start();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-
-		private void dispatch(String input) {
-			com.google.gson.JsonParser p = new com.google.gson.JsonParser();
-			com.google.gson.JsonObject root = (com.google.gson.JsonObject) p.parse(input);
-
-			String type = root.get("type").getAsString();
-
-			if( "event".equals(type) && root.has("event") ) {
-				switch(root.get("event").getAsString()) {
-					«FOR e : defs.eventList»
-						case "«e.name»": {
-							«e.type.typeString» o = new com.google.gson.Gson().fromJson(root.get("body"), «e.type.typeString»Pojo.class);
-							java.util.List<java.util.function.Consumer<«e.type.typeString»>> l;
-
-							synchronized(«e.name»ConsumerList) {
-								l = new java.util.ArrayList<>(«e.name»ConsumerList);
-							}
-							l.stream().forEach( c -> c.accept(o));
-							break;
-						}
-					«ENDFOR»
-					default:
-						break;
-				}
-			} else if( "response".equals(type) && root.has("request_seq") ) {
-				Integer id = root.get("request_seq").getAsInt();
-				CompletableFuture<JsonObject> future;
-				synchronized(waitingResponseConsumerMap) {
-					future = waitingResponseConsumerMap.remove(id);
-				}
-
-				if( future != null ) {
-					future.complete(root);
-				}
-			}
-		}
-
-		private Future<JsonObject> sendRequest(String method, Object request) {
-			CompletableFuture<JsonObject> f = new CompletableFuture<>();
-			Integer seq = requestCount.getAndIncrement();
-
-			synchronized(waitingResponseConsumerMap) {
-				waitingResponseConsumerMap.put(seq, f);
-			}
-
-			String r = "{ \"seq\" : "+ seq +", \"type\" : \"request\", \"command\" : \""+method+"\"";
-			if( request != null ) {
-				r += ", \"arguments\" :  " + new Gson().toJson(request);
-			}
-			r += "}";
-			r = r.replace('\n', ' ');
-			r = r.replace('\r', ' ');
-			r += "\n";
-			try {
-				p.getOutputStream().write(r.getBytes());
-				p.getOutputStream().flush();
-			} catch (java.io.IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			return f;
-		}
-
-		private void sendVoidRequest(String method, Object request) {
-			String r = "{ \"seq\" : "+ requestCount.getAndIncrement() +", \"type\" : \"request\", \"command\" : \""+method+"\"";
-			if( request != null ) {
-				r += ", \"arguments\" :  " + new Gson().toJson(request);
-			}
-			r += "}";
-			r = r.replace('\n', ' ');
-			r = r.replace('\r', ' ');
-			r += "\n";
-			try {
-				p.getOutputStream().write(r.getBytes());
-				p.getOutputStream().flush();
-			} catch (java.io.IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 	'''
+
+//	def generateLocalService(ServiceDef d) '''
+//	package «(d.eContainer as ServiceDefs).packageName».internal.local;
+//
+//	import «(d.eContainer as ServiceDefs).packageName».TSServerConfiguration;
+//	import «(d.eContainer as ServiceDefs).packageName».model.*;
+//	import «(d.eContainer as ServiceDefs).packageName».pojo.model.*;
+//	import com.google.gson.JsonObject;
+//	import com.google.gson.Gson;
+//	import java.util.concurrent.Future;
+//	import java.util.concurrent.CompletableFuture;
+//	import java.util.concurrent.atomic.AtomicInteger;
+//	import java.util.HashMap;
+//	import java.util.Map;
+//	import java.io.IOException;
+//	import java.io.BufferedReader;
+//	import java.io.InputStreamReader;
+//
+//
+//	public class LocalTSService implements «(d.eContainer as ServiceDefs).packageName».services.TSService {
+//		private AtomicInteger requestCount = new AtomicInteger();
+//		private Map<Integer,CompletableFuture<JsonObject>> waitingResponseConsumerMap = new HashMap<>();
+//		private Process p;
+//		private TSServerConfiguration configuration;
+//		private String tsServer = "/usr/local/bin/tsserver";
+//		private String id;
+//		private int seqCount;
+//
+//		«FOR e : d.eventList»
+//		private final java.util.List<java.util.function.Consumer<«e.type.typeString»>> «e.name»ConsumerList = new java.util.ArrayList<>();
+//		«ENDFOR»
+//
+//		public LocalTSService(TSServerConfiguration configuration, String id) {
+//			this.id = id;
+//			this.configuration = configuration;
+//
+//			if( this.configuration != null ) {
+//				configuration.addConfigurationChangeConsumer(this::handleConfigurationChange);
+//			}
+//			startServer();
+//		}
+//
+//		private void handleConfigurationChange(String serverBinary) {
+//			startServer();
+//		}
+//
+//		«FOR c : d.commandList»
+//			public «c.returnVal.typeString» «c.name»(«c.attributes.map[a|a.type.typeString + " " + a.name].join(", ")») {
+//				«IF c.returnVal.typeString != "void"»
+//				try {
+//					JsonObject o = sendRequest("«c.name»",«IF c.attributes.isEmpty»null«ELSE»new «(d.eContainer as ServiceDefs).packageName».internal.«c.name.toFirstUpper»Request(«c.attributes.map[a|a.name].join(", ")»)«ENDIF»).get();
+//					if( o.has("success") && o.get("success").getAsBoolean() ) {
+//						«IF c.returnVal.isList»
+//							com.google.gson.JsonArray ar = o.get("body").getAsJsonArray();
+//							«c.returnVal.typeStringPojo» rv = new java.util.ArrayList<>(ar.size());
+//
+//							for( int i = 0; i < ar.size(); i++ ) {
+//								rv.add(new com.google.gson.Gson().fromJson(ar.get(i), «c.returnVal.type.name.simpleName»Pojo.class));
+//							}
+//							return rv;
+//						«ELSE»
+//							return new com.google.gson.Gson().fromJson(o.get("body"), «c.returnVal.typeStringPojo».class);
+//						«ENDIF»
+//					} else {
+//						throw new IllegalStateException("Requested failed");
+//					}
+//				} catch (InterruptedException | java.util.concurrent.ExecutionException e) {
+//					throw new IllegalStateException(e);
+//				}
+//				«ELSE»
+//				sendVoidRequest("«c.name»",«IF c.attributes.isEmpty»null«ELSE»new «(d.eContainer as ServiceDefs).packageName».internal.«c.name.toFirstUpper»Request(«c.attributes.map[a|a.name].join(", ")»)«ENDIF»);
+//				«ENDIF»
+//			}
+//		«ENDFOR»
+//		«FOR e : d.eventList»
+//			public at.bestsolution.typescript.service.api.Registration «e.name»(java.util.function.Consumer<«e.type.typeString»> consumer) {
+//				«e.name»ConsumerList.add(consumer);
+//				return () -> {
+//					«e.name»ConsumerList.remove(consumer);
+//				};
+//			}
+//		«ENDFOR»
+//
+//		private void startServer() {
+//			if(p != null && p.isAlive() ) {
+//				p.destroy();
+//			}
+//			String binary = configuration == null ? tsServer : configuration.getServerBinary();
+//
+//			try {
+//				p = Runtime.getRuntime().exec(binary, new String[] { "PATH=$PATH:/usr/local/bin" }); //TODO Linux & Windows???
+//
+//				Thread t = new Thread() {
+//					public void run() {
+//						try {
+//							BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//							String l = null;
+//							while( (l = r.readLine()) != null ) {
+//								if( l.startsWith("{") ) {
+//									dispatch(l);
+//								}
+//							}
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//					}
+//				};
+//				t.setDaemon(true);
+//				t.start();
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		}
+//
+//		private void dispatch(String input) {
+//			com.google.gson.JsonParser p = new com.google.gson.JsonParser();
+//			com.google.gson.JsonObject root = (com.google.gson.JsonObject) p.parse(input);
+//
+//			String type = root.get("type").getAsString();
+//
+//			if( "event".equals(type) && root.has("event") ) {
+//				switch(root.get("event").getAsString()) {
+//					«FOR e : d.eventList»
+//						case "«e.name»": {
+//							«e.type.typeString» o = new com.google.gson.Gson().fromJson(root.get("body"), «e.type.typeString»Pojo.class);
+//							java.util.List<java.util.function.Consumer<«e.type.typeString»>> l;
+//
+//							synchronized(«e.name»ConsumerList) {
+//								l = new java.util.ArrayList<>(«e.name»ConsumerList);
+//							}
+//							l.stream().forEach( c -> c.accept(o));
+//							break;
+//						}
+//					«ENDFOR»
+//					default:
+//						break;
+//				}
+//			} else if( "response".equals(type) && root.has("request_seq") ) {
+//				Integer id = root.get("request_seq").getAsInt();
+//				CompletableFuture<JsonObject> future;
+//				synchronized(waitingResponseConsumerMap) {
+//					future = waitingResponseConsumerMap.remove(id);
+//				}
+//
+//				if( future != null ) {
+//					future.complete(root);
+//				}
+//			}
+//		}
+//
+//		private Future<JsonObject> sendRequest(String method, Object request) {
+//			CompletableFuture<JsonObject> f = new CompletableFuture<>();
+//			Integer seq = requestCount.getAndIncrement();
+//
+//			synchronized(waitingResponseConsumerMap) {
+//				waitingResponseConsumerMap.put(seq, f);
+//			}
+//
+//			String r = "{ \"seq\" : "+ seq +", \"type\" : \"request\", \"command\" : \""+method+"\"";
+//			if( request != null ) {
+//				r += ", \"arguments\" :  " + new Gson().toJson(request);
+//			}
+//			r += "}";
+//			r = r.replace('\n', ' ');
+//			r = r.replace('\r', ' ');
+//			r += "\n";
+//			try {
+//				p.getOutputStream().write(r.getBytes());
+//				p.getOutputStream().flush();
+//			} catch (java.io.IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//
+//			return f;
+//		}
+//
+//		private void sendVoidRequest(String method, Object request) {
+//			String r = "{ \"seq\" : "+ requestCount.getAndIncrement() +", \"type\" : \"request\", \"command\" : \""+method+"\"";
+//			if( request != null ) {
+//				r += ", \"arguments\" :  " + new Gson().toJson(request);
+//			}
+//			r += "}";
+//			r = r.replace('\n', ' ');
+//			r = r.replace('\r', ' ');
+//			r += "\n";
+//			try {
+//				p.getOutputStream().write(r.getBytes());
+//				p.getOutputStream().flush();
+//			} catch (java.io.IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+//	'''
 
 	def generateEnumType(DomainElement e) '''
 	package «(e.eContainer as ServiceDefs).packageName».«e.name.substring(0,e.name.lastIndexOf('.'))»;
 
 	public enum «e.name.simpleName» {
 		«FOR en : e.enumValues»
-			«IF e.enumValues.head != en»,«ENDIF»«en.name»
+			«IF e.enumValues.head != en», «ENDIF»«en.name»("«en.value»")«IF e.enumValues.last == en»;«ENDIF»
 		«ENDFOR»
+
+		private final String stringValue;
+
+		«e.name.simpleName»(String stringValue) {
+			this.stringValue = stringValue;
+		}
+
+		public String asStringValue() {
+			return this.stringValue;
+		}
+
+		public static «e.name.simpleName» fromStringValue(String stringValue) {
+			switch( stringValue ) {
+				«FOR en : e.enumValues»
+					case "«en.value»": return «en.name»;
+				«ENDFOR»
+				default:
+					return «e.enumValues.head.name»;
+			}
+		}
 	}
 	'''
 
@@ -299,7 +364,7 @@ class TSSpecGenerator implements IGenerator {
 
 	public interface «e.name.simpleName» «IF e.superType != null»extends «e.superType.name.simpleName»«ENDIF» {
 		«FOR a : e.attributes»
-			public «a.type.typeString» get«a.name.simpleName.toFirstUpper»();
+			public «a.type.typeString» «a.name.simpleName»();
 		«ENDFOR»
 	}
 	'''
@@ -307,29 +372,50 @@ class TSSpecGenerator implements IGenerator {
 	def generateCustType(DomainElement e) '''
 	package «(e.eContainer as ServiceDefs).packageName».pojo.«e.name.substring(0,e.name.lastIndexOf('.'))»;
 
-	import java.util.Map;
 	import «(e.eContainer as ServiceDefs).packageName».«e.name.substring(0,e.name.lastIndexOf('.'))».«e.name.simpleName»;
 
 	public class «e.name.simpleName»Pojo «IF e.superType != null»extends «e.superType.name.simpleName»Pojo«ENDIF» implements «e.name.simpleName» {
 		«FOR a : e.attributes»
+			«IF a.type.type.isIsEnum»
+			private String «a.name.simpleName»  = "«a.type.type.enumValues.head.value»";
+			private «a.type.typeStringPojo» _«a.name.simpleName» = null;
+			«ELSE»
 			private «a.type.typeStringPojo» «a.name.simpleName» «IF a.value != null» = «a.value»«ENDIF»;
+			«ENDIF»
 		«ENDFOR»
 
 		public «e.name.simpleName»Pojo() {
 		}
 
 		«FOR a : e.attributes»
-			public «a.type.typeStringPojo» get«a.name.simpleName.toFirstUpper»() {
+			«IF a.type.type.isIsEnum»
+			public «a.type.typeStringPojo» «a.name.simpleName»() {
+				if( _«a.name.simpleName» != null ) return _«a.name.simpleName»;
+				«IF a.type.isList»
+					return _«a.name.simpleName» = java.util.stream.Stream.of(«a.name.simpleName».split(",")).map( s -> «(a.type.type.eContainer as ServiceDefs).packageName + "." + a.type.type.name».fromStringValue(s) ).collect( java.util.stream.Collectors.toList() );
+				«ELSE»
+					return _«a.name.simpleName» = «a.type.typeStringPojo».fromStringValue(this.«a.name.simpleName»);
+				«ENDIF»
+			}
+			«ELSE»
+			public «a.type.typeStringPojo» «a.name.simpleName»() {
 				return this.«a.name.simpleName»;
 			}
-
-			public void set«a.name.simpleName.toFirstUpper»(«a.type.typeStringPojo» «a.name.simpleName») {
-				this.«a.name.simpleName» = «a.name.simpleName»;
-			}
+			«ENDIF»
+«««
+«««			«IF a.type.type.isIsEnum»
+«««				public void set«a.name.simpleName.toFirstUpper»(String «a.name.simpleName») {
+«««					this.«a.name.simpleName» = «a.type.typeStringPojo».fromStringValue(«a.name.simpleName»);
+«««				}
+«««			«ELSE»
+«««				public void set«a.name.simpleName.toFirstUpper»(«a.type.typeStringPojo» «a.name.simpleName») {
+«««					this.«a.name.simpleName» = «a.name.simpleName»;
+«««				}
+«««			«ENDIF»
 		«ENDFOR»
 
 		public String toString() {
-			return "«e.name.simpleName»@"+hashCode()+"[«e.attributes.map[name + ' = "+'+name+'+"'].join(", ")»]";
+			return "«e.name.simpleName»@"+hashCode()+"[«e.attributes.map[name + ' = "+'+name+'()+"'].join(", ")»]";
 		}
 	}
 	'''
@@ -343,6 +429,8 @@ class TSSpecGenerator implements IGenerator {
 
 		if( type.type.isCust ) {
 			name += "Pojo";
+		} else if( type.type.isIsEnum ) {
+			name = (type.type.eContainer as ServiceDefs).packageName + "." + type.type.name
 		}
 
 		if( type.type.realType != null) {
@@ -353,17 +441,17 @@ class TSSpecGenerator implements IGenerator {
 			var rv = name
 			if( ! type.arguments.empty ) {
 				rv += "<"
-				rv += type.arguments.map[typeString].join(",")
+				rv += type.arguments.map[typeString].map[toObjectType].join(",")
 				rv += ">"
 			}
 			if( type.list ) {
-				rv = "java.util.List<"+rv+">"
+				rv = "java.util.List<"+rv.toObjectType+">"
 			}
 			return rv
 		} else {
 			var rv = name;
 			if( type.list ) {
-				rv = "java.util.List<"+rv+">"
+				rv = "java.util.List<"+rv.toObjectType+">"
 			}
 			return rv
 		}
@@ -383,20 +471,27 @@ class TSSpecGenerator implements IGenerator {
 			var rv = name
 			if( ! type.arguments.empty ) {
 				rv += "<"
-				rv += type.arguments.map[typeString].join(",")
+				rv += type.arguments.map[typeString].map[toObjectType].join(",")
 				rv += ">"
 			}
 			if( type.list ) {
-				rv = "java.util.List<? extends "+rv+">"
+				rv = "java.util.List<? extends "+rv.toObjectType+">"
 			}
 			return rv
 		} else {
 			var rv = name;
 			if( type.list ) {
-				rv = "java.util.List<? extends "+rv+">"
+				rv = "java.util.List<? extends "+rv.toObjectType+">"
 			}
 			return rv
 		}
+	}
+
+	def static toObjectType(String t) {
+		if( t == 'int' ) {
+			return "Integer"
+		}
+		return t;
 	}
 
 	def simpleName(String name) {

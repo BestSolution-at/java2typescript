@@ -107,6 +107,13 @@ public class TSSpecSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case TSSpecPackage.SERVICE_DEF:
+      {
+        ServiceDef serviceDef = (ServiceDef)theEObject;
+        T result = caseServiceDef(serviceDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case TSSpecPackage.COMMAND_DEF:
       {
         CommandDef commandDef = (CommandDef)theEObject;
@@ -201,6 +208,22 @@ public class TSSpecSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseGenericTypeArgument(GenericTypeArgument object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Service Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Service Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseServiceDef(ServiceDef object)
   {
     return null;
   }

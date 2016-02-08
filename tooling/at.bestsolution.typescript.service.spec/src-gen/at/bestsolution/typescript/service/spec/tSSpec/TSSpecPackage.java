@@ -85,22 +85,13 @@ public interface TSSpecPackage extends EPackage
   int SERVICE_DEFS__DOMAIN_ELEMENTS = 1;
 
   /**
-   * The feature id for the '<em><b>Command List</b></em>' containment reference list.
+   * The feature id for the '<em><b>Service Defs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE_DEFS__COMMAND_LIST = 2;
-
-  /**
-   * The feature id for the '<em><b>Event List</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SERVICE_DEFS__EVENT_LIST = 3;
+  int SERVICE_DEFS__SERVICE_DEFS = 2;
 
   /**
    * The number of structural features of the '<em>Service Defs</em>' class.
@@ -109,7 +100,7 @@ public interface TSSpecPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE_DEFS_FEATURE_COUNT = 4;
+  int SERVICE_DEFS_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.DomainElementImpl <em>Domain Element</em>}' class.
@@ -167,13 +158,22 @@ public interface TSSpecPackage extends EPackage
   int DOMAIN_ELEMENT__ATTRIBUTES = 4;
 
   /**
+   * The feature id for the '<em><b>Is Enum</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_ELEMENT__IS_ENUM = 5;
+
+  /**
    * The feature id for the '<em><b>Enum Values</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_ELEMENT__ENUM_VALUES = 5;
+  int DOMAIN_ELEMENT__ENUM_VALUES = 6;
 
   /**
    * The feature id for the '<em><b>Real Type</b></em>' attribute.
@@ -182,7 +182,7 @@ public interface TSSpecPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN_ELEMENT__REAL_TYPE = 6;
+  int DOMAIN_ELEMENT__REAL_TYPE = 7;
 
   /**
    * The number of structural features of the '<em>Domain Element</em>' class.
@@ -191,7 +191,7 @@ public interface TSSpecPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN_ELEMENT_FEATURE_COUNT = 7;
+  int DOMAIN_ELEMENT_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.EnumValImpl <em>Enum Val</em>}' class.
@@ -222,13 +222,22 @@ public interface TSSpecPackage extends EPackage
   int ENUM_VAL__NAME = 1;
 
   /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_VAL__VALUE = 2;
+
+  /**
    * The number of structural features of the '<em>Enum Val</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENUM_VAL_FEATURE_COUNT = 2;
+  int ENUM_VAL_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -341,6 +350,52 @@ public interface TSSpecPackage extends EPackage
   int GENERIC_TYPE_ARGUMENT_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefImpl <em>Service Def</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefImpl
+   * @see at.bestsolution.typescript.service.spec.tSSpec.impl.TSSpecPackageImpl#getServiceDef()
+   * @generated
+   */
+  int SERVICE_DEF = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SERVICE_DEF__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Command List</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SERVICE_DEF__COMMAND_LIST = 1;
+
+  /**
+   * The feature id for the '<em><b>Event List</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SERVICE_DEF__EVENT_LIST = 2;
+
+  /**
+   * The number of structural features of the '<em>Service Def</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SERVICE_DEF_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.CommandDefImpl <em>Command Def</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -348,7 +403,7 @@ public interface TSSpecPackage extends EPackage
    * @see at.bestsolution.typescript.service.spec.tSSpec.impl.TSSpecPackageImpl#getCommandDef()
    * @generated
    */
-  int COMMAND_DEF = 5;
+  int COMMAND_DEF = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -394,7 +449,7 @@ public interface TSSpecPackage extends EPackage
    * @see at.bestsolution.typescript.service.spec.tSSpec.impl.TSSpecPackageImpl#getEventDef()
    * @generated
    */
-  int EVENT_DEF = 6;
+  int EVENT_DEF = 7;
 
   /**
    * The feature id for the '<em><b>Documentation</b></em>' attribute list.
@@ -466,26 +521,15 @@ public interface TSSpecPackage extends EPackage
   EReference getServiceDefs_DomainElements();
 
   /**
-   * Returns the meta object for the containment reference list '{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getCommandList <em>Command List</em>}'.
+   * Returns the meta object for the containment reference list '{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getServiceDefs <em>Service Defs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Command List</em>'.
-   * @see at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getCommandList()
+   * @return the meta object for the containment reference list '<em>Service Defs</em>'.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getServiceDefs()
    * @see #getServiceDefs()
    * @generated
    */
-  EReference getServiceDefs_CommandList();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getEventList <em>Event List</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Event List</em>'.
-   * @see at.bestsolution.typescript.service.spec.tSSpec.ServiceDefs#getEventList()
-   * @see #getServiceDefs()
-   * @generated
-   */
-  EReference getServiceDefs_EventList();
+  EReference getServiceDefs_ServiceDefs();
 
   /**
    * Returns the meta object for class '{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement <em>Domain Element</em>}'.
@@ -553,6 +597,17 @@ public interface TSSpecPackage extends EPackage
   EReference getDomainElement_Attributes();
 
   /**
+   * Returns the meta object for the attribute '{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#isIsEnum <em>Is Enum</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Enum</em>'.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.DomainElement#isIsEnum()
+   * @see #getDomainElement()
+   * @generated
+   */
+  EAttribute getDomainElement_IsEnum();
+
+  /**
    * Returns the meta object for the containment reference list '{@link at.bestsolution.typescript.service.spec.tSSpec.DomainElement#getEnumValues <em>Enum Values</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -605,6 +660,17 @@ public interface TSSpecPackage extends EPackage
    * @generated
    */
   EAttribute getEnumVal_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getValue()
+   * @see #getEnumVal()
+   * @generated
+   */
+  EAttribute getEnumVal_Value();
 
   /**
    * Returns the meta object for class '{@link at.bestsolution.typescript.service.spec.tSSpec.Attribute <em>Attribute</em>}'.
@@ -713,6 +779,49 @@ public interface TSSpecPackage extends EPackage
    * @generated
    */
   EAttribute getGenericTypeArgument_List();
+
+  /**
+   * Returns the meta object for class '{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDef <em>Service Def</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Service Def</em>'.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.ServiceDef
+   * @generated
+   */
+  EClass getServiceDef();
+
+  /**
+   * Returns the meta object for the attribute '{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDef#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.ServiceDef#getName()
+   * @see #getServiceDef()
+   * @generated
+   */
+  EAttribute getServiceDef_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDef#getCommandList <em>Command List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Command List</em>'.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.ServiceDef#getCommandList()
+   * @see #getServiceDef()
+   * @generated
+   */
+  EReference getServiceDef_CommandList();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link at.bestsolution.typescript.service.spec.tSSpec.ServiceDef#getEventList <em>Event List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Event List</em>'.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.ServiceDef#getEventList()
+   * @see #getServiceDef()
+   * @generated
+   */
+  EReference getServiceDef_EventList();
 
   /**
    * Returns the meta object for class '{@link at.bestsolution.typescript.service.spec.tSSpec.CommandDef <em>Command Def</em>}'.
@@ -850,20 +959,12 @@ public interface TSSpecPackage extends EPackage
     EReference SERVICE_DEFS__DOMAIN_ELEMENTS = eINSTANCE.getServiceDefs_DomainElements();
 
     /**
-     * The meta object literal for the '<em><b>Command List</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Service Defs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SERVICE_DEFS__COMMAND_LIST = eINSTANCE.getServiceDefs_CommandList();
-
-    /**
-     * The meta object literal for the '<em><b>Event List</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SERVICE_DEFS__EVENT_LIST = eINSTANCE.getServiceDefs_EventList();
+    EReference SERVICE_DEFS__SERVICE_DEFS = eINSTANCE.getServiceDefs_ServiceDefs();
 
     /**
      * The meta object literal for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.DomainElementImpl <em>Domain Element</em>}' class.
@@ -916,6 +1017,14 @@ public interface TSSpecPackage extends EPackage
     EReference DOMAIN_ELEMENT__ATTRIBUTES = eINSTANCE.getDomainElement_Attributes();
 
     /**
+     * The meta object literal for the '<em><b>Is Enum</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DOMAIN_ELEMENT__IS_ENUM = eINSTANCE.getDomainElement_IsEnum();
+
+    /**
      * The meta object literal for the '<em><b>Enum Values</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -956,6 +1065,14 @@ public interface TSSpecPackage extends EPackage
      * @generated
      */
     EAttribute ENUM_VAL__NAME = eINSTANCE.getEnumVal_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_VAL__VALUE = eINSTANCE.getEnumVal_Value();
 
     /**
      * The meta object literal for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -1040,6 +1157,40 @@ public interface TSSpecPackage extends EPackage
      * @generated
      */
     EAttribute GENERIC_TYPE_ARGUMENT__LIST = eINSTANCE.getGenericTypeArgument_List();
+
+    /**
+     * The meta object literal for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefImpl <em>Service Def</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see at.bestsolution.typescript.service.spec.tSSpec.impl.ServiceDefImpl
+     * @see at.bestsolution.typescript.service.spec.tSSpec.impl.TSSpecPackageImpl#getServiceDef()
+     * @generated
+     */
+    EClass SERVICE_DEF = eINSTANCE.getServiceDef();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SERVICE_DEF__NAME = eINSTANCE.getServiceDef_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Command List</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SERVICE_DEF__COMMAND_LIST = eINSTANCE.getServiceDef_CommandList();
+
+    /**
+     * The meta object literal for the '<em><b>Event List</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SERVICE_DEF__EVENT_LIST = eINSTANCE.getServiceDef_EventList();
 
     /**
      * The meta object literal for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.CommandDefImpl <em>Command Def</em>}' class.

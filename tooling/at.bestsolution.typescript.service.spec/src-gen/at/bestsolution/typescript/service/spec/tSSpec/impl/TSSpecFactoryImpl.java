@@ -69,6 +69,7 @@ public class TSSpecFactoryImpl extends EFactoryImpl implements TSSpecFactory
       case TSSpecPackage.ENUM_VAL: return createEnumVal();
       case TSSpecPackage.ATTRIBUTE: return createAttribute();
       case TSSpecPackage.GENERIC_TYPE_ARGUMENT: return createGenericTypeArgument();
+      case TSSpecPackage.SERVICE_DEF: return createServiceDef();
       case TSSpecPackage.COMMAND_DEF: return createCommandDef();
       case TSSpecPackage.EVENT_DEF: return createEventDef();
       default:
@@ -129,6 +130,17 @@ public class TSSpecFactoryImpl extends EFactoryImpl implements TSSpecFactory
   {
     GenericTypeArgumentImpl genericTypeArgument = new GenericTypeArgumentImpl();
     return genericTypeArgument;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ServiceDef createServiceDef()
+  {
+    ServiceDefImpl serviceDef = new ServiceDefImpl();
+    return serviceDef;
   }
 
   /**
