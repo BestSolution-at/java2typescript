@@ -1,9 +1,5 @@
 package at.bestsolution.typescript.service.api.test;
 
-import com.eclipsesource.v8.V8;
-import com.eclipsesource.v8.V8Array;
-import com.eclipsesource.v8.V8Object;
-
 import at.bestsolution.typescript.service.api.internal.local.NashornDispatcher;
 import at.bestsolution.typescript.service.api.internal.local.V8Dispatcher;
 import at.bestsolution.typescript.service.api.pojo.model.NavigationBarItemPojo;
@@ -49,15 +45,5 @@ public class DispatcherPerformance {
 		long t2 = System.currentTimeMillis();
 		System.err.println( task + " : " + (t2-t));
 		return rv;
-	}
-
-	private static String callMethod(V8 runtime, V8Object o, String parameter) {
-		V8Array param = null;
-		try {
-			param = new V8Array(runtime).push(parameter);
-			return o.executeStringFunction("invokeMethod", param);
-		} finally {
-			param.release();
-		}
 	}
 }
