@@ -1,6 +1,5 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import java.util.Map;
 import at.bestsolution.typescript.service.api.model.SignatureHelpItems;
 
 public class SignatureHelpItemsPojo  implements SignatureHelpItems {
@@ -13,43 +12,23 @@ public class SignatureHelpItemsPojo  implements SignatureHelpItems {
 	public SignatureHelpItemsPojo() {
 	}
 
-	public java.util.List<SignatureHelpItemPojo> getItems() {
+	public java.util.List<SignatureHelpItemPojo> items() {
 		return this.items;
 	}
-
-	public void setItems(java.util.List<SignatureHelpItemPojo> items) {
-		this.items = items;
-	}
-	public TextSpanPojo getApplicableSpan() {
+	public TextSpanPojo applicableSpan() {
 		return this.applicableSpan;
 	}
-
-	public void setApplicableSpan(TextSpanPojo applicableSpan) {
-		this.applicableSpan = applicableSpan;
-	}
-	public int getSelectedItemIndex() {
+	public int selectedItemIndex() {
 		return this.selectedItemIndex;
 	}
-
-	public void setSelectedItemIndex(int selectedItemIndex) {
-		this.selectedItemIndex = selectedItemIndex;
-	}
-	public int getArgumentIndex() {
+	public int argumentIndex() {
 		return this.argumentIndex;
 	}
-
-	public void setArgumentIndex(int argumentIndex) {
-		this.argumentIndex = argumentIndex;
-	}
-	public int getArgumentCount() {
+	public int argumentCount() {
 		return this.argumentCount;
 	}
 
-	public void setArgumentCount(int argumentCount) {
-		this.argumentCount = argumentCount;
-	}
-
 	public String toString() {
-		return "SignatureHelpItems@"+hashCode()+"[items = "+items+", applicableSpan = "+applicableSpan+", selectedItemIndex = "+selectedItemIndex+", argumentIndex = "+argumentIndex+", argumentCount = "+argumentCount+"]";
+		return "SignatureHelpItems@"+hashCode()+"[items = "+items()+", applicableSpan = "+applicableSpan()+", selectedItemIndex = "+selectedItemIndex()+", argumentIndex = "+argumentIndex()+", argumentCount = "+argumentCount()+"]";
 	}
 }

@@ -6,5 +6,10 @@ Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Import-Package: at.bestsolution.typescript.service.api.model,
- at.bestsolution.typescript.service.api.services
+Import-Package: at.bestsolution.typescript.service.api,
+ at.bestsolution.typescript.service.api.internal.local,
+ at.bestsolution.typescript.service.api.model,
+ at.bestsolution.typescript.service.api.pojo.model,
+ at.bestsolution.typescript.service.api.services,
+ com.eclipsesource.v8;version="3.1.6",
+ com.eclipsesource.v8.utils;version="3.1.6"

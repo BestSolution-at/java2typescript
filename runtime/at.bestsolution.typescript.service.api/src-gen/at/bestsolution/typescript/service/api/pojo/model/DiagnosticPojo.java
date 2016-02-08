@@ -1,39 +1,40 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import java.util.Map;
 import at.bestsolution.typescript.service.api.model.Diagnostic;
 
 public class DiagnosticPojo  implements Diagnostic {
-	private LocationPojo start ;
-	private LocationPojo end ;
-	private String text ;
+	private SourceFilePojo file ;
+	private int start ;
+	private int length ;
+	private DiagnosticMessagePojo message ;
+	private String category  = "Warning";
+	private at.bestsolution.typescript.service.api.model.DiagnosticCategory _category = null;
+	private int code ;
 
 	public DiagnosticPojo() {
 	}
 
-	public LocationPojo getStart() {
+	public SourceFilePojo file() {
+		return this.file;
+	}
+	public int start() {
 		return this.start;
 	}
-
-	public void setStart(LocationPojo start) {
-		this.start = start;
+	public int length() {
+		return this.length;
 	}
-	public LocationPojo getEnd() {
-		return this.end;
+	public DiagnosticMessagePojo message() {
+		return this.message;
 	}
-
-	public void setEnd(LocationPojo end) {
-		this.end = end;
+	public at.bestsolution.typescript.service.api.model.DiagnosticCategory category() {
+		if( _category != null ) return _category;
+		return _category = at.bestsolution.typescript.service.api.model.DiagnosticCategory.fromStringValue(this.category);
 	}
-	public String getText() {
-		return this.text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
+	public int code() {
+		return this.code;
 	}
 
 	public String toString() {
-		return "Diagnostic@"+hashCode()+"[start = "+start+", end = "+end+", text = "+text+"]";
+		return "Diagnostic@"+hashCode()+"[file = "+file()+", start = "+start()+", length = "+length()+", message = "+message()+", category = "+category()+", code = "+code()+"]";
 	}
 }

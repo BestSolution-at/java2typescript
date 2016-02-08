@@ -1,6 +1,5 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import java.util.Map;
 import at.bestsolution.typescript.service.api.model.RenameInfo;
 
 public class RenameInfoPojo  implements RenameInfo {
@@ -10,54 +9,34 @@ public class RenameInfoPojo  implements RenameInfo {
 	private String fullDisplayName ;
 	private String kind ;
 	private String kindModifiers ;
+	private TextSpanPojo triggerSpan ;
 
 	public RenameInfoPojo() {
 	}
 
-	public boolean getCanRename() {
+	public boolean canRename() {
 		return this.canRename;
 	}
-
-	public void setCanRename(boolean canRename) {
-		this.canRename = canRename;
-	}
-	public String getLocalizedErrorMessage() {
+	public String localizedErrorMessage() {
 		return this.localizedErrorMessage;
 	}
-
-	public void setLocalizedErrorMessage(String localizedErrorMessage) {
-		this.localizedErrorMessage = localizedErrorMessage;
-	}
-	public String getDisplayName() {
+	public String displayName() {
 		return this.displayName;
 	}
-
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
-	}
-	public String getFullDisplayName() {
+	public String fullDisplayName() {
 		return this.fullDisplayName;
 	}
-
-	public void setFullDisplayName(String fullDisplayName) {
-		this.fullDisplayName = fullDisplayName;
-	}
-	public String getKind() {
+	public String kind() {
 		return this.kind;
 	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-	public String getKindModifiers() {
+	public String kindModifiers() {
 		return this.kindModifiers;
 	}
-
-	public void setKindModifiers(String kindModifiers) {
-		this.kindModifiers = kindModifiers;
+	public TextSpanPojo triggerSpan() {
+		return this.triggerSpan;
 	}
 
 	public String toString() {
-		return "RenameInfo@"+hashCode()+"[canRename = "+canRename+", localizedErrorMessage = "+localizedErrorMessage+", displayName = "+displayName+", fullDisplayName = "+fullDisplayName+", kind = "+kind+", kindModifiers = "+kindModifiers+"]";
+		return "RenameInfo@"+hashCode()+"[canRename = "+canRename()+", localizedErrorMessage = "+localizedErrorMessage()+", displayName = "+displayName()+", fullDisplayName = "+fullDisplayName()+", kind = "+kind()+", kindModifiers = "+kindModifiers()+", triggerSpan = "+triggerSpan()+"]";
 	}
 }

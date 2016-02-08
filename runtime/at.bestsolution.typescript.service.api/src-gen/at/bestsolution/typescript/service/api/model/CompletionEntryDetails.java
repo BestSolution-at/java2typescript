@@ -1,9 +1,9 @@
 package at.bestsolution.typescript.service.api.model;
 
 public interface CompletionEntryDetails  {
-	public String getName();
-	public String getKind();
-	public String getKindModifiers();
-	public java.util.List<? extends SymbolDisplayPart> getDisplayParts();
-	public java.util.List<? extends SymbolDisplayPart> getDocumentation();
+	public String name();
+	public ScriptElementKind kind();
+	public java.util.List<? extends ScriptElementKindModifier> kindModifiers();
+	public java.util.List<? extends SymbolDisplayPart> displayParts();
+	public java.util.List<? extends SymbolDisplayPart> documentation();
 }

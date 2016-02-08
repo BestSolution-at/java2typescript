@@ -1,6 +1,5 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import java.util.Map;
 import at.bestsolution.typescript.service.api.model.SignatureHelpItem;
 
 public class SignatureHelpItemPojo  implements SignatureHelpItem {
@@ -14,50 +13,26 @@ public class SignatureHelpItemPojo  implements SignatureHelpItem {
 	public SignatureHelpItemPojo() {
 	}
 
-	public boolean getIsVariadic() {
+	public boolean isVariadic() {
 		return this.isVariadic;
 	}
-
-	public void setIsVariadic(boolean isVariadic) {
-		this.isVariadic = isVariadic;
-	}
-	public java.util.List<SymbolDisplayPartPojo> getPrefixDisplayParts() {
+	public java.util.List<SymbolDisplayPartPojo> prefixDisplayParts() {
 		return this.prefixDisplayParts;
 	}
-
-	public void setPrefixDisplayParts(java.util.List<SymbolDisplayPartPojo> prefixDisplayParts) {
-		this.prefixDisplayParts = prefixDisplayParts;
-	}
-	public java.util.List<SymbolDisplayPartPojo> getSuffixDisplayParts() {
+	public java.util.List<SymbolDisplayPartPojo> suffixDisplayParts() {
 		return this.suffixDisplayParts;
 	}
-
-	public void setSuffixDisplayParts(java.util.List<SymbolDisplayPartPojo> suffixDisplayParts) {
-		this.suffixDisplayParts = suffixDisplayParts;
-	}
-	public java.util.List<SymbolDisplayPartPojo> getSeparatorDisplayParts() {
+	public java.util.List<SymbolDisplayPartPojo> separatorDisplayParts() {
 		return this.separatorDisplayParts;
 	}
-
-	public void setSeparatorDisplayParts(java.util.List<SymbolDisplayPartPojo> separatorDisplayParts) {
-		this.separatorDisplayParts = separatorDisplayParts;
-	}
-	public java.util.List<SignatureHelpParameterPojo> getParameters() {
+	public java.util.List<SignatureHelpParameterPojo> parameters() {
 		return this.parameters;
 	}
-
-	public void setParameters(java.util.List<SignatureHelpParameterPojo> parameters) {
-		this.parameters = parameters;
-	}
-	public java.util.List<SymbolDisplayPartPojo> getDocumentation() {
+	public java.util.List<SymbolDisplayPartPojo> documentation() {
 		return this.documentation;
 	}
 
-	public void setDocumentation(java.util.List<SymbolDisplayPartPojo> documentation) {
-		this.documentation = documentation;
-	}
-
 	public String toString() {
-		return "SignatureHelpItem@"+hashCode()+"[isVariadic = "+isVariadic+", prefixDisplayParts = "+prefixDisplayParts+", suffixDisplayParts = "+suffixDisplayParts+", separatorDisplayParts = "+separatorDisplayParts+", parameters = "+parameters+", documentation = "+documentation+"]";
+		return "SignatureHelpItem@"+hashCode()+"[isVariadic = "+isVariadic()+", prefixDisplayParts = "+prefixDisplayParts()+", suffixDisplayParts = "+suffixDisplayParts()+", separatorDisplayParts = "+separatorDisplayParts()+", parameters = "+parameters()+", documentation = "+documentation()+"]";
 	}
 }

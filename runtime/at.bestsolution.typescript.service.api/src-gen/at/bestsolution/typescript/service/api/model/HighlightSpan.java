@@ -1,5 +1,7 @@
 package at.bestsolution.typescript.service.api.model;
 
-public interface HighlightSpan extends TextSpan {
-	public String getKind();
+public interface HighlightSpan  {
+	public String fileName();
+	public TextSpan textSpan();
+	public HighlightSpanKind kind();
 }

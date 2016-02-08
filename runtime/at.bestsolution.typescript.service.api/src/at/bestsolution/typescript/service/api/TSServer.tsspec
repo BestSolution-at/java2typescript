@@ -4,130 +4,75 @@ javatype java.lang.String
 javatype int
 javatype boolean
 
-cust model.NavigationBarItem {
-	java.lang.String text
-	java.lang.String kind
-	optional java.lang.String kindModifiers
-	model.TextSpan[] spans
-	optional model.NavigationBarItem[] childItems
+
+cust model.Diagnostic {
+	model.SourceFile file
+	int start
+	int length
+	model.DiagnosticMessage message
+	model.DiagnosticCategory category
+	int code
+}
+
+cust model.DiagnosticMessage {
+	java.lang.String messageText
+	model.DiagnosticMessageChain messageChain
+}
+
+cust model.SourceFile {
+	// TODO
+}
+
+
+cust model.DiagnosticMessageChain {
+    java.lang.String messageText
+	model.DiagnosticCategory category
+    int code
+    optional model.DiagnosticMessageChain next
 }
 
 cust model.TextSpan {
-	model.Location start
-	model.Location end
+	int start
+    int length
 }
 
-cust model.Location {
-	int line
-	int offset
+cust model.Classifications {
+	int[] spans
+	model.EndOfLineState endOfLineState
 }
 
-cust model.FileSpan extends model.TextSpan {
-	java.lang.String file
+cust model.CompletionInfo {
+	boolean isMemberCompletion
+	boolean isNewIdentifierLocation
+	model.CompletionEntry[] entries
 }
 
 cust model.CompletionEntry {
 	java.lang.String name
-	java.lang.String kind
-	java.lang.String kindModifiers
+	model.ScriptElementKind kind
+	model.ScriptElementKindModifier[] kindModifiers
 	java.lang.String sortText
 }
 
 cust model.CompletionEntryDetails {
 	java.lang.String name
-	java.lang.String kind
-	java.lang.String kindModifiers
+	model.ScriptElementKind kind
+	model.ScriptElementKindModifier[] kindModifiers
 	model.SymbolDisplayPart[] displayParts
 	model.SymbolDisplayPart[] documentation
 }
 
 cust model.SymbolDisplayPart {
 	java.lang.String text
-	java.lang.String kind
+	model.SymbolDisplayPartKind kind
 }
 
-cust model.FormatOptions {
-	optional boolean insertSpaceAfterCommaDelimiter
-	optional boolean insertSpaceAfterSemicolonInForStatements
-	optional boolean insertSpaceBeforeAndAfterBinaryOperators
-	optional boolean insertSpaceAfterKeywordsInControlFlowStatements
-	optional boolean insertSpaceAfterFunctionKeywordForAnonymousFunctions
-	optional boolean insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis
-	optional boolean insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets
-	optional boolean placeOpenBraceOnNewLineForFunctions
-	optional boolean placeOpenBraceOnNewLineForControlBlocks
-}
-
-cust model.CodeEdit {
-	model.Location start
-	model.Location end
-	java.lang.String newText
-}
-
-cust model.NavtoItem {
-	java.lang.String name
-	java.lang.String kind
-	optional java.lang.String matchKind
-	optional boolean isCaseSensitive
-	optional java.lang.String kindModifiers
-	java.lang.String file
-	model.Location start
-	model.Location end
-	optional java.lang.String containerName
-	optional java.lang.String containerKind
-}
-
-cust model.OccurrencesResponseItem extends model.FileSpan {
-	boolean isWriteAccess
-}
-
-cust model.DocumentHighlightsItem {
-	java.lang.String file
-	model.HighlightSpan[] highlightSpans
-}
-
-cust model.HighlightSpan extends model.TextSpan {
-	java.lang.String kind
-}
-
-cust model.QuickInfoResponseBody {
-	java.lang.String kind
-	java.lang.String kindModifiers
-	model.Location start
-	model.Location end
-	java.lang.String displayString
-	java.lang.String documentation
-}
-
-cust model.ReferencesResponseBody {
-	model.ReferencesResponseItem[] refs
-	java.lang.String symbolName
-	int symbolStartOffset
-	java.lang.String symbolDisplayString
-}
-
-cust model.ReferencesResponseItem extends model.FileSpan {
-	java.lang.String lineText
-	boolean isWriteAccess
-}
-
-cust model.RenameResponseBody {
-	model.RenameInfo info
-	model.SpanGroup[] locs
-}
-
-cust model.RenameInfo {
-	boolean canRename
-	optional java.lang.String localizedErrorMessage
-	java.lang.String displayName
-	java.lang.String fullDisplayName
-	java.lang.String kind
-	java.lang.String kindModifiers
-}
-
-cust model.SpanGroup {
-	java.lang.String file
-	model.TextSpan[] locs
+cust model.QuickInfo {
+	model.ScriptElementKind kind
+	model.ScriptElementKindModifier[] kindModifiers
+	model.TextSpan textSpan
+	model.SymbolDisplayPart[] displayParts
+	model.SymbolDisplayPart[] documentation
 }
 
 cust model.SignatureHelpItems {
@@ -154,162 +99,372 @@ cust model.SignatureHelpParameter {
 	boolean isOptional
 }
 
-cust model.ProjectInfo {
-	java.lang.String configFileName
-	optional java.lang.String[] fileNames
+cust model.RenameInfo {
+	boolean canRename
+	java.lang.String localizedErrorMessage
+	java.lang.String displayName
+	java.lang.String fullDisplayName
+	java.lang.String kind
+	java.lang.String kindModifiers
+	model.TextSpan triggerSpan
 }
 
-cust model.DiagnosticEventBody {
-	java.lang.String file
-	model.Diagnostic[] diagnostics
+cust model.RenameLocation {
+	model.TextSpan textSpan
+	java.lang.String fileName
 }
 
-cust model.Diagnostic {
-	model.Location start
-	model.Location end
+cust model.DefinitionInfo {
+	java.lang.String fileName
+	model.TextSpan textSpan
+	java.lang.String kind
+	java.lang.String name
+	java.lang.String containerKind
+	java.lang.String containerName
+}
+
+cust model.ReferenceEntry {
+	model.TextSpan textSpan
+	java.lang.String fileName
+	boolean isWriteAccess
+}
+
+cust model.ReferencedSymbol {
+	model.DefinitionInfo definition
+	model.ReferenceEntry[] references
+}
+
+cust model.DocumentHighlights {
+	java.lang.String fileName
+	model.HighlightSpan[] highlightSpans
+}
+
+cust model.HighlightSpan {
+	optional java.lang.String fileName
+	model.TextSpan textSpan
+	model.HighlightSpanKind kind
+}
+
+cust model.NavigateToItem {
+	java.lang.String name
+	model.ScriptElementKind kind
+	model.ScriptElementKindModifier[] kindModifiers
+	model.PatternMatchKind matchKind
+	boolean isCaseSensitive
+	java.lang.String fileName
+	model.TextSpan textSpan
+	java.lang.String containerName
+	java.lang.String containerKind
+}
+
+cust model.NavigationBarItem {
+	java.lang.String text
+	model.ScriptElementKind kind
+	model.ScriptElementKindModifier[] kindModifiers
+	model.TextSpan[] spans
+	model.NavigationBarItem[] childItems
+	int indent
+	boolean bolded
+	boolean grayed
+}
+
+cust model.OutliningSpan {
+	model.TextSpan textSpan
+	model.TextSpan hintSpan
+	java.lang.String bannerText
+	boolean autoCollapse
+}
+
+cust model.TodoCommentDescriptor {
+	java.lang.String text
+	int priority
+}
+
+cust model.TodoComment {
+	model.TodoCommentDescriptor descriptor
+	java.lang.String message
+	int position
+}
+
+cust model.EditorOptions {
+	int IndentSize
+	int TabSize
+	java.lang.String NewLineCharacter
+	boolean ConvertTabsToSpaces
+	model.IndentStyle IndentStyle
+}
+
+cust model.TextChange {
+	model.TextSpan span
+	int newLength
+}
+
+cust model.FormatCodeOptions extends model.EditorOptions {
+	boolean InsertSpaceAfterCommaDelimiter
+	boolean InsertSpaceAfterSemicolonInForStatements
+	boolean InsertSpaceBeforeAndAfterBinaryOperators
+	boolean InsertSpaceAfterKeywordsInControlFlowStatements
+	boolean InsertSpaceAfterFunctionKeywordForAnonymousFunctions
+	boolean InsertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis
+	boolean InsertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets
+	boolean PlaceOpenBraceOnNewLineForFunctions
+	boolean PlaceOpenBraceOnNewLineForControlBlocks
+//	[s: string]: boolean | number | string;
+}
+
+cust model.TextInsertion {
+	java.lang.String newText
+	int caretOffset
+}
+
+cust model.EmitOutput {
+	model.OutputFile[] outputFiles
+	boolean emitSkipped
+}
+
+cust model.OutputFile {
+	java.lang.String name
+	boolean writeByteOrderMark
 	java.lang.String text
 }
 
-command brace (
-	int line
-	int offset
-	java.lang.String file
-) returns model.TextSpan[]
+enum model.DiagnosticCategory (
+    WARNING = Warning
+    ERROR = Error
+    MESSAGE = Message
+)
 
-command change(
-	int line
-	int offset
-	int endLine
-	int endOffset
-	java.lang.String insertString
-	java.lang.String file
-) returns void
+enum model.EndOfLineState (
+	NONE = None
+    IN_MULTILINE_COMMENT_TRIVIA = InMultiLineCommentTrivia
+    IN_SINGLE_QUOTESTRING_LITERAL = InSingleQuoteStringLiteral
+    IN_DOUBLE_QUOTESTRING_LITERAL = InDoubleQuoteStringLiteral
+    IN_TEMPLATE_HEAD_OR_NO_SUBSTITUTION_TEMPLATE = InTemplateHeadOrNoSubstitutionTemplate
+    IN_TEMPLATE_MIDDLE_OR_TAIL = InTemplateMiddleOrTail
+    IN_TEMPLATE_SUBSTITUTION_POSITION = InTemplateSubstitutionPosition
+)
 
-command close(java.lang.String file) returns void
+enum model.ScriptElementKind (
+	UNKNOWN = ""
+	WARNING = warning
+	KEYWORD = keyword
+	SCRIPT_ELEMENT = script
+	MODULE_ELEMENT = module
+	CLASS_ELEMENT = class
+	LOCAL_CLASS_ELEMENT = "local class"
+	INTERFACE_ELEMENT = interface
+	TYPE_ELEMENT = type
+	ENUM_ELEMENT = "enum"
+	VARIABLE_ELEMENT = var
+	LOCAL_VARIABLE_ELEMENT = "local var"
+	FUNCTION_ELEMENT = function
+	LOCAL_FUNCTION_ELEMENT = "local function"
+	MEMBER_FUNCTION_ELEMENT = method
+	MEMBER_GET_ACCESSOR_ELEMENT = getter
+	MEMBER_SET_ACCESSOR_ELEMENT = setter
+	MEMBER_VARIABLE_ELEMENT = property
+	CONSTRUCTOR_IMPLEMENTATION_ELEMENT = constructor
+	CALL_SIGNATURE_ELEMENT = call
+	INDEX_SIGNATURE_ELEMENT = index
+	CONSTRUCT_SIGNATURE_ELEMENT = construct
+	PARAMETER_ELEMENT = parameter
+	TYPE_PARAMETER_ELEMENT = "type parameter"
+	PRIMITIVE_TYPE = "primitive type"
+	LABEL = label
+	ALIAS = "alias"
+	CONST_ELEMENT = const
+	LET_ELEMENT = let
+)
 
-command completions(
-	int line
-	int offset
-	java.lang.String prefix
-	java.lang.String file
-) returns model.CompletionEntry[]
+enum model.ScriptElementKindModifier (
+	NONE = ""
+	PUBLIC_MEMBER_MODIFIER = public
+	PRIVATE_MEMBER_MODIFIER = private
+	PROTECTED_MEMBER_MODIFIER = protected
+	EXPORTED_MODIFIER = export
+	AMBIENT_MODIFIER = declare
+	STATIC_MODIFIER = static
+	ABSTRACT_MODIFIER = abstract
+)
 
-command completionEntryDetails(
-	int line
-	int offset
-	java.lang.String[] entryNames
-	java.lang.String file
-) returns model.CompletionEntryDetails[]
+enum model.PatternMatchKind (
+	EXACT = exact
+	PREFIX = prefix
+	SUBSTRING = substring
+	CAMELCASE = camelCase
+)
 
-command configure(
-	optional java.lang.String hostInfo
-	optional java.lang.String file
-	optional model.FormatOptions formatOptions
-) returns void
+enum model.SymbolDisplayPartKind (
+	ALIAS_NAME = aliasName
+	CLASS_NAME = className
+	ENUM_NAME = enumName
+	FIELD_NAME = fieldName
+	INTERFACE_NAME = interfaceName
+	KEYWORD = keyword
+	LINE_BREAK = lineBreak
+	NUMERIC_LITERAL = numericLiteral
+	STRING_LITERAL = stringLiteral
+	LOCAL_NAME = localName
+	METHOD_NAME = methodName
+	MODULE_NAME = moduleName
+	OPERATOR = operator
+	PARAMETER_NAME = parameterName
+	PROPERTY_NAME = propertyName
+	PUNCTUATION = punctuation
+	SPACE = space
+	TEXT = text
+	TYPE_PARAMETER_NAME = typeParameterName
+	ENUM_MEMBER_NAME = enumMemberName
+	FUNCTION_NAME = functionName
+	REGULAR_EXPRESSION_LITERAL = regularExpressionLiteral
+)
 
- command definition (
- 	int line
- 	int offset
- 	java.lang.String file
- ) returns model.FileSpan[]
+enum model.HighlightSpanKind (
+	NONE = none
+	DEFINITION = definition
+	REFERENCE = reference
+	WRITTEN_REFERENCE = writtenReference
+)
 
-command exit returns void
+enum model.IndentStyle (
+	NONE = None
+	BLOCK = Block
+	SMART = Smart
+)
 
-command format(
-	int line
-	int offset
-	int endLine
-	int endOffset
-	java.lang.String file
-) returns model.CodeEdit[]
+// -----------------------------------------------------
+// -----------------------------------------------------
 
-command formatonkey(
-	int line
-	int offset
-	java.lang.String key
-	java.lang.String file
-) returns model.CodeEdit[]
+LanguageService {
+	command addFile(java.lang.String filePath) returns java.lang.String
+	command modifyContent(java.lang.String fileId
+		int offset
+		int length
+		java.lang.String text
+	) returns void
 
-command geterr(
-	int delay
-	java.lang.String[] files
-) returns void
+	command cleanupSemanticCache returns void
 
-command geterrForProject(
-	int delay
-	java.lang.String file
-) returns void
+	command getSyntacticDiagnostics(
+		java.lang.String fileId
+	) returns model.Diagnostic[]
 
-command navbar ( java.lang.String file ) returns model.NavigationBarItem[]
+	command getSemanticDiagnostics(
+		java.lang.String fileId
+	) returns model.Diagnostic[]
 
-command navto (
-	java.lang.String searchValue
-	java.lang.String file
-	optional int maxResultCount
-) returns model.NavtoItem[]
+	command getCompilerOptionsDiagnostics returns model.Diagnostic[]
 
-command occurrences (
-	int line
-	int offset
-	java.lang.String file
-) returns model.OccurrencesResponseItem[]
+	command getEncodedSyntacticClassifications(
+		java.lang.String fileId
+		model.TextSpan span
+	) returns model.Classifications
 
-command documentHighlights (
-	int line
-	int offset
-	java.lang.String file
-	java.lang.String[] filesToSearch
-) returns model.DocumentHighlightsItem[]
+	command getEncodedSemanticClassifications(java.lang.String fileId
+		model.TextSpan span
+	) returns model.Classifications
 
-command open ( java.lang.String file ) returns void
-command quickinfo(
-	int line
-	int offset
-	java.lang.String file
-) returns model.QuickInfoResponseBody
+	command getCompletionsAtPosition(java.lang.String fileId int position) returns model.CompletionInfo
 
-command references(
-	int line
-	int offset
-	java.lang.String file
-) returns model.ReferencesResponseBody
+	command getCompletionEntryDetails(java.lang.String fileId
+		int position java.lang.String entryName
+	) returns model.CompletionEntryDetails
 
-command reload(
-	java.lang.String file
-	java.lang.String tmpfile
-) returns void
+	command getQuickInfoAtPosition(java.lang.String fileId
+		int position
+	) returns model.QuickInfo
 
-command rename(
-	int line
-	int offset
-	java.lang.String file
-	boolean findInComments
-	boolean findInStrings
-) returns model.RenameResponseBody
+	command getNameOrDottedNameSpan(java.lang.String fileId
+		int startPos
+		int endPos
+	) returns model.TextSpan
 
-command saveto(
-	java.lang.String file
-	java.lang.String tmpfile
-) returns void
+	command getBreakpointStatementAtPosition(java.lang.String fileId
+		int position
+	) returns model.TextSpan
 
-command signatureHelp(
-	int line
-	int offset
-	java.lang.String file
-) returns model.SignatureHelpItems
+	command getSignatureHelpItems(java.lang.String fileId
+		int position
+	) returns model.SignatureHelpItems
 
- command typeDefinition (
- 	int line
- 	int offset
- 	java.lang.String file
-) returns model.FileSpan[]
+	command getRenameInfo(java.lang.String fileId
+		int position
+	) returns model.RenameInfo
 
-command projectInfo(
-	java.lang.String file
-	boolean needFileNameList
-) returns model.ProjectInfo
+	command findRenameLocations(java.lang.String fileId
+		int position
+		boolean findInStrings
+		boolean findInComments
+	) returns model.RenameLocation[]
 
-command reloadProjects returns void
+	command getDefinitionAtPosition(java.lang.String fileId
+		int position
+	) returns model.DefinitionInfo[]
 
-event syntaxDiag model.DiagnosticEventBody
-event semanticDiag model.DiagnosticEventBody
+	command getTypeDefinitionAtPosition(java.lang.String fileId
+		int position
+	) returns model.DefinitionInfo[]
+
+	command getReferencesAtPosition(java.lang.String fileId
+		int position
+	) returns model.ReferenceEntry[]
+
+	command findReferences(java.lang.String fileId
+		int position
+	) returns model.ReferencedSymbol[]
+
+	command getDocumentHighlights(java.lang.String fileId
+		int position
+		java.lang.String[] filesToSearch
+	) returns model.DocumentHighlights[]
+
+	command getNavigateToItems(java.lang.String searchValue
+		optional int maxResultCount
+	) returns model.NavigateToItem[]
+
+	command getNavigationBarItems(java.lang.String fileId) returns model.NavigationBarItem[]
+
+	command getOutliningSpans(java.lang.String fileId) returns model.OutliningSpan[]
+
+	command getTodoComments(java.lang.String fileId
+		model.TodoCommentDescriptor[] descriptors
+	) returns model.TodoComment[]
+
+	command getBraceMatchingAtPosition(java.lang.String fileId
+		int position
+	) returns model.TextSpan[]
+
+	command getIndentationAtPosition(java.lang.String fileId
+		int position
+		model.EditorOptions options
+	) returns int
+
+	command getFormattingEditsForRange(java.lang.String fileId
+		int start
+		int end
+		model.FormatCodeOptions options
+	) returns model.TextChange[]
+
+	command getFormattingEditsForDocument(java.lang.String fileId
+		model.FormatCodeOptions options
+	) returns model.TextChange[]
+
+	command getFormattingEditsAfterKeystroke(java.lang.String fileId
+		int position
+		java.lang.String key
+		model.FormatCodeOptions options
+	) returns model.TextChange[]
+
+	command getDocCommentTemplateAtPosition(java.lang.String fileId
+		int position
+	) returns model.TextInsertion
+
+	command getEmitOutput(java.lang.String fileId) returns model.EmitOutput
+
+	//command getProgram returns model.Program
+
+	//command getSourceFile(java.lang.String fileId) returns SourceFile
+	//command dispose(): void;
+
+}
+

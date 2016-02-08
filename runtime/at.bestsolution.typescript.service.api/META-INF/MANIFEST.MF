@@ -4,10 +4,15 @@ Bundle-Name: Api
 Bundle-SymbolicName: at.bestsolution.typescript.service.api
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-ClassPath: libs/gson-2.3.1.jar,
- .
-Import-Package: org.osgi.service.component.annotations;version="1.2.0"
-Service-Component: OSGI-INF/at.bestsolution.typescript.service.api.internal.local.LocalTSServiceFactory.xml
-Export-Package: at.bestsolution.typescript.service.api.model,
+Bundle-ClassPath: .
+Import-Package: com.eclipsesource.v8;version="3.1.6";resolution:=optional,
+ com.eclipsesource.v8.utils;version="3.1.6";resolution:=optional,
+ org.osgi.service.component.annotations;version="1.2.0"
+Export-Package: at.bestsolution.typescript.service.api,
+ at.bestsolution.typescript.service.api.internal.local;x-friends:="at.bestsolution.typescript.service.api.test",
+ at.bestsolution.typescript.service.api.model,
+ at.bestsolution.typescript.service.api.pojo.model;x-friends:="at.bestsolution.typescript.service.api.test",
  at.bestsolution.typescript.service.api.services
 Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/at.bestsolution.typescript.service.api.internal.local.LocalTSServerFactory.xml
+Require-Bundle: com.google.gson;bundle-version="2.2.4"

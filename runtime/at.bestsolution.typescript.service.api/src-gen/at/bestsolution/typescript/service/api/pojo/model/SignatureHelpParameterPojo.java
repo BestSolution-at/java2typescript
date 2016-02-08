@@ -1,6 +1,5 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import java.util.Map;
 import at.bestsolution.typescript.service.api.model.SignatureHelpParameter;
 
 public class SignatureHelpParameterPojo  implements SignatureHelpParameter {
@@ -12,36 +11,20 @@ public class SignatureHelpParameterPojo  implements SignatureHelpParameter {
 	public SignatureHelpParameterPojo() {
 	}
 
-	public String getName() {
+	public String name() {
 		return this.name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	public java.util.List<SymbolDisplayPartPojo> getDocumentation() {
+	public java.util.List<SymbolDisplayPartPojo> documentation() {
 		return this.documentation;
 	}
-
-	public void setDocumentation(java.util.List<SymbolDisplayPartPojo> documentation) {
-		this.documentation = documentation;
-	}
-	public java.util.List<SymbolDisplayPartPojo> getDisplayParts() {
+	public java.util.List<SymbolDisplayPartPojo> displayParts() {
 		return this.displayParts;
 	}
-
-	public void setDisplayParts(java.util.List<SymbolDisplayPartPojo> displayParts) {
-		this.displayParts = displayParts;
-	}
-	public boolean getIsOptional() {
+	public boolean isOptional() {
 		return this.isOptional;
 	}
 
-	public void setIsOptional(boolean isOptional) {
-		this.isOptional = isOptional;
-	}
-
 	public String toString() {
-		return "SignatureHelpParameter@"+hashCode()+"[name = "+name+", documentation = "+documentation+", displayParts = "+displayParts+", isOptional = "+isOptional+"]";
+		return "SignatureHelpParameter@"+hashCode()+"[name = "+name()+", documentation = "+documentation()+", displayParts = "+displayParts()+", isOptional = "+isOptional()+"]";
 	}
 }
