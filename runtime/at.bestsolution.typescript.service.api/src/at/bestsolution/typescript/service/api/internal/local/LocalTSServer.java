@@ -19,6 +19,7 @@ public class LocalTSServer implements TSServer {
 			getClass().getClassLoader().loadClass("com.eclipsesource.v8.V8");
 			this.dispatcher = new V8Dispatcher();
 		} catch( Throwable t ) {
+			t.printStackTrace();
 			this.dispatcher = new NashornDispatcher();
 		}
 

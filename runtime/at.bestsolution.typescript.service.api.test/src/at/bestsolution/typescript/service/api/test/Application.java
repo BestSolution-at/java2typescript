@@ -11,6 +11,7 @@ import org.osgi.framework.ServiceReference;
 
 import at.bestsolution.typescript.service.api.TSServer;
 import at.bestsolution.typescript.service.api.TSServerFactory;
+import at.bestsolution.typescript.service.api.model.CompletionInfo;
 import at.bestsolution.typescript.service.api.services.LanguageService;
 
 /**
@@ -35,17 +36,20 @@ public class Application implements IApplication {
 		ServiceReference<TSServerFactory> reference = bctx.getServiceReference(TSServerFactory.class);
 
 		TSServerFactory tsServiceFactory = bctx.getService(reference);
-		TSServer server = tsServiceFactory.getServer(UUID.randomUUID().toString());
+		TSServer server = tsServiceFactory.getServer(UUID.randomUUID().toString(), ts -> {});
 
 		LanguageService service = server.getService(LanguageService.class);
 		String fileId = service.addFile(getClass().getResource("sample.ts").toExternalForm());
 		System.err.println(service.getNavigationBarItems(fileId));
-		System.err.println(service.getCompletionsAtPosition(fileId, 417));
 
-		String fileId2 = service.addFile(getClass().getResource("sample2.ts").toExternalForm());
-		System.err.println(service.getCompletionsAtPosition(fileId2, 405));
-		service.modifyContent(fileId2, 405, 0, "p.getF");
-		System.err.println(service.getCompletionsAtPosition(fileId2, 411));
+		CompletionInfo info = service.getCompletionsAtPosition(fileId, 424);
+		System.err.println(info);
+
+		info.entries().stream().forEach( i -> {
+			System.err.println(service.getCompletionEntryDetails(fileId, 424, i.name()));
+		});
+
+
 
 //		Path path = Paths.get("/Users/tomschindl/simply-code/test.ts");
 //		String filePath = path.toAbsolutePath().toString();

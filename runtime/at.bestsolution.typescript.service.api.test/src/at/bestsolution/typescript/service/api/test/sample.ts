@@ -1,6 +1,7 @@
 class Person {
-    private firstname : string;
-    private lastname : string;
+    firstname : string;
+    lastname : string;
+    friendList : Person[];
 
     constructor(firstname : string, lastname : string) {
         this.firstname = firstname;
@@ -17,4 +18,4 @@ class Person {
 }
 
 var p : Person = new Person("Tom","Schindl");
-p.getF
+p.

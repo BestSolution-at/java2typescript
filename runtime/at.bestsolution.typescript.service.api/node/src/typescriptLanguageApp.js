@@ -15,7 +15,7 @@ var TypeScriptServiceAPI;
             });
         };
         return Main;
-    })();
+    }());
     TypeScriptServiceAPI.Main = Main;
 })(TypeScriptServiceAPI || (TypeScriptServiceAPI = {}));
 var main = new TypeScriptServiceAPI.Main();

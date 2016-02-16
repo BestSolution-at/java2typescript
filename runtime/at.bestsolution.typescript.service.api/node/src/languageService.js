@@ -21,7 +21,7 @@ var TypeScriptServiceAPI;
             return JSON.stringify(new Response(requestId, rv));
         };
         return ServiceDispatcher;
-    })();
+    }());
     TypeScriptServiceAPI.ServiceDispatcher = ServiceDispatcher;
     var Response = (function () {
         function Response(requestIdRef, result) {
@@ -37,7 +37,7 @@ var TypeScriptServiceAPI;
             }
         }
         return Response;
-    })();
+    }());
     TypeScriptServiceAPI.Response = Response;
     var LanguageServiceWrapper = (function () {
         function LanguageServiceWrapper() {
@@ -48,6 +48,11 @@ var TypeScriptServiceAPI;
         LanguageServiceWrapper.prototype.createProject = function (name, compilationSettings) {
             console.log("Createing new project '" + name + "'");
             var id = "p_" + (this.projectCounter++);
+            compilationSettings = ts.getDefaultCompilerOptions();
+            /*compilationSettings.emitDecoratorMetadata = true;
+            compilationSettings.noImplicitAny = true;
+            compilationSettings.experimentalDecorators = true;
+            compilationSettings.declaration = true;*/
             this.projectMap[id] = new Project(id, name, compilationSettings);
             return id;
         };
@@ -170,7 +175,7 @@ var TypeScriptServiceAPI;
             this.projectMap[projectId] = null;
         };
         return LanguageServiceWrapper;
-    })();
+    }());
     TypeScriptServiceAPI.LanguageServiceWrapper = LanguageServiceWrapper;
     var DiagnosticEx = (function () {
         function DiagnosticEx(original) {
@@ -188,12 +193,12 @@ var TypeScriptServiceAPI;
             }
         }
         return DiagnosticEx;
-    })();
+    }());
     var DiagnosticMessage = (function () {
         function DiagnosticMessage() {
         }
         return DiagnosticMessage;
-    })();
+    }());
     var Project = (function () {
         function Project(id, name, compilerOptions) {
             // private fileFilter: (fileName: string) => boolean;
@@ -493,7 +498,9 @@ var TypeScriptServiceAPI;
             return ts.getDefaultLibFileName(options);
         };
         return Project;
-    })();
+    }());
+    // Taken from 
+    // https://github.com/palantir/eclipse-typescript
     var FileInfo = (function () {
         function FileInfo(contents, path) {
             this.changes = [];
@@ -537,7 +544,9 @@ var TypeScriptServiceAPI;
             this.changes.push(change);
         };
         return FileInfo;
-    })();
+    }());
+    // Taken from 
+    // https://github.com/palantir/eclipse-typescript
     var ScriptSnapshot = (function () {
         function ScriptSnapshot(changes, contents, version) {
             this.changes = changes;
@@ -571,5 +580,5 @@ var TypeScriptServiceAPI;
             }
         };
         return ScriptSnapshot;
-    })();
+    }());
 })(TypeScriptServiceAPI || (TypeScriptServiceAPI = {}));

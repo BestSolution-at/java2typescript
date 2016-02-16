@@ -64,6 +64,11 @@ namespace TypeScriptServiceAPI {
                 compilationSettings: ts.CompilerOptions) {
             console.log("Createing new project '"+name+"'");
             var id = "p_" + (this.projectCounter++);
+            compilationSettings = ts.getDefaultCompilerOptions();
+            /*compilationSettings.emitDecoratorMetadata = true;
+            compilationSettings.noImplicitAny = true;
+            compilationSettings.experimentalDecorators = true;
+            compilationSettings.declaration = true;*/
             this.projectMap[id] = new Project(id, name, compilationSettings);
             return id;
         }

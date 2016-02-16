@@ -30,23 +30,10 @@ class TSSpecGenerator implements IGenerator {
 		defs.domainElements.filter[cust].forEach[
 			fsa.generateFile((defs.packageName+".pojo"+"."+name+"Pojo").replace('.','/')+".java", generateCustType)
 		]
-//		defs.serviceDefs.forEach[ s |
-//			s.commandList.filter[ !attributes.isEmpty ].forEach[
-//				fsa.generateFile((defs.packageName+".internal."+name.toFirstUpper+"Request").replace('.','/')+".java", generateRequestType)
-//			]
-//		]
-//		defs.commandList.forEach[s|
-//			fsa.generateFile((defs.packageName+".model."+s.name.toFirstUpper+"Result").replace('.','/')+".java", s.generateRequestResultType)
-//			fsa.generateFile((defs.packageName+".model."+s.name.toFirstUpper+"Request").replace('.','/')+".java", s.generateRequestType)
-//		]
-//		fsa.generateFile((defs.packageName+".internal.local.LocalTSService").replace(".","/")+".java", defs.generateLocalService)
-//		fsa.generateFile((defs.packageName+".services.TSService").replace('.','/')+".java", defs.generateServiceAPI)
-
 		defs.serviceDefs.forEach[s|
 			fsa.generateFile((defs.packageName+".services." + s.name).replace('.','/')+".java", s.generateServiceAPI)
 			fsa.generateFile((defs.packageName+".internal.impl." + s.name+"Impl").replace('.','/')+".java", s.generateServiceImpl)
 		]
-
 	}
 
 	def generateRequestType(CommandDef d) '''
