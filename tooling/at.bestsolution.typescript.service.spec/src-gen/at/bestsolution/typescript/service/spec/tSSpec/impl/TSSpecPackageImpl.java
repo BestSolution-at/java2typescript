@@ -322,6 +322,16 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getEnumVal_IntValue()
+  {
+    return (EAttribute)enumValEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAttribute()
   {
     return attributeEClass;
@@ -586,6 +596,7 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
     createEAttribute(enumValEClass, ENUM_VAL__DOC);
     createEAttribute(enumValEClass, ENUM_VAL__NAME);
     createEAttribute(enumValEClass, ENUM_VAL__VALUE);
+    createEAttribute(enumValEClass, ENUM_VAL__INT_VALUE);
 
     attributeEClass = createEClass(ATTRIBUTE);
     createEAttribute(attributeEClass, ATTRIBUTE__DOCUMENTATION);
@@ -665,6 +676,7 @@ public class TSSpecPackageImpl extends EPackageImpl implements TSSpecPackage
     initEAttribute(getEnumVal_Doc(), ecorePackage.getEString(), "doc", null, 0, -1, EnumVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEnumVal_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEnumVal_Value(), ecorePackage.getEString(), "value", null, 0, 1, EnumVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEnumVal_IntValue(), ecorePackage.getEInt(), "intValue", null, 0, 1, EnumVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttribute_Documentation(), ecorePackage.getEString(), "documentation", null, 0, -1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

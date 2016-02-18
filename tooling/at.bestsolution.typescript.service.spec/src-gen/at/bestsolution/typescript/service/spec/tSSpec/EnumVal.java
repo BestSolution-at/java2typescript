@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getDoc <em>Doc</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getName <em>Name</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getValue <em>Value</em>}</li>
+ *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getIntValue <em>Int Value</em>}</li>
  * </ul>
  *
  * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getEnumVal()
@@ -93,5 +94,31 @@ public interface EnumVal extends EObject
    * @generated
    */
   void setValue(String value);
+
+  /**
+   * Returns the value of the '<em><b>Int Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Int Value</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Int Value</em>' attribute.
+   * @see #setIntValue(int)
+   * @see at.bestsolution.typescript.service.spec.tSSpec.TSSpecPackage#getEnumVal_IntValue()
+   * @model
+   * @generated
+   */
+  int getIntValue();
+
+  /**
+   * Sets the value of the '{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getIntValue <em>Int Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Int Value</em>' attribute.
+   * @see #getIntValue()
+   * @generated
+   */
+  void setIntValue(int value);
 
 } // EnumVal

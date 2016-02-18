@@ -231,13 +231,22 @@ public interface TSSpecPackage extends EPackage
   int ENUM_VAL__VALUE = 2;
 
   /**
+   * The feature id for the '<em><b>Int Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_VAL__INT_VALUE = 3;
+
+  /**
    * The number of structural features of the '<em>Enum Val</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENUM_VAL_FEATURE_COUNT = 3;
+  int ENUM_VAL_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -673,6 +682,17 @@ public interface TSSpecPackage extends EPackage
   EAttribute getEnumVal_Value();
 
   /**
+   * Returns the meta object for the attribute '{@link at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getIntValue <em>Int Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Int Value</em>'.
+   * @see at.bestsolution.typescript.service.spec.tSSpec.EnumVal#getIntValue()
+   * @see #getEnumVal()
+   * @generated
+   */
+  EAttribute getEnumVal_IntValue();
+
+  /**
    * Returns the meta object for class '{@link at.bestsolution.typescript.service.spec.tSSpec.Attribute <em>Attribute</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1073,6 +1093,14 @@ public interface TSSpecPackage extends EPackage
      * @generated
      */
     EAttribute ENUM_VAL__VALUE = eINSTANCE.getEnumVal_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Int Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_VAL__INT_VALUE = eINSTANCE.getEnumVal_IntValue();
 
     /**
      * The meta object literal for the '{@link at.bestsolution.typescript.service.spec.tSSpec.impl.AttributeImpl <em>Attribute</em>}' class.

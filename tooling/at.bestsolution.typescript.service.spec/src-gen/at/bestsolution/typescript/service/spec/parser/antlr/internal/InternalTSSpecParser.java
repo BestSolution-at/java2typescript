@@ -1031,7 +1031,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEnumVal"
-    // InternalTSSpec.g:400:1: ruleEnumVal returns [EObject current=null] : ( ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) ) ;
+    // InternalTSSpec.g:400:1: ruleEnumVal returns [EObject current=null] : ( ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) | ( (lv_intValue_4_0= RULE_INT ) ) ) ) ;
     public final EObject ruleEnumVal() throws RecognitionException {
         EObject current = null;
 
@@ -1040,15 +1040,16 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
         Token otherlv_2=null;
         Token lv_value_3_1=null;
         Token lv_value_3_2=null;
+        Token lv_intValue_4_0=null;
 
          enterRule(); 
             
         try {
-            // InternalTSSpec.g:403:28: ( ( ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) ) )
-            // InternalTSSpec.g:404:1: ( ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) )
+            // InternalTSSpec.g:403:28: ( ( ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) | ( (lv_intValue_4_0= RULE_INT ) ) ) ) )
+            // InternalTSSpec.g:404:1: ( ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) | ( (lv_intValue_4_0= RULE_INT ) ) ) )
             {
-            // InternalTSSpec.g:404:1: ( ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) )
-            // InternalTSSpec.g:404:2: ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) )
+            // InternalTSSpec.g:404:1: ( ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) | ( (lv_intValue_4_0= RULE_INT ) ) ) )
+            // InternalTSSpec.g:404:2: ( (lv_doc_0_0= RULE_DOC ) )* ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) | ( (lv_intValue_4_0= RULE_INT ) ) )
             {
             // InternalTSSpec.g:404:2: ( (lv_doc_0_0= RULE_DOC ) )*
             loop8:
@@ -1134,61 +1135,124 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_2, grammarAccess.getEnumValAccess().getEqualsSignKeyword_2());
                   
             }
-            // InternalTSSpec.g:444:1: ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) )
-            // InternalTSSpec.g:445:1: ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) )
-            {
-            // InternalTSSpec.g:445:1: ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) )
-            // InternalTSSpec.g:446:1: (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING )
-            {
-            // InternalTSSpec.g:446:1: (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // InternalTSSpec.g:444:1: ( ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) ) | ( (lv_intValue_4_0= RULE_INT ) ) )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA9_0==RULE_ID) ) {
-                alt9=1;
+            if ( ((LA10_0>=RULE_ID && LA10_0<=RULE_STRING)) ) {
+                alt10=1;
             }
-            else if ( (LA9_0==RULE_STRING) ) {
-                alt9=2;
+            else if ( (LA10_0==RULE_INT) ) {
+                alt10=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
-                    // InternalTSSpec.g:447:3: lv_value_3_1= RULE_ID
+                    // InternalTSSpec.g:444:2: ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) )
                     {
-                    lv_value_3_1=(Token)match(input,RULE_ID,FOLLOW_2); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
+                    // InternalTSSpec.g:444:2: ( ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) ) )
+                    // InternalTSSpec.g:445:1: ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) )
+                    {
+                    // InternalTSSpec.g:445:1: ( (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING ) )
+                    // InternalTSSpec.g:446:1: (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING )
+                    {
+                    // InternalTSSpec.g:446:1: (lv_value_3_1= RULE_ID | lv_value_3_2= RULE_STRING )
+                    int alt9=2;
+                    int LA9_0 = input.LA(1);
 
-                      			newLeafNode(lv_value_3_1, grammarAccess.getEnumValAccess().getValueIDTerminalRuleCall_3_0_0()); 
-                      		
+                    if ( (LA9_0==RULE_ID) ) {
+                        alt9=1;
                     }
-                    if ( state.backtracking==0 ) {
+                    else if ( (LA9_0==RULE_STRING) ) {
+                        alt9=2;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return current;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 9, 0, input);
 
-                      	        if (current==null) {
-                      	            current = createModelElement(grammarAccess.getEnumValRule());
-                      	        }
-                             		setWithLastConsumed(
-                             			current, 
-                             			"value",
-                              		lv_value_3_1, 
-                              		"org.eclipse.xtext.common.Terminals.ID");
-                      	    
+                        throw nvae;
                     }
+                    switch (alt9) {
+                        case 1 :
+                            // InternalTSSpec.g:447:3: lv_value_3_1= RULE_ID
+                            {
+                            lv_value_3_1=(Token)match(input,RULE_ID,FOLLOW_2); if (state.failed) return current;
+                            if ( state.backtracking==0 ) {
+
+                              			newLeafNode(lv_value_3_1, grammarAccess.getEnumValAccess().getValueIDTerminalRuleCall_3_0_0_0()); 
+                              		
+                            }
+                            if ( state.backtracking==0 ) {
+
+                              	        if (current==null) {
+                              	            current = createModelElement(grammarAccess.getEnumValRule());
+                              	        }
+                                     		setWithLastConsumed(
+                                     			current, 
+                                     			"value",
+                                      		lv_value_3_1, 
+                                      		"org.eclipse.xtext.common.Terminals.ID");
+                              	    
+                            }
+
+                            }
+                            break;
+                        case 2 :
+                            // InternalTSSpec.g:462:8: lv_value_3_2= RULE_STRING
+                            {
+                            lv_value_3_2=(Token)match(input,RULE_STRING,FOLLOW_2); if (state.failed) return current;
+                            if ( state.backtracking==0 ) {
+
+                              			newLeafNode(lv_value_3_2, grammarAccess.getEnumValAccess().getValueSTRINGTerminalRuleCall_3_0_0_1()); 
+                              		
+                            }
+                            if ( state.backtracking==0 ) {
+
+                              	        if (current==null) {
+                              	            current = createModelElement(grammarAccess.getEnumValRule());
+                              	        }
+                                     		setWithLastConsumed(
+                                     			current, 
+                                     			"value",
+                                      		lv_value_3_2, 
+                                      		"org.eclipse.xtext.common.Terminals.STRING");
+                              	    
+                            }
+
+                            }
+                            break;
+
+                    }
+
+
+                    }
+
+
+                    }
+
 
                     }
                     break;
                 case 2 :
-                    // InternalTSSpec.g:462:8: lv_value_3_2= RULE_STRING
+                    // InternalTSSpec.g:481:6: ( (lv_intValue_4_0= RULE_INT ) )
                     {
-                    lv_value_3_2=(Token)match(input,RULE_STRING,FOLLOW_2); if (state.failed) return current;
+                    // InternalTSSpec.g:481:6: ( (lv_intValue_4_0= RULE_INT ) )
+                    // InternalTSSpec.g:482:1: (lv_intValue_4_0= RULE_INT )
+                    {
+                    // InternalTSSpec.g:482:1: (lv_intValue_4_0= RULE_INT )
+                    // InternalTSSpec.g:483:3: lv_intValue_4_0= RULE_INT
+                    {
+                    lv_intValue_4_0=(Token)match(input,RULE_INT,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			newLeafNode(lv_value_3_2, grammarAccess.getEnumValAccess().getValueSTRINGTerminalRuleCall_3_0_1()); 
+                      			newLeafNode(lv_intValue_4_0, grammarAccess.getEnumValAccess().getIntValueINTTerminalRuleCall_3_1_0()); 
                       		
                     }
                     if ( state.backtracking==0 ) {
@@ -1198,20 +1262,20 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                       	        }
                              		setWithLastConsumed(
                              			current, 
-                             			"value",
-                              		lv_value_3_2, 
-                              		"org.eclipse.xtext.common.Terminals.STRING");
+                             			"intValue",
+                              		lv_intValue_4_0, 
+                              		"org.eclipse.xtext.common.Terminals.INT");
                       	    
                     }
 
                     }
+
+
+                    }
+
+
+                    }
                     break;
-
-            }
-
-
-            }
-
 
             }
 
@@ -1238,7 +1302,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAttribute"
-    // InternalTSSpec.g:488:1: entryRuleAttribute returns [EObject current=null] : iv_ruleAttribute= ruleAttribute EOF ;
+    // InternalTSSpec.g:507:1: entryRuleAttribute returns [EObject current=null] : iv_ruleAttribute= ruleAttribute EOF ;
     public final EObject entryRuleAttribute() throws RecognitionException {
         EObject current = null;
 
@@ -1246,8 +1310,8 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalTSSpec.g:489:2: (iv_ruleAttribute= ruleAttribute EOF )
-            // InternalTSSpec.g:490:2: iv_ruleAttribute= ruleAttribute EOF
+            // InternalTSSpec.g:508:2: (iv_ruleAttribute= ruleAttribute EOF )
+            // InternalTSSpec.g:509:2: iv_ruleAttribute= ruleAttribute EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getAttributeRule()); 
@@ -1278,7 +1342,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAttribute"
-    // InternalTSSpec.g:497:1: ruleAttribute returns [EObject current=null] : ( ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )? ) ;
+    // InternalTSSpec.g:516:1: ruleAttribute returns [EObject current=null] : ( ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )? ) ;
     public final EObject ruleAttribute() throws RecognitionException {
         EObject current = null;
 
@@ -1293,29 +1357,29 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalTSSpec.g:500:28: ( ( ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )? ) )
-            // InternalTSSpec.g:501:1: ( ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )? )
+            // InternalTSSpec.g:519:28: ( ( ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )? ) )
+            // InternalTSSpec.g:520:1: ( ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )? )
             {
-            // InternalTSSpec.g:501:1: ( ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )? )
-            // InternalTSSpec.g:501:2: ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )?
+            // InternalTSSpec.g:520:1: ( ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )? )
+            // InternalTSSpec.g:520:2: ( (lv_documentation_0_0= RULE_DOC ) )* ( (lv_optional_1_0= 'optional' ) )? ( (lv_type_2_0= ruleGenericTypeArgument ) ) ( (lv_name_3_0= RULE_ID ) ) (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )?
             {
-            // InternalTSSpec.g:501:2: ( (lv_documentation_0_0= RULE_DOC ) )*
-            loop10:
+            // InternalTSSpec.g:520:2: ( (lv_documentation_0_0= RULE_DOC ) )*
+            loop11:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA10_0==RULE_DOC) ) {
-                    alt10=1;
+                if ( (LA11_0==RULE_DOC) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt11) {
             	case 1 :
-            	    // InternalTSSpec.g:502:1: (lv_documentation_0_0= RULE_DOC )
+            	    // InternalTSSpec.g:521:1: (lv_documentation_0_0= RULE_DOC )
             	    {
-            	    // InternalTSSpec.g:502:1: (lv_documentation_0_0= RULE_DOC )
-            	    // InternalTSSpec.g:503:3: lv_documentation_0_0= RULE_DOC
+            	    // InternalTSSpec.g:521:1: (lv_documentation_0_0= RULE_DOC )
+            	    // InternalTSSpec.g:522:3: lv_documentation_0_0= RULE_DOC
             	    {
             	    lv_documentation_0_0=(Token)match(input,RULE_DOC,FOLLOW_16); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -1343,23 +1407,23 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop11;
                 }
             } while (true);
 
-            // InternalTSSpec.g:519:3: ( (lv_optional_1_0= 'optional' ) )?
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // InternalTSSpec.g:538:3: ( (lv_optional_1_0= 'optional' ) )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA11_0==24) ) {
-                alt11=1;
+            if ( (LA12_0==24) ) {
+                alt12=1;
             }
-            switch (alt11) {
+            switch (alt12) {
                 case 1 :
-                    // InternalTSSpec.g:520:1: (lv_optional_1_0= 'optional' )
+                    // InternalTSSpec.g:539:1: (lv_optional_1_0= 'optional' )
                     {
-                    // InternalTSSpec.g:520:1: (lv_optional_1_0= 'optional' )
-                    // InternalTSSpec.g:521:3: lv_optional_1_0= 'optional'
+                    // InternalTSSpec.g:539:1: (lv_optional_1_0= 'optional' )
+                    // InternalTSSpec.g:540:3: lv_optional_1_0= 'optional'
                     {
                     lv_optional_1_0=(Token)match(input,24,FOLLOW_16); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -1384,11 +1448,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalTSSpec.g:534:3: ( (lv_type_2_0= ruleGenericTypeArgument ) )
-            // InternalTSSpec.g:535:1: (lv_type_2_0= ruleGenericTypeArgument )
+            // InternalTSSpec.g:553:3: ( (lv_type_2_0= ruleGenericTypeArgument ) )
+            // InternalTSSpec.g:554:1: (lv_type_2_0= ruleGenericTypeArgument )
             {
-            // InternalTSSpec.g:535:1: (lv_type_2_0= ruleGenericTypeArgument )
-            // InternalTSSpec.g:536:3: lv_type_2_0= ruleGenericTypeArgument
+            // InternalTSSpec.g:554:1: (lv_type_2_0= ruleGenericTypeArgument )
+            // InternalTSSpec.g:555:3: lv_type_2_0= ruleGenericTypeArgument
             {
             if ( state.backtracking==0 ) {
                
@@ -1419,11 +1483,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalTSSpec.g:552:2: ( (lv_name_3_0= RULE_ID ) )
-            // InternalTSSpec.g:553:1: (lv_name_3_0= RULE_ID )
+            // InternalTSSpec.g:571:2: ( (lv_name_3_0= RULE_ID ) )
+            // InternalTSSpec.g:572:1: (lv_name_3_0= RULE_ID )
             {
-            // InternalTSSpec.g:553:1: (lv_name_3_0= RULE_ID )
-            // InternalTSSpec.g:554:3: lv_name_3_0= RULE_ID
+            // InternalTSSpec.g:572:1: (lv_name_3_0= RULE_ID )
+            // InternalTSSpec.g:573:3: lv_name_3_0= RULE_ID
             {
             lv_name_3_0=(Token)match(input,RULE_ID,FOLLOW_17); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -1449,16 +1513,16 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalTSSpec.g:570:2: (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // InternalTSSpec.g:589:2: (otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) ) )?
+            int alt13=2;
+            int LA13_0 = input.LA(1);
 
-            if ( (LA12_0==23) ) {
-                alt12=1;
+            if ( (LA13_0==23) ) {
+                alt13=1;
             }
-            switch (alt12) {
+            switch (alt13) {
                 case 1 :
-                    // InternalTSSpec.g:570:4: otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) )
+                    // InternalTSSpec.g:589:4: otherlv_4= '=' ( (lv_value_5_0= RULE_STRING ) )
                     {
                     otherlv_4=(Token)match(input,23,FOLLOW_18); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -1466,11 +1530,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_4, grammarAccess.getAttributeAccess().getEqualsSignKeyword_4_0());
                           
                     }
-                    // InternalTSSpec.g:574:1: ( (lv_value_5_0= RULE_STRING ) )
-                    // InternalTSSpec.g:575:1: (lv_value_5_0= RULE_STRING )
+                    // InternalTSSpec.g:593:1: ( (lv_value_5_0= RULE_STRING ) )
+                    // InternalTSSpec.g:594:1: (lv_value_5_0= RULE_STRING )
                     {
-                    // InternalTSSpec.g:575:1: (lv_value_5_0= RULE_STRING )
-                    // InternalTSSpec.g:576:3: lv_value_5_0= RULE_STRING
+                    // InternalTSSpec.g:594:1: (lv_value_5_0= RULE_STRING )
+                    // InternalTSSpec.g:595:3: lv_value_5_0= RULE_STRING
                     {
                     lv_value_5_0=(Token)match(input,RULE_STRING,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -1525,7 +1589,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleGenericTypeArgument"
-    // InternalTSSpec.g:600:1: entryRuleGenericTypeArgument returns [EObject current=null] : iv_ruleGenericTypeArgument= ruleGenericTypeArgument EOF ;
+    // InternalTSSpec.g:619:1: entryRuleGenericTypeArgument returns [EObject current=null] : iv_ruleGenericTypeArgument= ruleGenericTypeArgument EOF ;
     public final EObject entryRuleGenericTypeArgument() throws RecognitionException {
         EObject current = null;
 
@@ -1533,8 +1597,8 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalTSSpec.g:601:2: (iv_ruleGenericTypeArgument= ruleGenericTypeArgument EOF )
-            // InternalTSSpec.g:602:2: iv_ruleGenericTypeArgument= ruleGenericTypeArgument EOF
+            // InternalTSSpec.g:620:2: (iv_ruleGenericTypeArgument= ruleGenericTypeArgument EOF )
+            // InternalTSSpec.g:621:2: iv_ruleGenericTypeArgument= ruleGenericTypeArgument EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getGenericTypeArgumentRule()); 
@@ -1565,7 +1629,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGenericTypeArgument"
-    // InternalTSSpec.g:609:1: ruleGenericTypeArgument returns [EObject current=null] : ( ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )? ) ;
+    // InternalTSSpec.g:628:1: ruleGenericTypeArgument returns [EObject current=null] : ( ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )? ) ;
     public final EObject ruleGenericTypeArgument() throws RecognitionException {
         EObject current = null;
 
@@ -1581,17 +1645,17 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalTSSpec.g:612:28: ( ( ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )? ) )
-            // InternalTSSpec.g:613:1: ( ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )? )
+            // InternalTSSpec.g:631:28: ( ( ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )? ) )
+            // InternalTSSpec.g:632:1: ( ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )? )
             {
-            // InternalTSSpec.g:613:1: ( ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )? )
-            // InternalTSSpec.g:613:2: ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )?
+            // InternalTSSpec.g:632:1: ( ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )? )
+            // InternalTSSpec.g:632:2: ( ( ruleQualifiedName ) ) (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )? ( (lv_list_6_0= '[]' ) )?
             {
-            // InternalTSSpec.g:613:2: ( ( ruleQualifiedName ) )
-            // InternalTSSpec.g:614:1: ( ruleQualifiedName )
+            // InternalTSSpec.g:632:2: ( ( ruleQualifiedName ) )
+            // InternalTSSpec.g:633:1: ( ruleQualifiedName )
             {
-            // InternalTSSpec.g:614:1: ( ruleQualifiedName )
-            // InternalTSSpec.g:615:3: ruleQualifiedName
+            // InternalTSSpec.g:633:1: ( ruleQualifiedName )
+            // InternalTSSpec.g:634:3: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
 
@@ -1621,16 +1685,16 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalTSSpec.g:628:2: (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )?
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            // InternalTSSpec.g:647:2: (otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>' )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA14_0==25) ) {
-                alt14=1;
+            if ( (LA15_0==25) ) {
+                alt15=1;
             }
-            switch (alt14) {
+            switch (alt15) {
                 case 1 :
-                    // InternalTSSpec.g:628:4: otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>'
+                    // InternalTSSpec.g:647:4: otherlv_1= '<' ( (lv_arguments_2_0= ruleGenericTypeArgument ) ) (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )* otherlv_5= '>'
                     {
                     otherlv_1=(Token)match(input,25,FOLLOW_16); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -1638,11 +1702,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_1, grammarAccess.getGenericTypeArgumentAccess().getLessThanSignKeyword_1_0());
                           
                     }
-                    // InternalTSSpec.g:632:1: ( (lv_arguments_2_0= ruleGenericTypeArgument ) )
-                    // InternalTSSpec.g:633:1: (lv_arguments_2_0= ruleGenericTypeArgument )
+                    // InternalTSSpec.g:651:1: ( (lv_arguments_2_0= ruleGenericTypeArgument ) )
+                    // InternalTSSpec.g:652:1: (lv_arguments_2_0= ruleGenericTypeArgument )
                     {
-                    // InternalTSSpec.g:633:1: (lv_arguments_2_0= ruleGenericTypeArgument )
-                    // InternalTSSpec.g:634:3: lv_arguments_2_0= ruleGenericTypeArgument
+                    // InternalTSSpec.g:652:1: (lv_arguments_2_0= ruleGenericTypeArgument )
+                    // InternalTSSpec.g:653:3: lv_arguments_2_0= ruleGenericTypeArgument
                     {
                     if ( state.backtracking==0 ) {
                        
@@ -1673,20 +1737,20 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalTSSpec.g:650:2: (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )*
-                    loop13:
+                    // InternalTSSpec.g:669:2: (otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) ) )*
+                    loop14:
                     do {
-                        int alt13=2;
-                        int LA13_0 = input.LA(1);
+                        int alt14=2;
+                        int LA14_0 = input.LA(1);
 
-                        if ( (LA13_0==26) ) {
-                            alt13=1;
+                        if ( (LA14_0==26) ) {
+                            alt14=1;
                         }
 
 
-                        switch (alt13) {
+                        switch (alt14) {
                     	case 1 :
-                    	    // InternalTSSpec.g:650:4: otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) )
+                    	    // InternalTSSpec.g:669:4: otherlv_3= ',' ( (lv_arguments_4_0= ruleGenericTypeArgument ) )
                     	    {
                     	    otherlv_3=(Token)match(input,26,FOLLOW_16); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
@@ -1694,11 +1758,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                     	          	newLeafNode(otherlv_3, grammarAccess.getGenericTypeArgumentAccess().getCommaKeyword_1_2_0());
                     	          
                     	    }
-                    	    // InternalTSSpec.g:654:1: ( (lv_arguments_4_0= ruleGenericTypeArgument ) )
-                    	    // InternalTSSpec.g:655:1: (lv_arguments_4_0= ruleGenericTypeArgument )
+                    	    // InternalTSSpec.g:673:1: ( (lv_arguments_4_0= ruleGenericTypeArgument ) )
+                    	    // InternalTSSpec.g:674:1: (lv_arguments_4_0= ruleGenericTypeArgument )
                     	    {
-                    	    // InternalTSSpec.g:655:1: (lv_arguments_4_0= ruleGenericTypeArgument )
-                    	    // InternalTSSpec.g:656:3: lv_arguments_4_0= ruleGenericTypeArgument
+                    	    // InternalTSSpec.g:674:1: (lv_arguments_4_0= ruleGenericTypeArgument )
+                    	    // InternalTSSpec.g:675:3: lv_arguments_4_0= ruleGenericTypeArgument
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
@@ -1734,7 +1798,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop13;
+                    	    break loop14;
                         }
                     } while (true);
 
@@ -1750,19 +1814,19 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalTSSpec.g:676:3: ( (lv_list_6_0= '[]' ) )?
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // InternalTSSpec.g:695:3: ( (lv_list_6_0= '[]' ) )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA15_0==28) ) {
-                alt15=1;
+            if ( (LA16_0==28) ) {
+                alt16=1;
             }
-            switch (alt15) {
+            switch (alt16) {
                 case 1 :
-                    // InternalTSSpec.g:677:1: (lv_list_6_0= '[]' )
+                    // InternalTSSpec.g:696:1: (lv_list_6_0= '[]' )
                     {
-                    // InternalTSSpec.g:677:1: (lv_list_6_0= '[]' )
-                    // InternalTSSpec.g:678:3: lv_list_6_0= '[]'
+                    // InternalTSSpec.g:696:1: (lv_list_6_0= '[]' )
+                    // InternalTSSpec.g:697:3: lv_list_6_0= '[]'
                     {
                     lv_list_6_0=(Token)match(input,28,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -1810,7 +1874,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleServiceDef"
-    // InternalTSSpec.g:699:1: entryRuleServiceDef returns [EObject current=null] : iv_ruleServiceDef= ruleServiceDef EOF ;
+    // InternalTSSpec.g:718:1: entryRuleServiceDef returns [EObject current=null] : iv_ruleServiceDef= ruleServiceDef EOF ;
     public final EObject entryRuleServiceDef() throws RecognitionException {
         EObject current = null;
 
@@ -1818,8 +1882,8 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalTSSpec.g:700:2: (iv_ruleServiceDef= ruleServiceDef EOF )
-            // InternalTSSpec.g:701:2: iv_ruleServiceDef= ruleServiceDef EOF
+            // InternalTSSpec.g:719:2: (iv_ruleServiceDef= ruleServiceDef EOF )
+            // InternalTSSpec.g:720:2: iv_ruleServiceDef= ruleServiceDef EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getServiceDefRule()); 
@@ -1850,7 +1914,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleServiceDef"
-    // InternalTSSpec.g:708:1: ruleServiceDef returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}' ) ;
+    // InternalTSSpec.g:727:1: ruleServiceDef returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}' ) ;
     public final EObject ruleServiceDef() throws RecognitionException {
         EObject current = null;
 
@@ -1865,17 +1929,17 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalTSSpec.g:711:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}' ) )
-            // InternalTSSpec.g:712:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}' )
+            // InternalTSSpec.g:730:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}' ) )
+            // InternalTSSpec.g:731:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}' )
             {
-            // InternalTSSpec.g:712:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}' )
-            // InternalTSSpec.g:712:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}'
+            // InternalTSSpec.g:731:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}' )
+            // InternalTSSpec.g:731:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '{' ( (lv_commandList_2_0= ruleCommandDef ) )* ( (lv_eventList_3_0= ruleEventDef ) )* otherlv_4= '}'
             {
-            // InternalTSSpec.g:712:2: ( (lv_name_0_0= RULE_ID ) )
-            // InternalTSSpec.g:713:1: (lv_name_0_0= RULE_ID )
+            // InternalTSSpec.g:731:2: ( (lv_name_0_0= RULE_ID ) )
+            // InternalTSSpec.g:732:1: (lv_name_0_0= RULE_ID )
             {
-            // InternalTSSpec.g:713:1: (lv_name_0_0= RULE_ID )
-            // InternalTSSpec.g:714:3: lv_name_0_0= RULE_ID
+            // InternalTSSpec.g:732:1: (lv_name_0_0= RULE_ID )
+            // InternalTSSpec.g:733:3: lv_name_0_0= RULE_ID
             {
             lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_8); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -1907,23 +1971,23 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_1, grammarAccess.getServiceDefAccess().getLeftCurlyBracketKeyword_1());
                   
             }
-            // InternalTSSpec.g:734:1: ( (lv_commandList_2_0= ruleCommandDef ) )*
-            loop16:
+            // InternalTSSpec.g:753:1: ( (lv_commandList_2_0= ruleCommandDef ) )*
+            loop17:
             do {
-                int alt16=2;
-                int LA16_0 = input.LA(1);
+                int alt17=2;
+                int LA17_0 = input.LA(1);
 
-                if ( (LA16_0==29) ) {
-                    alt16=1;
+                if ( (LA17_0==29) ) {
+                    alt17=1;
                 }
 
 
-                switch (alt16) {
+                switch (alt17) {
             	case 1 :
-            	    // InternalTSSpec.g:735:1: (lv_commandList_2_0= ruleCommandDef )
+            	    // InternalTSSpec.g:754:1: (lv_commandList_2_0= ruleCommandDef )
             	    {
-            	    // InternalTSSpec.g:735:1: (lv_commandList_2_0= ruleCommandDef )
-            	    // InternalTSSpec.g:736:3: lv_commandList_2_0= ruleCommandDef
+            	    // InternalTSSpec.g:754:1: (lv_commandList_2_0= ruleCommandDef )
+            	    // InternalTSSpec.g:755:3: lv_commandList_2_0= ruleCommandDef
             	    {
             	    if ( state.backtracking==0 ) {
             	       
@@ -1956,27 +2020,27 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop17;
                 }
             } while (true);
 
-            // InternalTSSpec.g:752:3: ( (lv_eventList_3_0= ruleEventDef ) )*
-            loop17:
+            // InternalTSSpec.g:771:3: ( (lv_eventList_3_0= ruleEventDef ) )*
+            loop18:
             do {
-                int alt17=2;
-                int LA17_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( (LA17_0==RULE_DOC||LA17_0==32) ) {
-                    alt17=1;
+                if ( (LA18_0==RULE_DOC||LA18_0==32) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt17) {
+                switch (alt18) {
             	case 1 :
-            	    // InternalTSSpec.g:753:1: (lv_eventList_3_0= ruleEventDef )
+            	    // InternalTSSpec.g:772:1: (lv_eventList_3_0= ruleEventDef )
             	    {
-            	    // InternalTSSpec.g:753:1: (lv_eventList_3_0= ruleEventDef )
-            	    // InternalTSSpec.g:754:3: lv_eventList_3_0= ruleEventDef
+            	    // InternalTSSpec.g:772:1: (lv_eventList_3_0= ruleEventDef )
+            	    // InternalTSSpec.g:773:3: lv_eventList_3_0= ruleEventDef
             	    {
             	    if ( state.backtracking==0 ) {
             	       
@@ -2009,7 +2073,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop17;
+            	    break loop18;
                 }
             } while (true);
 
@@ -2042,7 +2106,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCommandDef"
-    // InternalTSSpec.g:782:1: entryRuleCommandDef returns [EObject current=null] : iv_ruleCommandDef= ruleCommandDef EOF ;
+    // InternalTSSpec.g:801:1: entryRuleCommandDef returns [EObject current=null] : iv_ruleCommandDef= ruleCommandDef EOF ;
     public final EObject entryRuleCommandDef() throws RecognitionException {
         EObject current = null;
 
@@ -2050,8 +2114,8 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalTSSpec.g:783:2: (iv_ruleCommandDef= ruleCommandDef EOF )
-            // InternalTSSpec.g:784:2: iv_ruleCommandDef= ruleCommandDef EOF
+            // InternalTSSpec.g:802:2: (iv_ruleCommandDef= ruleCommandDef EOF )
+            // InternalTSSpec.g:803:2: iv_ruleCommandDef= ruleCommandDef EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getCommandDefRule()); 
@@ -2082,7 +2146,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCommandDef"
-    // InternalTSSpec.g:791:1: ruleCommandDef returns [EObject current=null] : (otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) ) ) ;
+    // InternalTSSpec.g:810:1: ruleCommandDef returns [EObject current=null] : (otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) ) ) ;
     public final EObject ruleCommandDef() throws RecognitionException {
         EObject current = null;
 
@@ -2100,11 +2164,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalTSSpec.g:794:28: ( (otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) ) ) )
-            // InternalTSSpec.g:795:1: (otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) ) )
+            // InternalTSSpec.g:813:28: ( (otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) ) ) )
+            // InternalTSSpec.g:814:1: (otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) ) )
             {
-            // InternalTSSpec.g:795:1: (otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) ) )
-            // InternalTSSpec.g:795:3: otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) )
+            // InternalTSSpec.g:814:1: (otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) ) )
+            // InternalTSSpec.g:814:3: otherlv_0= 'command' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )? otherlv_5= 'returns' (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) )
             {
             otherlv_0=(Token)match(input,29,FOLLOW_3); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -2112,11 +2176,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_0, grammarAccess.getCommandDefAccess().getCommandKeyword_0());
                   
             }
-            // InternalTSSpec.g:799:1: ( (lv_name_1_0= RULE_ID ) )
-            // InternalTSSpec.g:800:1: (lv_name_1_0= RULE_ID )
+            // InternalTSSpec.g:818:1: ( (lv_name_1_0= RULE_ID ) )
+            // InternalTSSpec.g:819:1: (lv_name_1_0= RULE_ID )
             {
-            // InternalTSSpec.g:800:1: (lv_name_1_0= RULE_ID )
-            // InternalTSSpec.g:801:3: lv_name_1_0= RULE_ID
+            // InternalTSSpec.g:819:1: (lv_name_1_0= RULE_ID )
+            // InternalTSSpec.g:820:3: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_24); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -2142,16 +2206,16 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalTSSpec.g:817:2: (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // InternalTSSpec.g:836:2: (otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')' )?
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA19_0==19) ) {
-                alt19=1;
+            if ( (LA20_0==19) ) {
+                alt20=1;
             }
-            switch (alt19) {
+            switch (alt20) {
                 case 1 :
-                    // InternalTSSpec.g:817:4: otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')'
+                    // InternalTSSpec.g:836:4: otherlv_2= '(' ( (lv_attributes_3_0= ruleAttribute ) )+ otherlv_4= ')'
                     {
                     otherlv_2=(Token)match(input,19,FOLLOW_16); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -2159,24 +2223,24 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_2, grammarAccess.getCommandDefAccess().getLeftParenthesisKeyword_2_0());
                           
                     }
-                    // InternalTSSpec.g:821:1: ( (lv_attributes_3_0= ruleAttribute ) )+
-                    int cnt18=0;
-                    loop18:
+                    // InternalTSSpec.g:840:1: ( (lv_attributes_3_0= ruleAttribute ) )+
+                    int cnt19=0;
+                    loop19:
                     do {
-                        int alt18=2;
-                        int LA18_0 = input.LA(1);
+                        int alt19=2;
+                        int LA19_0 = input.LA(1);
 
-                        if ( ((LA18_0>=RULE_DOC && LA18_0<=RULE_ID)||LA18_0==24) ) {
-                            alt18=1;
+                        if ( ((LA19_0>=RULE_DOC && LA19_0<=RULE_ID)||LA19_0==24) ) {
+                            alt19=1;
                         }
 
 
-                        switch (alt18) {
+                        switch (alt19) {
                     	case 1 :
-                    	    // InternalTSSpec.g:822:1: (lv_attributes_3_0= ruleAttribute )
+                    	    // InternalTSSpec.g:841:1: (lv_attributes_3_0= ruleAttribute )
                     	    {
-                    	    // InternalTSSpec.g:822:1: (lv_attributes_3_0= ruleAttribute )
-                    	    // InternalTSSpec.g:823:3: lv_attributes_3_0= ruleAttribute
+                    	    // InternalTSSpec.g:841:1: (lv_attributes_3_0= ruleAttribute )
+                    	    // InternalTSSpec.g:842:3: lv_attributes_3_0= ruleAttribute
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
@@ -2209,13 +2273,13 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    if ( cnt18 >= 1 ) break loop18;
+                    	    if ( cnt19 >= 1 ) break loop19;
                     	    if (state.backtracking>0) {state.failed=true; return current;}
                                 EarlyExitException eee =
-                                    new EarlyExitException(18, input);
+                                    new EarlyExitException(19, input);
                                 throw eee;
                         }
-                        cnt18++;
+                        cnt19++;
                     } while (true);
 
                     otherlv_4=(Token)match(input,20,FOLLOW_26); if (state.failed) return current;
@@ -2236,26 +2300,26 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_5, grammarAccess.getCommandDefAccess().getReturnsKeyword_3());
                   
             }
-            // InternalTSSpec.g:847:1: (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) )
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            // InternalTSSpec.g:866:1: (otherlv_6= 'void' | ( (lv_returnVal_7_0= ruleGenericTypeArgument ) ) )
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA20_0==31) ) {
-                alt20=1;
+            if ( (LA21_0==31) ) {
+                alt21=1;
             }
-            else if ( (LA20_0==RULE_ID) ) {
-                alt20=2;
+            else if ( (LA21_0==RULE_ID) ) {
+                alt21=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 20, 0, input);
+                    new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
             }
-            switch (alt20) {
+            switch (alt21) {
                 case 1 :
-                    // InternalTSSpec.g:847:3: otherlv_6= 'void'
+                    // InternalTSSpec.g:866:3: otherlv_6= 'void'
                     {
                     otherlv_6=(Token)match(input,31,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -2267,13 +2331,13 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalTSSpec.g:852:6: ( (lv_returnVal_7_0= ruleGenericTypeArgument ) )
+                    // InternalTSSpec.g:871:6: ( (lv_returnVal_7_0= ruleGenericTypeArgument ) )
                     {
-                    // InternalTSSpec.g:852:6: ( (lv_returnVal_7_0= ruleGenericTypeArgument ) )
-                    // InternalTSSpec.g:853:1: (lv_returnVal_7_0= ruleGenericTypeArgument )
+                    // InternalTSSpec.g:871:6: ( (lv_returnVal_7_0= ruleGenericTypeArgument ) )
+                    // InternalTSSpec.g:872:1: (lv_returnVal_7_0= ruleGenericTypeArgument )
                     {
-                    // InternalTSSpec.g:853:1: (lv_returnVal_7_0= ruleGenericTypeArgument )
-                    // InternalTSSpec.g:854:3: lv_returnVal_7_0= ruleGenericTypeArgument
+                    // InternalTSSpec.g:872:1: (lv_returnVal_7_0= ruleGenericTypeArgument )
+                    // InternalTSSpec.g:873:3: lv_returnVal_7_0= ruleGenericTypeArgument
                     {
                     if ( state.backtracking==0 ) {
                        
@@ -2333,7 +2397,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEventDef"
-    // InternalTSSpec.g:878:1: entryRuleEventDef returns [EObject current=null] : iv_ruleEventDef= ruleEventDef EOF ;
+    // InternalTSSpec.g:897:1: entryRuleEventDef returns [EObject current=null] : iv_ruleEventDef= ruleEventDef EOF ;
     public final EObject entryRuleEventDef() throws RecognitionException {
         EObject current = null;
 
@@ -2341,8 +2405,8 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalTSSpec.g:879:2: (iv_ruleEventDef= ruleEventDef EOF )
-            // InternalTSSpec.g:880:2: iv_ruleEventDef= ruleEventDef EOF
+            // InternalTSSpec.g:898:2: (iv_ruleEventDef= ruleEventDef EOF )
+            // InternalTSSpec.g:899:2: iv_ruleEventDef= ruleEventDef EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getEventDefRule()); 
@@ -2373,7 +2437,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEventDef"
-    // InternalTSSpec.g:887:1: ruleEventDef returns [EObject current=null] : ( ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) ) ) ;
+    // InternalTSSpec.g:906:1: ruleEventDef returns [EObject current=null] : ( ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) ) ) ;
     public final EObject ruleEventDef() throws RecognitionException {
         EObject current = null;
 
@@ -2386,29 +2450,29 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalTSSpec.g:890:28: ( ( ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) ) ) )
-            // InternalTSSpec.g:891:1: ( ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) ) )
+            // InternalTSSpec.g:909:28: ( ( ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) ) ) )
+            // InternalTSSpec.g:910:1: ( ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) ) )
             {
-            // InternalTSSpec.g:891:1: ( ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) ) )
-            // InternalTSSpec.g:891:2: ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) )
+            // InternalTSSpec.g:910:1: ( ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) ) )
+            // InternalTSSpec.g:910:2: ( (lv_documentation_0_0= RULE_DOC ) )* otherlv_1= 'event' ( (lv_name_2_0= RULE_ID ) ) ( (lv_type_3_0= ruleGenericTypeArgument ) )
             {
-            // InternalTSSpec.g:891:2: ( (lv_documentation_0_0= RULE_DOC ) )*
-            loop21:
+            // InternalTSSpec.g:910:2: ( (lv_documentation_0_0= RULE_DOC ) )*
+            loop22:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( (LA21_0==RULE_DOC) ) {
-                    alt21=1;
+                if ( (LA22_0==RULE_DOC) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt22) {
             	case 1 :
-            	    // InternalTSSpec.g:892:1: (lv_documentation_0_0= RULE_DOC )
+            	    // InternalTSSpec.g:911:1: (lv_documentation_0_0= RULE_DOC )
             	    {
-            	    // InternalTSSpec.g:892:1: (lv_documentation_0_0= RULE_DOC )
-            	    // InternalTSSpec.g:893:3: lv_documentation_0_0= RULE_DOC
+            	    // InternalTSSpec.g:911:1: (lv_documentation_0_0= RULE_DOC )
+            	    // InternalTSSpec.g:912:3: lv_documentation_0_0= RULE_DOC
             	    {
             	    lv_documentation_0_0=(Token)match(input,RULE_DOC,FOLLOW_28); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -2436,7 +2500,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop22;
                 }
             } while (true);
 
@@ -2446,11 +2510,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_1, grammarAccess.getEventDefAccess().getEventKeyword_1());
                   
             }
-            // InternalTSSpec.g:913:1: ( (lv_name_2_0= RULE_ID ) )
-            // InternalTSSpec.g:914:1: (lv_name_2_0= RULE_ID )
+            // InternalTSSpec.g:932:1: ( (lv_name_2_0= RULE_ID ) )
+            // InternalTSSpec.g:933:1: (lv_name_2_0= RULE_ID )
             {
-            // InternalTSSpec.g:914:1: (lv_name_2_0= RULE_ID )
-            // InternalTSSpec.g:915:3: lv_name_2_0= RULE_ID
+            // InternalTSSpec.g:933:1: (lv_name_2_0= RULE_ID )
+            // InternalTSSpec.g:934:3: lv_name_2_0= RULE_ID
             {
             lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_16); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -2476,11 +2540,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalTSSpec.g:931:2: ( (lv_type_3_0= ruleGenericTypeArgument ) )
-            // InternalTSSpec.g:932:1: (lv_type_3_0= ruleGenericTypeArgument )
+            // InternalTSSpec.g:950:2: ( (lv_type_3_0= ruleGenericTypeArgument ) )
+            // InternalTSSpec.g:951:1: (lv_type_3_0= ruleGenericTypeArgument )
             {
-            // InternalTSSpec.g:932:1: (lv_type_3_0= ruleGenericTypeArgument )
-            // InternalTSSpec.g:933:3: lv_type_3_0= ruleGenericTypeArgument
+            // InternalTSSpec.g:951:1: (lv_type_3_0= ruleGenericTypeArgument )
+            // InternalTSSpec.g:952:3: lv_type_3_0= ruleGenericTypeArgument
             {
             if ( state.backtracking==0 ) {
                
@@ -2534,7 +2598,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // InternalTSSpec.g:957:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // InternalTSSpec.g:976:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -2542,8 +2606,8 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalTSSpec.g:958:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // InternalTSSpec.g:959:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // InternalTSSpec.g:977:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // InternalTSSpec.g:978:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getQualifiedNameRule()); 
@@ -2574,7 +2638,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // InternalTSSpec.g:966:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )* ) ;
+    // InternalTSSpec.g:985:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )* ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2585,11 +2649,11 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalTSSpec.g:969:28: ( (this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )* ) )
-            // InternalTSSpec.g:970:1: (this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )* )
+            // InternalTSSpec.g:988:28: ( (this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )* ) )
+            // InternalTSSpec.g:989:1: (this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )* )
             {
-            // InternalTSSpec.g:970:1: (this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )* )
-            // InternalTSSpec.g:970:6: this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )*
+            // InternalTSSpec.g:989:1: (this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )* )
+            // InternalTSSpec.g:989:6: this_ID_0= RULE_ID ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )*
             {
             this_ID_0=(Token)match(input,RULE_ID,FOLLOW_29); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -2602,23 +2666,23 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
                   newLeafNode(this_ID_0, grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0()); 
                   
             }
-            // InternalTSSpec.g:977:1: ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )*
-            loop22:
+            // InternalTSSpec.g:996:1: ( ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID )*
+            loop23:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA22_0==33) && (synpred1_InternalTSSpec())) {
-                    alt22=1;
+                if ( (LA23_0==33) && (synpred1_InternalTSSpec())) {
+                    alt23=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt23) {
             	case 1 :
-            	    // InternalTSSpec.g:977:2: ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID
+            	    // InternalTSSpec.g:996:2: ( ( '.' )=>kw= '.' ) this_ID_2= RULE_ID
             	    {
-            	    // InternalTSSpec.g:977:2: ( ( '.' )=>kw= '.' )
-            	    // InternalTSSpec.g:977:3: ( '.' )=>kw= '.'
+            	    // InternalTSSpec.g:996:2: ( ( '.' )=>kw= '.' )
+            	    // InternalTSSpec.g:996:3: ( '.' )=>kw= '.'
             	    {
             	    kw=(Token)match(input,33,FOLLOW_3); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -2646,7 +2710,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop23;
                 }
             } while (true);
 
@@ -2673,8 +2737,8 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred1_InternalTSSpec
     public final void synpred1_InternalTSSpec_fragment() throws RecognitionException {   
-        // InternalTSSpec.g:977:3: ( '.' )
-        // InternalTSSpec.g:978:2: '.'
+        // InternalTSSpec.g:996:3: ( '.' )
+        // InternalTSSpec.g:997:2: '.'
         {
         match(input,33,FOLLOW_2); if (state.failed) return ;
 
@@ -2716,7 +2780,7 @@ public class InternalTSSpecParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x00000000000000E0L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000001000030L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000800002L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000000040L});

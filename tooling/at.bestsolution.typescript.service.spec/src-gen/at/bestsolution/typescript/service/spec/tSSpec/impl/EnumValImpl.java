@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.EnumValImpl#getDoc <em>Doc</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.EnumValImpl#getName <em>Name</em>}</li>
  *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.EnumValImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link at.bestsolution.typescript.service.spec.tSSpec.impl.EnumValImpl#getIntValue <em>Int Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,6 +85,26 @@ public class EnumValImpl extends MinimalEObjectImpl.Container implements EnumVal
    * @ordered
    */
   protected String value = VALUE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getIntValue() <em>Int Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIntValue()
+   * @generated
+   * @ordered
+   */
+  protected static final int INT_VALUE_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getIntValue() <em>Int Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIntValue()
+   * @generated
+   * @ordered
+   */
+  protected int intValue = INT_VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -171,6 +192,29 @@ public class EnumValImpl extends MinimalEObjectImpl.Container implements EnumVal
    * <!-- end-user-doc -->
    * @generated
    */
+  public int getIntValue()
+  {
+    return intValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIntValue(int newIntValue)
+  {
+    int oldIntValue = intValue;
+    intValue = newIntValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TSSpecPackage.ENUM_VAL__INT_VALUE, oldIntValue, intValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -182,6 +226,8 @@ public class EnumValImpl extends MinimalEObjectImpl.Container implements EnumVal
         return getName();
       case TSSpecPackage.ENUM_VAL__VALUE:
         return getValue();
+      case TSSpecPackage.ENUM_VAL__INT_VALUE:
+        return getIntValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -207,6 +253,9 @@ public class EnumValImpl extends MinimalEObjectImpl.Container implements EnumVal
       case TSSpecPackage.ENUM_VAL__VALUE:
         setValue((String)newValue);
         return;
+      case TSSpecPackage.ENUM_VAL__INT_VALUE:
+        setIntValue((Integer)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -230,6 +279,9 @@ public class EnumValImpl extends MinimalEObjectImpl.Container implements EnumVal
       case TSSpecPackage.ENUM_VAL__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
+      case TSSpecPackage.ENUM_VAL__INT_VALUE:
+        setIntValue(INT_VALUE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -250,6 +302,8 @@ public class EnumValImpl extends MinimalEObjectImpl.Container implements EnumVal
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case TSSpecPackage.ENUM_VAL__VALUE:
         return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+      case TSSpecPackage.ENUM_VAL__INT_VALUE:
+        return intValue != INT_VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -271,6 +325,8 @@ public class EnumValImpl extends MinimalEObjectImpl.Container implements EnumVal
     result.append(name);
     result.append(", value: ");
     result.append(value);
+    result.append(", intValue: ");
+    result.append(intValue);
     result.append(')');
     return result.toString();
   }

@@ -38,7 +38,8 @@ public class TSSpecParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getDomainElementAccess().getAlternatives_1(), "rule__DomainElement__Alternatives_1");
-					put(grammarAccess.getEnumValAccess().getValueAlternatives_3_0(), "rule__EnumVal__ValueAlternatives_3_0");
+					put(grammarAccess.getEnumValAccess().getAlternatives_3(), "rule__EnumVal__Alternatives_3");
+					put(grammarAccess.getEnumValAccess().getValueAlternatives_3_0_0(), "rule__EnumVal__ValueAlternatives_3_0_0");
 					put(grammarAccess.getCommandDefAccess().getAlternatives_4(), "rule__CommandDef__Alternatives_4");
 					put(grammarAccess.getServiceDefsAccess().getGroup(), "rule__ServiceDefs__Group__0");
 					put(grammarAccess.getDomainElementAccess().getGroup(), "rule__DomainElement__Group__0");
@@ -75,7 +76,8 @@ public class TSSpecParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDomainElementAccess().getRealTypeAssignment_1_3_3(), "rule__DomainElement__RealTypeAssignment_1_3_3");
 					put(grammarAccess.getEnumValAccess().getDocAssignment_0(), "rule__EnumVal__DocAssignment_0");
 					put(grammarAccess.getEnumValAccess().getNameAssignment_1(), "rule__EnumVal__NameAssignment_1");
-					put(grammarAccess.getEnumValAccess().getValueAssignment_3(), "rule__EnumVal__ValueAssignment_3");
+					put(grammarAccess.getEnumValAccess().getValueAssignment_3_0(), "rule__EnumVal__ValueAssignment_3_0");
+					put(grammarAccess.getEnumValAccess().getIntValueAssignment_3_1(), "rule__EnumVal__IntValueAssignment_3_1");
 					put(grammarAccess.getAttributeAccess().getDocumentationAssignment_0(), "rule__Attribute__DocumentationAssignment_0");
 					put(grammarAccess.getAttributeAccess().getOptionalAssignment_1(), "rule__Attribute__OptionalAssignment_1");
 					put(grammarAccess.getAttributeAccess().getTypeAssignment_2(), "rule__Attribute__TypeAssignment_2");

@@ -441,12 +441,12 @@ ruleEnumVal returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getEnumValAccess().getEqualsSignKeyword_2());
     }
-(
+((
 (
 (
 		lv_value_3_1=RULE_ID
 		{
-			newLeafNode(lv_value_3_1, grammarAccess.getEnumValAccess().getValueIDTerminalRuleCall_3_0_0()); 
+			newLeafNode(lv_value_3_1, grammarAccess.getEnumValAccess().getValueIDTerminalRuleCall_3_0_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -461,7 +461,7 @@ ruleEnumVal returns [EObject current=null]
 
     |		lv_value_3_2=RULE_STRING
 		{
-			newLeafNode(lv_value_3_2, grammarAccess.getEnumValAccess().getValueSTRINGTerminalRuleCall_3_0_1()); 
+			newLeafNode(lv_value_3_2, grammarAccess.getEnumValAccess().getValueSTRINGTerminalRuleCall_3_0_0_1()); 
 		}
 		{
 	        if ($current==null) {
@@ -477,7 +477,26 @@ ruleEnumVal returns [EObject current=null]
 )
 
 )
-))
+)
+    |(
+(
+		lv_intValue_4_0=RULE_INT
+		{
+			newLeafNode(lv_intValue_4_0, grammarAccess.getEnumValAccess().getIntValueINTTerminalRuleCall_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumValRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"intValue",
+        		lv_intValue_4_0, 
+        		"org.eclipse.xtext.common.Terminals.INT");
+	    }
+
+)
+)))
 ;
 
 

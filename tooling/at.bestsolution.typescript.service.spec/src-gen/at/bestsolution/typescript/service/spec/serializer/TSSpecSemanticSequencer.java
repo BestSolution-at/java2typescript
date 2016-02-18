@@ -115,7 +115,7 @@ public class TSSpecSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     EnumVal returns EnumVal
 	 *
 	 * Constraint:
-	 *     (doc+=DOC* name=ID (value=ID | value=STRING))
+	 *     (doc+=DOC* name=ID (value=ID | value=STRING | intValue=INT))
 	 */
 	protected void sequence_EnumVal(ISerializationContext context, EnumVal semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

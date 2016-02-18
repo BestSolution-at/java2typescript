@@ -27,6 +27,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//EnumVal/doc"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//EnumVal/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//EnumVal/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//EnumVal/intValue"/>
     </genClasses>
     <genClasses ecoreClass="TSSpec.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TSSpec.ecore#//Attribute/documentation"/>

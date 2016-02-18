@@ -237,17 +237,20 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cValueAlternatives_3_0 = (Alternatives)cValueAssignment_3.eContents().get(0);
-		private final RuleCall cValueIDTerminalRuleCall_3_0_0 = (RuleCall)cValueAlternatives_3_0.eContents().get(0);
-		private final RuleCall cValueSTRINGTerminalRuleCall_3_0_1 = (RuleCall)cValueAlternatives_3_0.eContents().get(1);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cValueAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final Alternatives cValueAlternatives_3_0_0 = (Alternatives)cValueAssignment_3_0.eContents().get(0);
+		private final RuleCall cValueIDTerminalRuleCall_3_0_0_0 = (RuleCall)cValueAlternatives_3_0_0.eContents().get(0);
+		private final RuleCall cValueSTRINGTerminalRuleCall_3_0_0_1 = (RuleCall)cValueAlternatives_3_0_0.eContents().get(1);
+		private final Assignment cIntValueAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cIntValueINTTerminalRuleCall_3_1_0 = (RuleCall)cIntValueAssignment_3_1.eContents().get(0);
 		
 		//EnumVal:
 		//	doc+=DOC*
-		//	name=ID '=' value=(ID | STRING);
+		//	name=ID '=' (value=(ID | STRING) | intValue=INT);
 		@Override public ParserRule getRule() { return rule; }
 
-		//doc+=DOC* name=ID '=' value=(ID | STRING)
+		//doc+=DOC* name=ID '=' (value=(ID | STRING) | intValue=INT)
 		public Group getGroup() { return cGroup; }
 
 		//doc+=DOC*
@@ -265,17 +268,26 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 		//'='
 		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
 
+		//(value=(ID | STRING) | intValue=INT)
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+
 		//value=(ID | STRING)
-		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+		public Assignment getValueAssignment_3_0() { return cValueAssignment_3_0; }
 
 		//(ID | STRING)
-		public Alternatives getValueAlternatives_3_0() { return cValueAlternatives_3_0; }
+		public Alternatives getValueAlternatives_3_0_0() { return cValueAlternatives_3_0_0; }
 
 		//ID
-		public RuleCall getValueIDTerminalRuleCall_3_0_0() { return cValueIDTerminalRuleCall_3_0_0; }
+		public RuleCall getValueIDTerminalRuleCall_3_0_0_0() { return cValueIDTerminalRuleCall_3_0_0_0; }
 
 		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_3_0_1() { return cValueSTRINGTerminalRuleCall_3_0_1; }
+		public RuleCall getValueSTRINGTerminalRuleCall_3_0_0_1() { return cValueSTRINGTerminalRuleCall_3_0_0_1; }
+
+		//intValue=INT
+		public Assignment getIntValueAssignment_3_1() { return cIntValueAssignment_3_1; }
+
+		//INT
+		public RuleCall getIntValueINTTerminalRuleCall_3_1_0() { return cIntValueINTTerminalRuleCall_3_1_0; }
 	}
 
 	public class AttributeElements extends AbstractParserRuleElementFinder {
@@ -678,7 +690,7 @@ public class TSSpecGrammarAccess extends AbstractGrammarElementFinder {
 
 	//EnumVal:
 	//	doc+=DOC*
-	//	name=ID '=' value=(ID | STRING);
+	//	name=ID '=' (value=(ID | STRING) | intValue=INT);
 	public EnumValElements getEnumValAccess() {
 		return pEnumVal;
 	}

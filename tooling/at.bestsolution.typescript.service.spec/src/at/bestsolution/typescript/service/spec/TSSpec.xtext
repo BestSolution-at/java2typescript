@@ -18,7 +18,7 @@ DomainElement:
 
 EnumVal:
 	doc+=DOC*
-	name=ID '=' value=(ID|STRING)
+	name=ID '=' (value=(ID|STRING) | intValue=INT)
 ;
 
 Attribute:
