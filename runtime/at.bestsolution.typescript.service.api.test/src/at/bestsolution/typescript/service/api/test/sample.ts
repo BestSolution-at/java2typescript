@@ -1,7 +1,9 @@
+
+
 class Person {
     firstname : string;
     lastname : string;
-    friendList : Person[];
+    car : Car[];
 
     constructor(firstname : string, lastname : string) {
         this.firstname = firstname;

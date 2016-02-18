@@ -1,6 +1,6 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import at.bestsolution.typescript.service.api.model.CompletionEntry;
+import at.bestsolution.typescript.service.api.model.*;
 
 public class CompletionEntryPojo  implements CompletionEntry {
 	private String name ;
@@ -16,16 +16,36 @@ public class CompletionEntryPojo  implements CompletionEntry {
 	public String name() {
 		return this.name;
 	}
-	public at.bestsolution.typescript.service.api.model.ScriptElementKind kind() {
+	public ScriptElementKind kind() {
 		if( _kind != null ) return _kind;
 		return _kind = at.bestsolution.typescript.service.api.model.ScriptElementKind.fromStringValue(this.kind);
 	}
-	public java.util.List<at.bestsolution.typescript.service.api.model.ScriptElementKindModifier> kindModifiers() {
+	public java.util.List<ScriptElementKindModifier> kindModifiers() {
 		if( _kindModifiers != null ) return _kindModifiers;
 		return _kindModifiers = java.util.stream.Stream.of(kindModifiers.split(",")).map( s -> at.bestsolution.typescript.service.api.model.ScriptElementKindModifier.fromStringValue(s) ).collect( java.util.stream.Collectors.toList() );
 	}
 	public String sortText() {
 		return this.sortText;
+	}
+	public static Builder create(String name, ScriptElementKind kind, java.util.List<ScriptElementKindModifier> kindModifiers, String sortText) {
+		return new BuilderImpl(new CompletionEntryPojo(), name, kind, kindModifiers, sortText);
+	}
+
+	public static class BuilderImpl implements Builder {
+		private final CompletionEntryPojo pojo;
+
+		BuilderImpl(CompletionEntryPojo pojo, String name, ScriptElementKind kind, java.util.List<ScriptElementKindModifier> kindModifiers, String sortText) {
+			this.pojo = pojo;
+			this.pojo.name = (String)name;
+			this.pojo._kind = kind;
+			this.pojo._kindModifiers = kindModifiers;
+			this.pojo.sortText = (String)sortText;
+		}
+
+
+		public CompletionEntry build() {
+			return this.pojo;
+		}
 	}
 
 	public String toString() {

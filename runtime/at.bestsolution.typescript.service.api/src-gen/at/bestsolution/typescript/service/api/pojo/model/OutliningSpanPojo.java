@@ -1,6 +1,6 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import at.bestsolution.typescript.service.api.model.OutliningSpan;
+import at.bestsolution.typescript.service.api.model.*;
 
 public class OutliningSpanPojo  implements OutliningSpan {
 	private TextSpanPojo textSpan ;
@@ -11,10 +11,10 @@ public class OutliningSpanPojo  implements OutliningSpan {
 	public OutliningSpanPojo() {
 	}
 
-	public TextSpanPojo textSpan() {
+	public TextSpan textSpan() {
 		return this.textSpan;
 	}
-	public TextSpanPojo hintSpan() {
+	public TextSpan hintSpan() {
 		return this.hintSpan;
 	}
 	public String bannerText() {
@@ -22,6 +22,26 @@ public class OutliningSpanPojo  implements OutliningSpan {
 	}
 	public boolean autoCollapse() {
 		return this.autoCollapse;
+	}
+	public static Builder create(TextSpan textSpan, TextSpan hintSpan, String bannerText, boolean autoCollapse) {
+		return new BuilderImpl(new OutliningSpanPojo(), textSpan, hintSpan, bannerText, autoCollapse);
+	}
+
+	public static class BuilderImpl implements Builder {
+		private final OutliningSpanPojo pojo;
+
+		BuilderImpl(OutliningSpanPojo pojo, TextSpan textSpan, TextSpan hintSpan, String bannerText, boolean autoCollapse) {
+			this.pojo = pojo;
+			this.pojo.textSpan = (TextSpanPojo)textSpan;
+			this.pojo.hintSpan = (TextSpanPojo)hintSpan;
+			this.pojo.bannerText = (String)bannerText;
+			this.pojo.autoCollapse = (boolean)autoCollapse;
+		}
+
+
+		public OutliningSpan build() {
+			return this.pojo;
+		}
 	}
 
 	public String toString() {

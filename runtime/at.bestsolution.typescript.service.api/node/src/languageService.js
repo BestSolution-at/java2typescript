@@ -48,13 +48,11 @@ var TypeScriptServiceAPI;
         LanguageServiceWrapper.prototype.createProject = function (name, compilationSettings) {
             console.log("Createing new project '" + name + "'");
             var id = "p_" + (this.projectCounter++);
-            compilationSettings = ts.getDefaultCompilerOptions();
-            /*compilationSettings.emitDecoratorMetadata = true;
-            compilationSettings.noImplicitAny = true;
-            compilationSettings.experimentalDecorators = true;
-            compilationSettings.declaration = true;*/
-            this.projectMap[id] = new Project(id, name, compilationSettings);
+            this.projectMap[id] = new Project(id, name);
             return id;
+        };
+        LanguageServiceWrapper.prototype.initProject = function (projectId, compilerOptions, fileList) {
+            return this.projectMap[projectId].initProject(compilerOptions, fileList);
         };
         LanguageServiceWrapper.prototype.addFile = function (projectId, filePath) {
             return this.projectMap[projectId].addFile(filePath);
@@ -200,7 +198,7 @@ var TypeScriptServiceAPI;
         return DiagnosticMessage;
     }());
     var Project = (function () {
-        function Project(id, name, compilerOptions) {
+        function Project(id, name) {
             // private fileFilter: (fileName: string) => boolean;
             this.fileInfos = {};
             this.fileIdMap = {};
@@ -208,7 +206,7 @@ var TypeScriptServiceAPI;
             this.documentRegistry = ts.createDocumentRegistry();
             this.id = id;
             this.name = name;
-            this.compilerOptions = compilerOptions;
+            this.compilerOptions = ts.getDefaultCompilerOptions();
             this.service = ts.createLanguageService(this, this.documentRegistry);
         }
         Project.prototype.addFile = function (filePath) {
@@ -219,6 +217,19 @@ var TypeScriptServiceAPI;
             this.fileInfos[filePath] = new FileInfo(content, filePath);
             console.log("The generated file id is '" + id + "'");
             return id;
+        };
+        Project.prototype.initProject = function (compilerOptions, fileList) {
+            console.log("Init project");
+            this.compilerOptions = compilerOptions;
+            var self = this;
+            var lib = this.getDefaultLibFileName(this.compilerOptions);
+            if (lib && lib != '') {
+                self.addFile(lib);
+            }
+            if (fileList) {
+                return fileList.map(function (v) { return self.addFile(v); });
+            }
+            return [];
         };
         Project.prototype.modifyContent = function (fileId, offset, length, text) {
             console.log("Modify file '" + fileId + "'");
@@ -495,7 +506,19 @@ var TypeScriptServiceAPI;
             return "";
         };
         Project.prototype.getDefaultLibFileName = function (options) {
-            return ts.getDefaultLibFileName(options);
+            console.log("=========> Loading default lib");
+            if (!options || options.noLib) {
+                console.log("noLib");
+                return '';
+            }
+            else if (options.target === 2 /* ES6 */) {
+                console.log("Default lib ES6");
+                return "platform:/plugin/at.bestsolution.typescript.service.api/node/libs/lib.d.ts";
+            }
+            else {
+                console.log("Default lib ES5");
+                return "platform:/plugin/at.bestsolution.typescript.service.api/node/libs/lib.es6.d.ts";
+            }
         };
         return Project;
     }());

@@ -1,6 +1,6 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import at.bestsolution.typescript.service.api.model.SymbolDisplayPart;
+import at.bestsolution.typescript.service.api.model.*;
 
 public class SymbolDisplayPartPojo  implements SymbolDisplayPart {
 	private String text ;
@@ -13,9 +13,27 @@ public class SymbolDisplayPartPojo  implements SymbolDisplayPart {
 	public String text() {
 		return this.text;
 	}
-	public at.bestsolution.typescript.service.api.model.SymbolDisplayPartKind kind() {
+	public SymbolDisplayPartKind kind() {
 		if( _kind != null ) return _kind;
 		return _kind = at.bestsolution.typescript.service.api.model.SymbolDisplayPartKind.fromStringValue(this.kind);
+	}
+	public static Builder create(String text, SymbolDisplayPartKind kind) {
+		return new BuilderImpl(new SymbolDisplayPartPojo(), text, kind);
+	}
+
+	public static class BuilderImpl implements Builder {
+		private final SymbolDisplayPartPojo pojo;
+
+		BuilderImpl(SymbolDisplayPartPojo pojo, String text, SymbolDisplayPartKind kind) {
+			this.pojo = pojo;
+			this.pojo.text = (String)text;
+			this.pojo._kind = kind;
+		}
+
+
+		public SymbolDisplayPart build() {
+			return this.pojo;
+		}
 	}
 
 	public String toString() {

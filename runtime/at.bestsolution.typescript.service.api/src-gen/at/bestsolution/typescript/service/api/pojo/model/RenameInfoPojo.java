@@ -1,6 +1,6 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import at.bestsolution.typescript.service.api.model.RenameInfo;
+import at.bestsolution.typescript.service.api.model.*;
 
 public class RenameInfoPojo  implements RenameInfo {
 	private boolean canRename ;
@@ -32,8 +32,31 @@ public class RenameInfoPojo  implements RenameInfo {
 	public String kindModifiers() {
 		return this.kindModifiers;
 	}
-	public TextSpanPojo triggerSpan() {
+	public TextSpan triggerSpan() {
 		return this.triggerSpan;
+	}
+	public static Builder create(boolean canRename, String localizedErrorMessage, String displayName, String fullDisplayName, String kind, String kindModifiers, TextSpan triggerSpan) {
+		return new BuilderImpl(new RenameInfoPojo(), canRename, localizedErrorMessage, displayName, fullDisplayName, kind, kindModifiers, triggerSpan);
+	}
+
+	public static class BuilderImpl implements Builder {
+		private final RenameInfoPojo pojo;
+
+		BuilderImpl(RenameInfoPojo pojo, boolean canRename, String localizedErrorMessage, String displayName, String fullDisplayName, String kind, String kindModifiers, TextSpan triggerSpan) {
+			this.pojo = pojo;
+			this.pojo.canRename = (boolean)canRename;
+			this.pojo.localizedErrorMessage = (String)localizedErrorMessage;
+			this.pojo.displayName = (String)displayName;
+			this.pojo.fullDisplayName = (String)fullDisplayName;
+			this.pojo.kind = (String)kind;
+			this.pojo.kindModifiers = (String)kindModifiers;
+			this.pojo.triggerSpan = (TextSpanPojo)triggerSpan;
+		}
+
+
+		public RenameInfo build() {
+			return this.pojo;
+		}
 	}
 
 	public String toString() {

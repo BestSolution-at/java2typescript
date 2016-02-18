@@ -21,6 +21,14 @@ public class LanguageServiceImpl implements at.bestsolution.typescript.service.a
 		}
 	}
 
+	public java.util.List<String> initProject(CompilerOptions compilerOptions, java.util.List<String> files) {
+		try {
+			return dispatcher.sendMultiValueRequest("LanguageService","initProject",String.class, projectId,compilerOptions, files).get();
+		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public void modifyContent(String fileId, int offset, int length, String text) {
 		dispatcher.sendVoidRequest("LanguageService","modifyContent", projectId,fileId, offset, length, text);
 	}
@@ -29,25 +37,28 @@ public class LanguageServiceImpl implements at.bestsolution.typescript.service.a
 		dispatcher.sendVoidRequest("LanguageService","cleanupSemanticCache", projectId);
 	}
 
-	public java.util.List<? extends Diagnostic> getSyntacticDiagnostics(String fileId) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<Diagnostic> getSyntacticDiagnostics(String fileId) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getSyntacticDiagnostics",DiagnosticPojo.class, projectId,fileId).get();
+			return (java.util.List<Diagnostic>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getSyntacticDiagnostics",DiagnosticPojo.class, projectId,fileId).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends Diagnostic> getSemanticDiagnostics(String fileId) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<Diagnostic> getSemanticDiagnostics(String fileId) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getSemanticDiagnostics",DiagnosticPojo.class, projectId,fileId).get();
+			return (java.util.List<Diagnostic>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getSemanticDiagnostics",DiagnosticPojo.class, projectId,fileId).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends Diagnostic> getCompilerOptionsDiagnostics() {
+	@SuppressWarnings("unchecked")
+	public java.util.List<Diagnostic> getCompilerOptionsDiagnostics() {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getCompilerOptionsDiagnostics",DiagnosticPojo.class, projectId).get();
+			return (java.util.List<Diagnostic>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getCompilerOptionsDiagnostics",DiagnosticPojo.class, projectId).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
@@ -125,89 +136,100 @@ public class LanguageServiceImpl implements at.bestsolution.typescript.service.a
 		}
 	}
 
-	public java.util.List<? extends RenameLocation> findRenameLocations(String fileId, int position, boolean findInStrings, boolean findInComments) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<RenameLocation> findRenameLocations(String fileId, int position, boolean findInStrings, boolean findInComments) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","findRenameLocations",RenameLocationPojo.class, projectId,fileId, position, findInStrings, findInComments).get();
+			return (java.util.List<RenameLocation>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","findRenameLocations",RenameLocationPojo.class, projectId,fileId, position, findInStrings, findInComments).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends DefinitionInfo> getDefinitionAtPosition(String fileId, int position) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<DefinitionInfo> getDefinitionAtPosition(String fileId, int position) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getDefinitionAtPosition",DefinitionInfoPojo.class, projectId,fileId, position).get();
+			return (java.util.List<DefinitionInfo>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getDefinitionAtPosition",DefinitionInfoPojo.class, projectId,fileId, position).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends DefinitionInfo> getTypeDefinitionAtPosition(String fileId, int position) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<DefinitionInfo> getTypeDefinitionAtPosition(String fileId, int position) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getTypeDefinitionAtPosition",DefinitionInfoPojo.class, projectId,fileId, position).get();
+			return (java.util.List<DefinitionInfo>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getTypeDefinitionAtPosition",DefinitionInfoPojo.class, projectId,fileId, position).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends ReferenceEntry> getReferencesAtPosition(String fileId, int position) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<ReferenceEntry> getReferencesAtPosition(String fileId, int position) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getReferencesAtPosition",ReferenceEntryPojo.class, projectId,fileId, position).get();
+			return (java.util.List<ReferenceEntry>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getReferencesAtPosition",ReferenceEntryPojo.class, projectId,fileId, position).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends ReferencedSymbol> findReferences(String fileId, int position) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<ReferencedSymbol> findReferences(String fileId, int position) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","findReferences",ReferencedSymbolPojo.class, projectId,fileId, position).get();
+			return (java.util.List<ReferencedSymbol>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","findReferences",ReferencedSymbolPojo.class, projectId,fileId, position).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends DocumentHighlights> getDocumentHighlights(String fileId, int position, java.util.List<? extends String> filesToSearch) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<DocumentHighlights> getDocumentHighlights(String fileId, int position, java.util.List<String> filesToSearch) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getDocumentHighlights",DocumentHighlightsPojo.class, projectId,fileId, position, filesToSearch).get();
+			return (java.util.List<DocumentHighlights>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getDocumentHighlights",DocumentHighlightsPojo.class, projectId,fileId, position, filesToSearch).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends NavigateToItem> getNavigateToItems(String searchValue, int maxResultCount) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<NavigateToItem> getNavigateToItems(String searchValue, int maxResultCount) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getNavigateToItems",NavigateToItemPojo.class, projectId,searchValue, maxResultCount).get();
+			return (java.util.List<NavigateToItem>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getNavigateToItems",NavigateToItemPojo.class, projectId,searchValue, maxResultCount).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends NavigationBarItem> getNavigationBarItems(String fileId) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<NavigationBarItem> getNavigationBarItems(String fileId) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getNavigationBarItems",NavigationBarItemPojo.class, projectId,fileId).get();
+			return (java.util.List<NavigationBarItem>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getNavigationBarItems",NavigationBarItemPojo.class, projectId,fileId).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends OutliningSpan> getOutliningSpans(String fileId) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<OutliningSpan> getOutliningSpans(String fileId) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getOutliningSpans",OutliningSpanPojo.class, projectId,fileId).get();
+			return (java.util.List<OutliningSpan>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getOutliningSpans",OutliningSpanPojo.class, projectId,fileId).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends TodoComment> getTodoComments(String fileId, java.util.List<? extends TodoCommentDescriptor> descriptors) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<TodoComment> getTodoComments(String fileId, java.util.List<TodoCommentDescriptor> descriptors) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getTodoComments",TodoCommentPojo.class, projectId,fileId, descriptors).get();
+			return (java.util.List<TodoComment>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getTodoComments",TodoCommentPojo.class, projectId,fileId, descriptors).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends TextSpan> getBraceMatchingAtPosition(String fileId, int position) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<TextSpan> getBraceMatchingAtPosition(String fileId, int position) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getBraceMatchingAtPosition",TextSpanPojo.class, projectId,fileId, position).get();
+			return (java.util.List<TextSpan>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getBraceMatchingAtPosition",TextSpanPojo.class, projectId,fileId, position).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
@@ -221,25 +243,28 @@ public class LanguageServiceImpl implements at.bestsolution.typescript.service.a
 		}
 	}
 
-	public java.util.List<? extends TextChange> getFormattingEditsForRange(String fileId, int start, int end, FormatCodeOptions options) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<TextChange> getFormattingEditsForRange(String fileId, int start, int end, FormatCodeOptions options) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getFormattingEditsForRange",TextChangePojo.class, projectId,fileId, start, end, options).get();
+			return (java.util.List<TextChange>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getFormattingEditsForRange",TextChangePojo.class, projectId,fileId, start, end, options).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends TextChange> getFormattingEditsForDocument(String fileId, FormatCodeOptions options) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<TextChange> getFormattingEditsForDocument(String fileId, FormatCodeOptions options) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getFormattingEditsForDocument",TextChangePojo.class, projectId,fileId, options).get();
+			return (java.util.List<TextChange>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getFormattingEditsForDocument",TextChangePojo.class, projectId,fileId, options).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public java.util.List<? extends TextChange> getFormattingEditsAfterKeystroke(String fileId, int position, String key, FormatCodeOptions options) {
+	@SuppressWarnings("unchecked")
+	public java.util.List<TextChange> getFormattingEditsAfterKeystroke(String fileId, int position, String key, FormatCodeOptions options) {
 		try {
-			return dispatcher.sendMultiValueRequest("LanguageService","getFormattingEditsAfterKeystroke",TextChangePojo.class, projectId,fileId, position, key, options).get();
+			return (java.util.List<TextChange>)((java.util.List<?>)dispatcher.sendMultiValueRequest("LanguageService","getFormattingEditsAfterKeystroke",TextChangePojo.class, projectId,fileId, position, key, options).get());
 		} catch( InterruptedException | java.util.concurrent.ExecutionException e ) {
 			throw new RuntimeException(e);
 		}

@@ -7,4 +7,8 @@ public interface Diagnostic  {
 	public DiagnosticMessage message();
 	public DiagnosticCategory category();
 	public int code();
+
+	public interface Builder {
+		public Diagnostic build();
+	}
 }

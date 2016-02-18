@@ -7,4 +7,8 @@ public interface DefinitionInfo  {
 	public String name();
 	public String containerKind();
 	public String containerName();
+
+	public interface Builder {
+		public DefinitionInfo build();
+	}
 }

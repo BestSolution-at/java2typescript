@@ -199,7 +199,13 @@ cust model.TextChange {
 	int newLength
 }
 
-cust model.FormatCodeOptions extends model.EditorOptions {
+cust model.FormatCodeOptions {
+	int IndentSize
+	int TabSize
+	java.lang.String NewLineCharacter
+	boolean ConvertTabsToSpaces
+	model.IndentStyle IndentStyle
+
 	boolean InsertSpaceAfterCommaDelimiter
 	boolean InsertSpaceAfterSemicolonInForStatements
 	boolean InsertSpaceBeforeAndAfterBinaryOperators
@@ -226,6 +232,50 @@ cust model.OutputFile {
 	java.lang.String name
 	boolean writeByteOrderMark
 	java.lang.String text
+}
+
+cust model.CompilerOptions {
+	boolean allowNonTsExtensions
+	optional java.lang.String charset
+	optional boolean declaration
+	optional boolean diagnostics
+    optional boolean emitBOM
+    optional boolean help
+    optional boolean init
+    optional boolean inlineSourceMap
+    optional boolean inlineSources
+    optional boolean jsx
+    optional boolean listFiles
+    optional java.lang.String locale
+    optional java.lang.String mapRoot
+//    module?: ModuleKind;
+//    newLine?: NewLineKind;
+    optional boolean noEmit
+    optional boolean noEmitHelpers
+    optional boolean noEmitOnError
+    optional boolean noErrorTruncation
+    optional boolean noImplicitAny
+    optional boolean noLib
+    optional boolean noResolve
+    optional java.lang.String out
+    optional java.lang.String outFile
+    optional java.lang.String outDir
+    optional boolean preserveConstEnums
+    optional java.lang.String project
+    optional boolean removeComments
+    optional java.lang.String rootDir
+    optional boolean sourceMap
+    optional java.lang.String sourceRoot
+    optional boolean suppressExcessPropertyErrors
+    optional boolean suppressImplicitAnyIndexErrors
+//    target?: ScriptTarget;
+    optional boolean version
+    optional boolean watch
+    optional boolean isolatedModules
+    optional boolean experimentalDecorators
+    optional boolean emitDecoratorMetadata
+//    optional model.ModuleResolutionKind moduleResolution
+//    [option: string]: string | number | boolean;
 }
 
 enum model.DiagnosticCategory (
@@ -337,6 +387,7 @@ enum model.IndentStyle (
 
 LanguageService {
 	command addFile(java.lang.String filePath) returns java.lang.String
+	command initProject( model.CompilerOptions compilerOptions  java.lang.String[] files ) returns java.lang.String[]
 	command modifyContent(java.lang.String fileId
 		int offset
 		int length

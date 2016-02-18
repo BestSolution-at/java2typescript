@@ -6,4 +6,8 @@ public interface EditorOptions  {
 	public String NewLineCharacter();
 	public boolean ConvertTabsToSpaces();
 	public IndentStyle IndentStyle();
+
+	public interface Builder {
+		public EditorOptions build();
+	}
 }

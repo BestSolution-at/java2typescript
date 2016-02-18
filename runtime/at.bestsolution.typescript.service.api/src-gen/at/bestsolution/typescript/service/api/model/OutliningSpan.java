@@ -5,4 +5,8 @@ public interface OutliningSpan  {
 	public TextSpan hintSpan();
 	public String bannerText();
 	public boolean autoCollapse();
+
+	public interface Builder {
+		public OutliningSpan build();
+	}
 }

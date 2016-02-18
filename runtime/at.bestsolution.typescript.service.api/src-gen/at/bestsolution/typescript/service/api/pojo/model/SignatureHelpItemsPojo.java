@@ -1,7 +1,8 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import at.bestsolution.typescript.service.api.model.SignatureHelpItems;
+import at.bestsolution.typescript.service.api.model.*;
 
+@SuppressWarnings("unchecked")
 public class SignatureHelpItemsPojo  implements SignatureHelpItems {
 	private java.util.List<SignatureHelpItemPojo> items ;
 	private TextSpanPojo applicableSpan ;
@@ -12,10 +13,10 @@ public class SignatureHelpItemsPojo  implements SignatureHelpItems {
 	public SignatureHelpItemsPojo() {
 	}
 
-	public java.util.List<SignatureHelpItemPojo> items() {
-		return this.items;
+	public java.util.List<SignatureHelpItem> items() {
+		return (java.util.List<SignatureHelpItem>)((java.util.List<?>)this.items);
 	}
-	public TextSpanPojo applicableSpan() {
+	public TextSpan applicableSpan() {
 		return this.applicableSpan;
 	}
 	public int selectedItemIndex() {
@@ -26,6 +27,27 @@ public class SignatureHelpItemsPojo  implements SignatureHelpItems {
 	}
 	public int argumentCount() {
 		return this.argumentCount;
+	}
+	public static Builder create(java.util.List<SignatureHelpItem> items, TextSpan applicableSpan, int selectedItemIndex, int argumentIndex, int argumentCount) {
+		return new BuilderImpl(new SignatureHelpItemsPojo(), items, applicableSpan, selectedItemIndex, argumentIndex, argumentCount);
+	}
+
+	public static class BuilderImpl implements Builder {
+		private final SignatureHelpItemsPojo pojo;
+
+		BuilderImpl(SignatureHelpItemsPojo pojo, java.util.List<SignatureHelpItem> items, TextSpan applicableSpan, int selectedItemIndex, int argumentIndex, int argumentCount) {
+			this.pojo = pojo;
+			this.pojo.items = (java.util.List<SignatureHelpItemPojo>)(java.util.List<?>)items;
+			this.pojo.applicableSpan = (TextSpanPojo)applicableSpan;
+			this.pojo.selectedItemIndex = (int)selectedItemIndex;
+			this.pojo.argumentIndex = (int)argumentIndex;
+			this.pojo.argumentCount = (int)argumentCount;
+		}
+
+
+		public SignatureHelpItems build() {
+			return this.pojo;
+		}
 	}
 
 	public String toString() {

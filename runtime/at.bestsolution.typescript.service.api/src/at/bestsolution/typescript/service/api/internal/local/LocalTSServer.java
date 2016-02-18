@@ -4,8 +4,10 @@ import java.util.concurrent.ExecutionException;
 
 import at.bestsolution.typescript.service.api.TSServer;
 import at.bestsolution.typescript.service.api.internal.impl.LanguageServiceImpl;
+import at.bestsolution.typescript.service.api.internal.impl.ModelBuilderServiceImpl;
 import at.bestsolution.typescript.service.api.services.Dispatcher;
 import at.bestsolution.typescript.service.api.services.LanguageService;
+import at.bestsolution.typescript.service.api.services.ModelBuilderService;
 
 public class LocalTSServer implements TSServer {
 	private String id;
@@ -35,6 +37,8 @@ public class LocalTSServer implements TSServer {
 	public <S> S getService(Class<S> service) {
 		if( service == LanguageService.class ) {
 			return (S) new LanguageServiceImpl(projectId, dispatcher);
+		} else if( service == ModelBuilderService.class ) {
+			return (S) new ModelBuilderServiceImpl();
 		}
 		return null;
 	}

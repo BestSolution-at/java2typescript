@@ -8,4 +8,8 @@ public interface RenameInfo  {
 	public String kind();
 	public String kindModifiers();
 	public TextSpan triggerSpan();
+
+	public interface Builder {
+		public RenameInfo build();
+	}
 }

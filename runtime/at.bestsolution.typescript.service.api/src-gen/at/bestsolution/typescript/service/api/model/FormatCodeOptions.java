@@ -1,6 +1,11 @@
 package at.bestsolution.typescript.service.api.model;
 
-public interface FormatCodeOptions extends EditorOptions {
+public interface FormatCodeOptions  {
+	public int IndentSize();
+	public int TabSize();
+	public String NewLineCharacter();
+	public boolean ConvertTabsToSpaces();
+	public IndentStyle IndentStyle();
 	public boolean InsertSpaceAfterCommaDelimiter();
 	public boolean InsertSpaceAfterSemicolonInForStatements();
 	public boolean InsertSpaceBeforeAndAfterBinaryOperators();
@@ -10,4 +15,8 @@ public interface FormatCodeOptions extends EditorOptions {
 	public boolean InsertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets();
 	public boolean PlaceOpenBraceOnNewLineForFunctions();
 	public boolean PlaceOpenBraceOnNewLineForControlBlocks();
+
+	public interface Builder {
+		public FormatCodeOptions build();
+	}
 }

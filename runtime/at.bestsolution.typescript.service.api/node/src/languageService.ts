@@ -64,13 +64,12 @@ namespace TypeScriptServiceAPI {
                 compilationSettings: ts.CompilerOptions) {
             console.log("Createing new project '"+name+"'");
             var id = "p_" + (this.projectCounter++);
-            compilationSettings = ts.getDefaultCompilerOptions();
-            /*compilationSettings.emitDecoratorMetadata = true;
-            compilationSettings.noImplicitAny = true;
-            compilationSettings.experimentalDecorators = true;
-            compilationSettings.declaration = true;*/
-            this.projectMap[id] = new Project(id, name, compilationSettings);
+            this.projectMap[id] = new Project(id, name);
             return id;
+        }
+
+        public initProject( projectId : string, compilerOptions : ts.CompilerOptions, fileList : string[] ) : string[] {
+            return this.projectMap[projectId].initProject( compilerOptions, fileList );
         }
 
         public addFile(projectId : string, filePath : string) {
@@ -271,11 +270,11 @@ namespace TypeScriptServiceAPI {
         private fileIdMap : { [fileId : string]: string } = {};
         private fileCount : number = 0;
 
-		constructor(id : string, name : string, compilerOptions: ts.CompilerOptions ) {
+		constructor(id : string, name : string ) {
             this.documentRegistry = ts.createDocumentRegistry();
 			this.id = id;
             this.name = name;
-            this.compilerOptions = compilerOptions;
+            this.compilerOptions = ts.getDefaultCompilerOptions();
             this.service = ts.createLanguageService(this, this.documentRegistry);
 		}
 
@@ -287,6 +286,24 @@ namespace TypeScriptServiceAPI {
             this.fileInfos[filePath] = new FileInfo(content, filePath);
             console.log("The generated file id is '"+id+"'");
             return id;
+        }
+        
+        public initProject( compilerOptions : ts.CompilerOptions, fileList : string[] ) : string[] {
+            console.log("Init project");
+            this.compilerOptions = compilerOptions;
+            
+            var self = this;
+            
+            var lib = this.getDefaultLibFileName(this.compilerOptions);
+            if( lib && lib != '' ) {
+                self.addFile(lib);
+            }
+            
+            if( fileList ) {
+                return fileList.map( v => { return self.addFile(v) } );
+            }
+            
+            return [];
         }
         
         public modifyContent(fileId : string, offset: number, length: number, text: string) {
@@ -614,7 +631,17 @@ namespace TypeScriptServiceAPI {
 		}
 
 		public getDefaultLibFileName(options: ts.CompilerOptions) {
-			return ts.getDefaultLibFileName(options);
+            console.log("=========> Loading default lib");
+            if( ! options || options.noLib ) {
+                console.log("noLib");
+                return '';
+            } else if( options.target === ts.ScriptTarget.ES6 ) {
+                console.log("Default lib ES6");
+                return "platform:/plugin/at.bestsolution.typescript.service.api/node/libs/lib.d.ts";
+            } else {
+                console.log("Default lib ES5");
+                return "platform:/plugin/at.bestsolution.typescript.service.api/node/libs/lib.es6.d.ts";
+            }
 		}
 
 //		public log(s : string) {

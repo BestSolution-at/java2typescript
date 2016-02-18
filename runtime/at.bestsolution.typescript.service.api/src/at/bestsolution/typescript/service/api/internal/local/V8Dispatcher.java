@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -22,14 +23,12 @@ public class V8Dispatcher extends JSONDispatcher {
 	private final V8Object dispatcher;
 	private final V8 runtime;
 	private static final boolean DISPATCHER_DEBUG = Boolean.getBoolean("dispatcher.debug");
+	private static final boolean DISPATCHER_JS_DEBUG = Boolean.getBoolean("dispatcher.js.debug");
 
 	public V8Dispatcher() {
 		try {
 			FileSlurp value = new FileSlurp();
 			runtime = V8.createV8Runtime();
-			runtime.executeVoidScript(FileSlurp.getContent(getClass().getClassLoader().getResource("node/libs/typescriptServices.js")));
-			runtime.executeVoidScript("var console = { log : function() {} };");
-			runtime.executeVoidScript(FileSlurp.getContent(getClass().getClassLoader().getResource("node/src/languageService.js")));
 			runtime.registerJavaMethod(new JavaCallback() {
 
 				@Override
@@ -43,6 +42,21 @@ public class V8Dispatcher extends JSONDispatcher {
 					}
 				}
 			}, "slurper");
+			runtime.registerJavaMethod(new JavaCallback() {
+
+				@Override
+				public Object invoke(V8Object arg0, V8Array arg1) {
+					if( DISPATCHER_JS_DEBUG ) {
+						System.err.println( arg1.getString(0) );
+					}
+
+					return null;
+				}
+			}, "errlogger");
+			runtime.executeVoidScript(FileSlurp.getContent(getClass().getClassLoader().getResource("node/libs/typescriptServices.js")));
+			runtime.executeVoidScript("var console = { log : function() { errlogger(arguments[0]); } };");
+			runtime.executeVoidScript(FileSlurp.getContent(getClass().getClassLoader().getResource("node/src/languageService.js")));
+
 			runtime.executeVoidScript(" function readFileContents ( filename ) { return slurper(filename); } ");
 			dispatcher = (V8Object) runtime.executeScript("new TypeScriptServiceAPI.ServiceDispatcher()");
 			runtime.getLocker().release();

@@ -1,6 +1,6 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import at.bestsolution.typescript.service.api.model.Diagnostic;
+import at.bestsolution.typescript.service.api.model.*;
 
 public class DiagnosticPojo  implements Diagnostic {
 	private SourceFilePojo file ;
@@ -14,7 +14,7 @@ public class DiagnosticPojo  implements Diagnostic {
 	public DiagnosticPojo() {
 	}
 
-	public SourceFilePojo file() {
+	public SourceFile file() {
 		return this.file;
 	}
 	public int start() {
@@ -23,15 +23,37 @@ public class DiagnosticPojo  implements Diagnostic {
 	public int length() {
 		return this.length;
 	}
-	public DiagnosticMessagePojo message() {
+	public DiagnosticMessage message() {
 		return this.message;
 	}
-	public at.bestsolution.typescript.service.api.model.DiagnosticCategory category() {
+	public DiagnosticCategory category() {
 		if( _category != null ) return _category;
 		return _category = at.bestsolution.typescript.service.api.model.DiagnosticCategory.fromStringValue(this.category);
 	}
 	public int code() {
 		return this.code;
+	}
+	public static Builder create(SourceFile file, int start, int length, DiagnosticMessage message, DiagnosticCategory category, int code) {
+		return new BuilderImpl(new DiagnosticPojo(), file, start, length, message, category, code);
+	}
+
+	public static class BuilderImpl implements Builder {
+		private final DiagnosticPojo pojo;
+
+		BuilderImpl(DiagnosticPojo pojo, SourceFile file, int start, int length, DiagnosticMessage message, DiagnosticCategory category, int code) {
+			this.pojo = pojo;
+			this.pojo.file = (SourceFilePojo)file;
+			this.pojo.start = (int)start;
+			this.pojo.length = (int)length;
+			this.pojo.message = (DiagnosticMessagePojo)message;
+			this.pojo._category = category;
+			this.pojo.code = (int)code;
+		}
+
+
+		public Diagnostic build() {
+			return this.pojo;
+		}
 	}
 
 	public String toString() {

@@ -1,5 +1,6 @@
 package at.bestsolution.typescript.service.api.test;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import at.bestsolution.typescript.service.api.TSServer;
 import at.bestsolution.typescript.service.api.TSServerFactory;
 import at.bestsolution.typescript.service.api.model.CompletionInfo;
 import at.bestsolution.typescript.service.api.services.LanguageService;
+import at.bestsolution.typescript.service.api.services.ModelBuilderService;
 
 /**
  * This class controls all aspects of the application's execution
@@ -36,18 +38,26 @@ public class Application implements IApplication {
 		ServiceReference<TSServerFactory> reference = bctx.getServiceReference(TSServerFactory.class);
 
 		TSServerFactory tsServiceFactory = bctx.getService(reference);
-		TSServer server = tsServiceFactory.getServer(UUID.randomUUID().toString(), ts -> {});
+		TSServer server = tsServiceFactory.getServer(UUID.randomUUID().toString(), ts -> {
+			LanguageService languageService = ts.getService(LanguageService.class);
+			ModelBuilderService modelService = ts.getService(ModelBuilderService.class);
+			languageService.initProject(modelService.createCompilerOptions(true).build(), Collections.emptyList());
+		});
 
 		LanguageService service = server.getService(LanguageService.class);
 		String fileId = service.addFile(getClass().getResource("sample.ts").toExternalForm());
+		service.addFile(getClass().getResource("Car.ts").toExternalForm());
 		System.err.println(service.getNavigationBarItems(fileId));
 
-		CompletionInfo info = service.getCompletionsAtPosition(fileId, 424);
-		System.err.println(info);
+//		CompletionInfo info = service.getCompletionsAtPosition(fileId, 424);
+//		System.err.println(info);
 
-		info.entries().stream().forEach( i -> {
-			System.err.println(service.getCompletionEntryDetails(fileId, 424, i.name()));
-		});
+//		System.err.println(service.getCompletionEntryDetails(fileId, 424, "firstname"));
+		System.err.println(service.getCompletionEntryDetails(fileId, 447, "car"));
+
+//		info.entries().stream().forEach( i -> {
+//			System.err.println(service.getCompletionEntryDetails(fileId, 424, i.name()));
+//		});
 
 
 

@@ -1,6 +1,6 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import at.bestsolution.typescript.service.api.model.OutputFile;
+import at.bestsolution.typescript.service.api.model.*;
 
 public class OutputFilePojo  implements OutputFile {
 	private String name ;
@@ -18,6 +18,25 @@ public class OutputFilePojo  implements OutputFile {
 	}
 	public String text() {
 		return this.text;
+	}
+	public static Builder create(String name, boolean writeByteOrderMark, String text) {
+		return new BuilderImpl(new OutputFilePojo(), name, writeByteOrderMark, text);
+	}
+
+	public static class BuilderImpl implements Builder {
+		private final OutputFilePojo pojo;
+
+		BuilderImpl(OutputFilePojo pojo, String name, boolean writeByteOrderMark, String text) {
+			this.pojo = pojo;
+			this.pojo.name = (String)name;
+			this.pojo.writeByteOrderMark = (boolean)writeByteOrderMark;
+			this.pojo.text = (String)text;
+		}
+
+
+		public OutputFile build() {
+			return this.pojo;
+		}
 	}
 
 	public String toString() {

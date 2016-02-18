@@ -1,6 +1,6 @@
 package at.bestsolution.typescript.service.api.pojo.model;
 
-import at.bestsolution.typescript.service.api.model.EditorOptions;
+import at.bestsolution.typescript.service.api.model.*;
 
 public class EditorOptionsPojo  implements EditorOptions {
 	private int IndentSize ;
@@ -25,9 +25,30 @@ public class EditorOptionsPojo  implements EditorOptions {
 	public boolean ConvertTabsToSpaces() {
 		return this.ConvertTabsToSpaces;
 	}
-	public at.bestsolution.typescript.service.api.model.IndentStyle IndentStyle() {
+	public IndentStyle IndentStyle() {
 		if( _IndentStyle != null ) return _IndentStyle;
 		return _IndentStyle = at.bestsolution.typescript.service.api.model.IndentStyle.fromStringValue(this.IndentStyle);
+	}
+	public static Builder create(int IndentSize, int TabSize, String NewLineCharacter, boolean ConvertTabsToSpaces, IndentStyle IndentStyle) {
+		return new BuilderImpl(new EditorOptionsPojo(), IndentSize, TabSize, NewLineCharacter, ConvertTabsToSpaces, IndentStyle);
+	}
+
+	public static class BuilderImpl implements Builder {
+		private final EditorOptionsPojo pojo;
+
+		BuilderImpl(EditorOptionsPojo pojo, int IndentSize, int TabSize, String NewLineCharacter, boolean ConvertTabsToSpaces, IndentStyle IndentStyle) {
+			this.pojo = pojo;
+			this.pojo.IndentSize = (int)IndentSize;
+			this.pojo.TabSize = (int)TabSize;
+			this.pojo.NewLineCharacter = (String)NewLineCharacter;
+			this.pojo.ConvertTabsToSpaces = (boolean)ConvertTabsToSpaces;
+			this.pojo._IndentStyle = IndentStyle;
+		}
+
+
+		public EditorOptions build() {
+			return this.pojo;
+		}
 	}
 
 	public String toString() {
