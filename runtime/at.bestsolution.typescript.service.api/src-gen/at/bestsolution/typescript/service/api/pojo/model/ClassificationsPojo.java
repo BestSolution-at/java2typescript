@@ -5,7 +5,7 @@ import at.bestsolution.typescript.service.api.model.*;
 @SuppressWarnings("unchecked")
 public class ClassificationsPojo  implements Classifications {
 	private java.util.List<Integer> spans ;
-	private String endOfLineState  = "None";
+		private String endOfLineState  = "None";
 	private at.bestsolution.typescript.service.api.model.EndOfLineState _endOfLineState = null;
 
 	public ClassificationsPojo() {
@@ -16,7 +16,7 @@ public class ClassificationsPojo  implements Classifications {
 	}
 	public EndOfLineState endOfLineState() {
 		if( _endOfLineState != null ) return _endOfLineState;
-		return _endOfLineState = at.bestsolution.typescript.service.api.model.EndOfLineState.fromStringValue(this.endOfLineState);
+		return _endOfLineState = at.bestsolution.typescript.service.api.model.EndOfLineState.fromValue(this.endOfLineState);
 	}
 	public static Builder create(java.util.List<Integer> spans, EndOfLineState endOfLineState) {
 		return new BuilderImpl(new ClassificationsPojo(), spans, endOfLineState);
@@ -29,6 +29,7 @@ public class ClassificationsPojo  implements Classifications {
 			this.pojo = pojo;
 			this.pojo.spans = (java.util.List<Integer>)(java.util.List<?>)spans;
 			this.pojo._endOfLineState = endOfLineState;
+			this.pojo.endOfLineState = endOfLineState.asValue();
 		}
 
 

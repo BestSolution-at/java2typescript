@@ -6,18 +6,18 @@ public enum PatternMatchKind {
 	, SUBSTRING("substring")
 	, CAMELCASE("camelCase");
 
-	private final String stringValue;
+	private final String value;
 
-	PatternMatchKind(String stringValue) {
-		this.stringValue = stringValue;
+	PatternMatchKind(String value) {
+		this.value = value;
 	}
 
-	public String asStringValue() {
-		return this.stringValue;
+	public String asValue() {
+		return this.value;
 	}
 
-	public static PatternMatchKind fromStringValue(String stringValue) {
-		switch( stringValue ) {
+	public static PatternMatchKind fromValue(String value) {
+		switch( value ) {
 			case "exact": return EXACT;
 			case "prefix": return PREFIX;
 			case "substring": return SUBSTRING;

@@ -5,18 +5,18 @@ public enum IndentStyle {
 	, BLOCK("Block")
 	, SMART("Smart");
 
-	private final String stringValue;
+	private final String value;
 
-	IndentStyle(String stringValue) {
-		this.stringValue = stringValue;
+	IndentStyle(String value) {
+		this.value = value;
 	}
 
-	public String asStringValue() {
-		return this.stringValue;
+	public String asValue() {
+		return this.value;
 	}
 
-	public static IndentStyle fromStringValue(String stringValue) {
-		switch( stringValue ) {
+	public static IndentStyle fromValue(String value) {
+		switch( value ) {
 			case "None": return NONE;
 			case "Block": return BLOCK;
 			case "Smart": return SMART;

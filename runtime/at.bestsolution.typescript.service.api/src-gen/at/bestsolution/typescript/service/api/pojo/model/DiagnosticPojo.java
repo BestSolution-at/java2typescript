@@ -7,7 +7,7 @@ public class DiagnosticPojo  implements Diagnostic {
 	private int start ;
 	private int length ;
 	private DiagnosticMessagePojo message ;
-	private String category  = "Warning";
+		private String category  = "Warning";
 	private at.bestsolution.typescript.service.api.model.DiagnosticCategory _category = null;
 	private int code ;
 
@@ -28,7 +28,7 @@ public class DiagnosticPojo  implements Diagnostic {
 	}
 	public DiagnosticCategory category() {
 		if( _category != null ) return _category;
-		return _category = at.bestsolution.typescript.service.api.model.DiagnosticCategory.fromStringValue(this.category);
+		return _category = at.bestsolution.typescript.service.api.model.DiagnosticCategory.fromValue(this.category);
 	}
 	public int code() {
 		return this.code;
@@ -47,6 +47,7 @@ public class DiagnosticPojo  implements Diagnostic {
 			this.pojo.length = (int)length;
 			this.pojo.message = (DiagnosticMessagePojo)message;
 			this.pojo._category = category;
+			this.pojo.category = category.asValue();
 			this.pojo.code = (int)code;
 		}
 

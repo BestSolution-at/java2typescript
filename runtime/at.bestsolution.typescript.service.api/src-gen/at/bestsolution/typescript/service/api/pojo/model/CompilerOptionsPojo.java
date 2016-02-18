@@ -34,6 +34,8 @@ public class CompilerOptionsPojo  implements CompilerOptions {
 	private String sourceRoot ;
 	private boolean suppressExcessPropertyErrors ;
 	private boolean suppressImplicitAnyIndexErrors ;
+		private int target  = 0;
+	private at.bestsolution.typescript.service.api.model.ScriptTarget _target = null;
 	private boolean version ;
 	private boolean watch ;
 	private boolean isolatedModules ;
@@ -136,6 +138,10 @@ public class CompilerOptionsPojo  implements CompilerOptions {
 	public boolean suppressImplicitAnyIndexErrors() {
 		return this.suppressImplicitAnyIndexErrors;
 	}
+	public ScriptTarget target() {
+		if( _target != null ) return _target;
+		return _target = at.bestsolution.typescript.service.api.model.ScriptTarget.fromValue(this.target);
+	}
 	public boolean version() {
 		return this.version;
 	}
@@ -163,144 +169,149 @@ public class CompilerOptionsPojo  implements CompilerOptions {
 			this.pojo.allowNonTsExtensions = (boolean)allowNonTsExtensions;
 		}
 
-		public Builder charset( String value ) {
-			this.pojo.charset = (String)value;
+		public Builder charset( String charset ) {
+			this.pojo.charset = (String)charset;
 			return this;
 		}
-		public Builder declaration( boolean value ) {
-			this.pojo.declaration = (boolean)value;
+		public Builder declaration( boolean declaration ) {
+			this.pojo.declaration = (boolean)declaration;
 			return this;
 		}
-		public Builder diagnostics( boolean value ) {
-			this.pojo.diagnostics = (boolean)value;
+		public Builder diagnostics( boolean diagnostics ) {
+			this.pojo.diagnostics = (boolean)diagnostics;
 			return this;
 		}
-		public Builder emitBOM( boolean value ) {
-			this.pojo.emitBOM = (boolean)value;
+		public Builder emitBOM( boolean emitBOM ) {
+			this.pojo.emitBOM = (boolean)emitBOM;
 			return this;
 		}
-		public Builder help( boolean value ) {
-			this.pojo.help = (boolean)value;
+		public Builder help( boolean help ) {
+			this.pojo.help = (boolean)help;
 			return this;
 		}
-		public Builder init( boolean value ) {
-			this.pojo.init = (boolean)value;
+		public Builder init( boolean init ) {
+			this.pojo.init = (boolean)init;
 			return this;
 		}
-		public Builder inlineSourceMap( boolean value ) {
-			this.pojo.inlineSourceMap = (boolean)value;
+		public Builder inlineSourceMap( boolean inlineSourceMap ) {
+			this.pojo.inlineSourceMap = (boolean)inlineSourceMap;
 			return this;
 		}
-		public Builder inlineSources( boolean value ) {
-			this.pojo.inlineSources = (boolean)value;
+		public Builder inlineSources( boolean inlineSources ) {
+			this.pojo.inlineSources = (boolean)inlineSources;
 			return this;
 		}
-		public Builder jsx( boolean value ) {
-			this.pojo.jsx = (boolean)value;
+		public Builder jsx( boolean jsx ) {
+			this.pojo.jsx = (boolean)jsx;
 			return this;
 		}
-		public Builder listFiles( boolean value ) {
-			this.pojo.listFiles = (boolean)value;
+		public Builder listFiles( boolean listFiles ) {
+			this.pojo.listFiles = (boolean)listFiles;
 			return this;
 		}
-		public Builder locale( String value ) {
-			this.pojo.locale = (String)value;
+		public Builder locale( String locale ) {
+			this.pojo.locale = (String)locale;
 			return this;
 		}
-		public Builder mapRoot( String value ) {
-			this.pojo.mapRoot = (String)value;
+		public Builder mapRoot( String mapRoot ) {
+			this.pojo.mapRoot = (String)mapRoot;
 			return this;
 		}
-		public Builder noEmit( boolean value ) {
-			this.pojo.noEmit = (boolean)value;
+		public Builder noEmit( boolean noEmit ) {
+			this.pojo.noEmit = (boolean)noEmit;
 			return this;
 		}
-		public Builder noEmitHelpers( boolean value ) {
-			this.pojo.noEmitHelpers = (boolean)value;
+		public Builder noEmitHelpers( boolean noEmitHelpers ) {
+			this.pojo.noEmitHelpers = (boolean)noEmitHelpers;
 			return this;
 		}
-		public Builder noEmitOnError( boolean value ) {
-			this.pojo.noEmitOnError = (boolean)value;
+		public Builder noEmitOnError( boolean noEmitOnError ) {
+			this.pojo.noEmitOnError = (boolean)noEmitOnError;
 			return this;
 		}
-		public Builder noErrorTruncation( boolean value ) {
-			this.pojo.noErrorTruncation = (boolean)value;
+		public Builder noErrorTruncation( boolean noErrorTruncation ) {
+			this.pojo.noErrorTruncation = (boolean)noErrorTruncation;
 			return this;
 		}
-		public Builder noImplicitAny( boolean value ) {
-			this.pojo.noImplicitAny = (boolean)value;
+		public Builder noImplicitAny( boolean noImplicitAny ) {
+			this.pojo.noImplicitAny = (boolean)noImplicitAny;
 			return this;
 		}
-		public Builder noLib( boolean value ) {
-			this.pojo.noLib = (boolean)value;
+		public Builder noLib( boolean noLib ) {
+			this.pojo.noLib = (boolean)noLib;
 			return this;
 		}
-		public Builder noResolve( boolean value ) {
-			this.pojo.noResolve = (boolean)value;
+		public Builder noResolve( boolean noResolve ) {
+			this.pojo.noResolve = (boolean)noResolve;
 			return this;
 		}
-		public Builder out( String value ) {
-			this.pojo.out = (String)value;
+		public Builder out( String out ) {
+			this.pojo.out = (String)out;
 			return this;
 		}
-		public Builder outFile( String value ) {
-			this.pojo.outFile = (String)value;
+		public Builder outFile( String outFile ) {
+			this.pojo.outFile = (String)outFile;
 			return this;
 		}
-		public Builder outDir( String value ) {
-			this.pojo.outDir = (String)value;
+		public Builder outDir( String outDir ) {
+			this.pojo.outDir = (String)outDir;
 			return this;
 		}
-		public Builder preserveConstEnums( boolean value ) {
-			this.pojo.preserveConstEnums = (boolean)value;
+		public Builder preserveConstEnums( boolean preserveConstEnums ) {
+			this.pojo.preserveConstEnums = (boolean)preserveConstEnums;
 			return this;
 		}
-		public Builder project( String value ) {
-			this.pojo.project = (String)value;
+		public Builder project( String project ) {
+			this.pojo.project = (String)project;
 			return this;
 		}
-		public Builder removeComments( boolean value ) {
-			this.pojo.removeComments = (boolean)value;
+		public Builder removeComments( boolean removeComments ) {
+			this.pojo.removeComments = (boolean)removeComments;
 			return this;
 		}
-		public Builder rootDir( String value ) {
-			this.pojo.rootDir = (String)value;
+		public Builder rootDir( String rootDir ) {
+			this.pojo.rootDir = (String)rootDir;
 			return this;
 		}
-		public Builder sourceMap( boolean value ) {
-			this.pojo.sourceMap = (boolean)value;
+		public Builder sourceMap( boolean sourceMap ) {
+			this.pojo.sourceMap = (boolean)sourceMap;
 			return this;
 		}
-		public Builder sourceRoot( String value ) {
-			this.pojo.sourceRoot = (String)value;
+		public Builder sourceRoot( String sourceRoot ) {
+			this.pojo.sourceRoot = (String)sourceRoot;
 			return this;
 		}
-		public Builder suppressExcessPropertyErrors( boolean value ) {
-			this.pojo.suppressExcessPropertyErrors = (boolean)value;
+		public Builder suppressExcessPropertyErrors( boolean suppressExcessPropertyErrors ) {
+			this.pojo.suppressExcessPropertyErrors = (boolean)suppressExcessPropertyErrors;
 			return this;
 		}
-		public Builder suppressImplicitAnyIndexErrors( boolean value ) {
-			this.pojo.suppressImplicitAnyIndexErrors = (boolean)value;
+		public Builder suppressImplicitAnyIndexErrors( boolean suppressImplicitAnyIndexErrors ) {
+			this.pojo.suppressImplicitAnyIndexErrors = (boolean)suppressImplicitAnyIndexErrors;
 			return this;
 		}
-		public Builder version( boolean value ) {
-			this.pojo.version = (boolean)value;
+		public Builder target( ScriptTarget target ) {
+			this.pojo._target = target;
+			this.pojo.target = target.asValue();
 			return this;
 		}
-		public Builder watch( boolean value ) {
-			this.pojo.watch = (boolean)value;
+		public Builder version( boolean version ) {
+			this.pojo.version = (boolean)version;
 			return this;
 		}
-		public Builder isolatedModules( boolean value ) {
-			this.pojo.isolatedModules = (boolean)value;
+		public Builder watch( boolean watch ) {
+			this.pojo.watch = (boolean)watch;
 			return this;
 		}
-		public Builder experimentalDecorators( boolean value ) {
-			this.pojo.experimentalDecorators = (boolean)value;
+		public Builder isolatedModules( boolean isolatedModules ) {
+			this.pojo.isolatedModules = (boolean)isolatedModules;
 			return this;
 		}
-		public Builder emitDecoratorMetadata( boolean value ) {
-			this.pojo.emitDecoratorMetadata = (boolean)value;
+		public Builder experimentalDecorators( boolean experimentalDecorators ) {
+			this.pojo.experimentalDecorators = (boolean)experimentalDecorators;
+			return this;
+		}
+		public Builder emitDecoratorMetadata( boolean emitDecoratorMetadata ) {
+			this.pojo.emitDecoratorMetadata = (boolean)emitDecoratorMetadata;
 			return this;
 		}
 
@@ -310,6 +321,6 @@ public class CompilerOptionsPojo  implements CompilerOptions {
 	}
 
 	public String toString() {
-		return "CompilerOptions@"+hashCode()+"[allowNonTsExtensions = "+allowNonTsExtensions()+", charset = "+charset()+", declaration = "+declaration()+", diagnostics = "+diagnostics()+", emitBOM = "+emitBOM()+", help = "+help()+", init = "+init()+", inlineSourceMap = "+inlineSourceMap()+", inlineSources = "+inlineSources()+", jsx = "+jsx()+", listFiles = "+listFiles()+", locale = "+locale()+", mapRoot = "+mapRoot()+", noEmit = "+noEmit()+", noEmitHelpers = "+noEmitHelpers()+", noEmitOnError = "+noEmitOnError()+", noErrorTruncation = "+noErrorTruncation()+", noImplicitAny = "+noImplicitAny()+", noLib = "+noLib()+", noResolve = "+noResolve()+", out = "+out()+", outFile = "+outFile()+", outDir = "+outDir()+", preserveConstEnums = "+preserveConstEnums()+", project = "+project()+", removeComments = "+removeComments()+", rootDir = "+rootDir()+", sourceMap = "+sourceMap()+", sourceRoot = "+sourceRoot()+", suppressExcessPropertyErrors = "+suppressExcessPropertyErrors()+", suppressImplicitAnyIndexErrors = "+suppressImplicitAnyIndexErrors()+", version = "+version()+", watch = "+watch()+", isolatedModules = "+isolatedModules()+", experimentalDecorators = "+experimentalDecorators()+", emitDecoratorMetadata = "+emitDecoratorMetadata()+"]";
+		return "CompilerOptions@"+hashCode()+"[allowNonTsExtensions = "+allowNonTsExtensions()+", charset = "+charset()+", declaration = "+declaration()+", diagnostics = "+diagnostics()+", emitBOM = "+emitBOM()+", help = "+help()+", init = "+init()+", inlineSourceMap = "+inlineSourceMap()+", inlineSources = "+inlineSources()+", jsx = "+jsx()+", listFiles = "+listFiles()+", locale = "+locale()+", mapRoot = "+mapRoot()+", noEmit = "+noEmit()+", noEmitHelpers = "+noEmitHelpers()+", noEmitOnError = "+noEmitOnError()+", noErrorTruncation = "+noErrorTruncation()+", noImplicitAny = "+noImplicitAny()+", noLib = "+noLib()+", noResolve = "+noResolve()+", out = "+out()+", outFile = "+outFile()+", outDir = "+outDir()+", preserveConstEnums = "+preserveConstEnums()+", project = "+project()+", removeComments = "+removeComments()+", rootDir = "+rootDir()+", sourceMap = "+sourceMap()+", sourceRoot = "+sourceRoot()+", suppressExcessPropertyErrors = "+suppressExcessPropertyErrors()+", suppressImplicitAnyIndexErrors = "+suppressImplicitAnyIndexErrors()+", target = "+target()+", version = "+version()+", watch = "+watch()+", isolatedModules = "+isolatedModules()+", experimentalDecorators = "+experimentalDecorators()+", emitDecoratorMetadata = "+emitDecoratorMetadata()+"]";
 	}
 }

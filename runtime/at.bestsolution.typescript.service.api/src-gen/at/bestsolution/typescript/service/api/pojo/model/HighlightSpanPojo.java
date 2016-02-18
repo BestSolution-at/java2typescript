@@ -5,7 +5,7 @@ import at.bestsolution.typescript.service.api.model.*;
 public class HighlightSpanPojo  implements HighlightSpan {
 	private String fileName ;
 	private TextSpanPojo textSpan ;
-	private String kind  = "none";
+		private String kind  = "none";
 	private at.bestsolution.typescript.service.api.model.HighlightSpanKind _kind = null;
 
 	public HighlightSpanPojo() {
@@ -19,7 +19,7 @@ public class HighlightSpanPojo  implements HighlightSpan {
 	}
 	public HighlightSpanKind kind() {
 		if( _kind != null ) return _kind;
-		return _kind = at.bestsolution.typescript.service.api.model.HighlightSpanKind.fromStringValue(this.kind);
+		return _kind = at.bestsolution.typescript.service.api.model.HighlightSpanKind.fromValue(this.kind);
 	}
 	public static Builder create(TextSpan textSpan, HighlightSpanKind kind) {
 		return new BuilderImpl(new HighlightSpanPojo(), textSpan, kind);
@@ -32,10 +32,11 @@ public class HighlightSpanPojo  implements HighlightSpan {
 			this.pojo = pojo;
 			this.pojo.textSpan = (TextSpanPojo)textSpan;
 			this.pojo._kind = kind;
+			this.pojo.kind = kind.asValue();
 		}
 
-		public Builder fileName( String value ) {
-			this.pojo.fileName = (String)value;
+		public Builder fileName( String fileName ) {
+			this.pojo.fileName = (String)fileName;
 			return this;
 		}
 

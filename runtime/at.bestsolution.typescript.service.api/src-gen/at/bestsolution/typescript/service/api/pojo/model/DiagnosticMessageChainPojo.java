@@ -4,7 +4,7 @@ import at.bestsolution.typescript.service.api.model.*;
 
 public class DiagnosticMessageChainPojo  implements DiagnosticMessageChain {
 	private String messageText ;
-	private String category  = "Warning";
+		private String category  = "Warning";
 	private at.bestsolution.typescript.service.api.model.DiagnosticCategory _category = null;
 	private int code ;
 	private DiagnosticMessageChainPojo next ;
@@ -17,7 +17,7 @@ public class DiagnosticMessageChainPojo  implements DiagnosticMessageChain {
 	}
 	public DiagnosticCategory category() {
 		if( _category != null ) return _category;
-		return _category = at.bestsolution.typescript.service.api.model.DiagnosticCategory.fromStringValue(this.category);
+		return _category = at.bestsolution.typescript.service.api.model.DiagnosticCategory.fromValue(this.category);
 	}
 	public int code() {
 		return this.code;
@@ -36,11 +36,12 @@ public class DiagnosticMessageChainPojo  implements DiagnosticMessageChain {
 			this.pojo = pojo;
 			this.pojo.messageText = (String)messageText;
 			this.pojo._category = category;
+			this.pojo.category = category.asValue();
 			this.pojo.code = (int)code;
 		}
 
-		public Builder next( DiagnosticMessageChain value ) {
-			this.pojo.next = (DiagnosticMessageChainPojo)value;
+		public Builder next( DiagnosticMessageChain next ) {
+			this.pojo.next = (DiagnosticMessageChainPojo)next;
 			return this;
 		}
 

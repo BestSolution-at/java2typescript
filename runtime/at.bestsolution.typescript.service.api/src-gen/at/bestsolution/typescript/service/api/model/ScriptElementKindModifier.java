@@ -10,18 +10,18 @@ public enum ScriptElementKindModifier {
 	, STATIC_MODIFIER("static")
 	, ABSTRACT_MODIFIER("abstract");
 
-	private final String stringValue;
+	private final String value;
 
-	ScriptElementKindModifier(String stringValue) {
-		this.stringValue = stringValue;
+	ScriptElementKindModifier(String value) {
+		this.value = value;
 	}
 
-	public String asStringValue() {
-		return this.stringValue;
+	public String asValue() {
+		return this.value;
 	}
 
-	public static ScriptElementKindModifier fromStringValue(String stringValue) {
-		switch( stringValue ) {
+	public static ScriptElementKindModifier fromValue(String value) {
+		switch( value ) {
 			case "": return NONE;
 			case "public": return PUBLIC_MEMBER_MODIFIER;
 			case "private": return PRIVATE_MEMBER_MODIFIER;

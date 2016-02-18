@@ -268,7 +268,7 @@ cust model.CompilerOptions {
     optional java.lang.String sourceRoot
     optional boolean suppressExcessPropertyErrors
     optional boolean suppressImplicitAnyIndexErrors
-//    target?: ScriptTarget;
+    optional model.ScriptTarget target
     optional boolean version
     optional boolean watch
     optional boolean isolatedModules
@@ -380,6 +380,14 @@ enum model.IndentStyle (
 	NONE = None
 	BLOCK = Block
 	SMART = Smart
+)
+
+enum model.ScriptTarget (
+	ES3 = 0
+	ES5 = 1
+	ES6 = 2
+//	ES2015 = 2
+//	Latest = 2
 )
 
 // -----------------------------------------------------

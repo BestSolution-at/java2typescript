@@ -7,7 +7,7 @@ public class FormatCodeOptionsPojo  implements FormatCodeOptions {
 	private int TabSize ;
 	private String NewLineCharacter ;
 	private boolean ConvertTabsToSpaces ;
-	private String IndentStyle  = "None";
+		private String IndentStyle  = "None";
 	private at.bestsolution.typescript.service.api.model.IndentStyle _IndentStyle = null;
 	private boolean InsertSpaceAfterCommaDelimiter ;
 	private boolean InsertSpaceAfterSemicolonInForStatements ;
@@ -36,7 +36,7 @@ public class FormatCodeOptionsPojo  implements FormatCodeOptions {
 	}
 	public IndentStyle IndentStyle() {
 		if( _IndentStyle != null ) return _IndentStyle;
-		return _IndentStyle = at.bestsolution.typescript.service.api.model.IndentStyle.fromStringValue(this.IndentStyle);
+		return _IndentStyle = at.bestsolution.typescript.service.api.model.IndentStyle.fromValue(this.IndentStyle);
 	}
 	public boolean InsertSpaceAfterCommaDelimiter() {
 		return this.InsertSpaceAfterCommaDelimiter;
@@ -79,6 +79,7 @@ public class FormatCodeOptionsPojo  implements FormatCodeOptions {
 			this.pojo.NewLineCharacter = (String)NewLineCharacter;
 			this.pojo.ConvertTabsToSpaces = (boolean)ConvertTabsToSpaces;
 			this.pojo._IndentStyle = IndentStyle;
+			this.pojo.IndentStyle = IndentStyle.asValue();
 			this.pojo.InsertSpaceAfterCommaDelimiter = (boolean)InsertSpaceAfterCommaDelimiter;
 			this.pojo.InsertSpaceAfterSemicolonInForStatements = (boolean)InsertSpaceAfterSemicolonInForStatements;
 			this.pojo.InsertSpaceBeforeAndAfterBinaryOperators = (boolean)InsertSpaceBeforeAndAfterBinaryOperators;

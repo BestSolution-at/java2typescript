@@ -4,9 +4,9 @@ import at.bestsolution.typescript.service.api.model.*;
 
 @SuppressWarnings("unchecked")
 public class QuickInfoPojo  implements QuickInfo {
-	private String kind  = "";
+		private String kind  = "";
 	private at.bestsolution.typescript.service.api.model.ScriptElementKind _kind = null;
-	private String kindModifiers  = "";
+		private String kindModifiers  = "";
 	private java.util.List<at.bestsolution.typescript.service.api.model.ScriptElementKindModifier> _kindModifiers = null;
 	private TextSpanPojo textSpan ;
 	private java.util.List<SymbolDisplayPartPojo> displayParts ;
@@ -17,11 +17,11 @@ public class QuickInfoPojo  implements QuickInfo {
 
 	public ScriptElementKind kind() {
 		if( _kind != null ) return _kind;
-		return _kind = at.bestsolution.typescript.service.api.model.ScriptElementKind.fromStringValue(this.kind);
+		return _kind = at.bestsolution.typescript.service.api.model.ScriptElementKind.fromValue(this.kind);
 	}
 	public java.util.List<ScriptElementKindModifier> kindModifiers() {
 		if( _kindModifiers != null ) return _kindModifiers;
-		return _kindModifiers = java.util.stream.Stream.of(kindModifiers.split(",")).map( s -> at.bestsolution.typescript.service.api.model.ScriptElementKindModifier.fromStringValue(s) ).collect( java.util.stream.Collectors.toList() );
+		return _kindModifiers = java.util.stream.Stream.of(kindModifiers.split(",")).map( s -> at.bestsolution.typescript.service.api.model.ScriptElementKindModifier.fromValue(s) ).collect( java.util.stream.Collectors.toList() );
 	}
 	public TextSpan textSpan() {
 		return this.textSpan;
@@ -42,7 +42,9 @@ public class QuickInfoPojo  implements QuickInfo {
 		BuilderImpl(QuickInfoPojo pojo, ScriptElementKind kind, java.util.List<ScriptElementKindModifier> kindModifiers, TextSpan textSpan, java.util.List<SymbolDisplayPart> displayParts, java.util.List<SymbolDisplayPart> documentation) {
 			this.pojo = pojo;
 			this.pojo._kind = kind;
+			this.pojo.kind = kind.asValue();
 			this.pojo._kindModifiers = kindModifiers;
+			this.pojo.kindModifiers = kindModifiers.stream().map( v -> v.asValue() ).collect( java.util.stream.Collectors.joining(",") );
 			this.pojo.textSpan = (TextSpanPojo)textSpan;
 			this.pojo.displayParts = (java.util.List<SymbolDisplayPartPojo>)(java.util.List<?>)displayParts;
 			this.pojo.documentation = (java.util.List<SymbolDisplayPartPojo>)(java.util.List<?>)documentation;

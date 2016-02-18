@@ -31,18 +31,18 @@ public enum ScriptElementKind {
 	, CONST_ELEMENT("const")
 	, LET_ELEMENT("let");
 
-	private final String stringValue;
+	private final String value;
 
-	ScriptElementKind(String stringValue) {
-		this.stringValue = stringValue;
+	ScriptElementKind(String value) {
+		this.value = value;
 	}
 
-	public String asStringValue() {
-		return this.stringValue;
+	public String asValue() {
+		return this.value;
 	}
 
-	public static ScriptElementKind fromStringValue(String stringValue) {
-		switch( stringValue ) {
+	public static ScriptElementKind fromValue(String value) {
+		switch( value ) {
 			case "": return UNKNOWN;
 			case "warning": return WARNING;
 			case "keyword": return KEYWORD;

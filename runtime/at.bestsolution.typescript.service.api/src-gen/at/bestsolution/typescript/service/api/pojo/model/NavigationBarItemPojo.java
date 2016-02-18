@@ -5,9 +5,9 @@ import at.bestsolution.typescript.service.api.model.*;
 @SuppressWarnings("unchecked")
 public class NavigationBarItemPojo  implements NavigationBarItem {
 	private String text ;
-	private String kind  = "";
+		private String kind  = "";
 	private at.bestsolution.typescript.service.api.model.ScriptElementKind _kind = null;
-	private String kindModifiers  = "";
+		private String kindModifiers  = "";
 	private java.util.List<at.bestsolution.typescript.service.api.model.ScriptElementKindModifier> _kindModifiers = null;
 	private java.util.List<TextSpanPojo> spans ;
 	private java.util.List<NavigationBarItemPojo> childItems ;
@@ -23,11 +23,11 @@ public class NavigationBarItemPojo  implements NavigationBarItem {
 	}
 	public ScriptElementKind kind() {
 		if( _kind != null ) return _kind;
-		return _kind = at.bestsolution.typescript.service.api.model.ScriptElementKind.fromStringValue(this.kind);
+		return _kind = at.bestsolution.typescript.service.api.model.ScriptElementKind.fromValue(this.kind);
 	}
 	public java.util.List<ScriptElementKindModifier> kindModifiers() {
 		if( _kindModifiers != null ) return _kindModifiers;
-		return _kindModifiers = java.util.stream.Stream.of(kindModifiers.split(",")).map( s -> at.bestsolution.typescript.service.api.model.ScriptElementKindModifier.fromStringValue(s) ).collect( java.util.stream.Collectors.toList() );
+		return _kindModifiers = java.util.stream.Stream.of(kindModifiers.split(",")).map( s -> at.bestsolution.typescript.service.api.model.ScriptElementKindModifier.fromValue(s) ).collect( java.util.stream.Collectors.toList() );
 	}
 	public java.util.List<TextSpan> spans() {
 		return (java.util.List<TextSpan>)((java.util.List<?>)this.spans);
@@ -55,7 +55,9 @@ public class NavigationBarItemPojo  implements NavigationBarItem {
 			this.pojo = pojo;
 			this.pojo.text = (String)text;
 			this.pojo._kind = kind;
+			this.pojo.kind = kind.asValue();
 			this.pojo._kindModifiers = kindModifiers;
+			this.pojo.kindModifiers = kindModifiers.stream().map( v -> v.asValue() ).collect( java.util.stream.Collectors.joining(",") );
 			this.pojo.spans = (java.util.List<TextSpanPojo>)(java.util.List<?>)spans;
 			this.pojo.childItems = (java.util.List<NavigationBarItemPojo>)(java.util.List<?>)childItems;
 			this.pojo.indent = (int)indent;

@@ -32,6 +32,7 @@ public interface CompilerOptions  {
 	public String sourceRoot();
 	public boolean suppressExcessPropertyErrors();
 	public boolean suppressImplicitAnyIndexErrors();
+	public ScriptTarget target();
 	public boolean version();
 	public boolean watch();
 	public boolean isolatedModules();
@@ -69,6 +70,7 @@ public interface CompilerOptions  {
 		public Builder sourceRoot( String value );
 		public Builder suppressExcessPropertyErrors( boolean value );
 		public Builder suppressImplicitAnyIndexErrors( boolean value );
+		public Builder target( ScriptTarget value );
 		public Builder version( boolean value );
 		public Builder watch( boolean value );
 		public Builder isolatedModules( boolean value );

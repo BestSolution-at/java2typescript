@@ -24,18 +24,18 @@ public enum SymbolDisplayPartKind {
 	, FUNCTION_NAME("functionName")
 	, REGULAR_EXPRESSION_LITERAL("regularExpressionLiteral");
 
-	private final String stringValue;
+	private final String value;
 
-	SymbolDisplayPartKind(String stringValue) {
-		this.stringValue = stringValue;
+	SymbolDisplayPartKind(String value) {
+		this.value = value;
 	}
 
-	public String asStringValue() {
-		return this.stringValue;
+	public String asValue() {
+		return this.value;
 	}
 
-	public static SymbolDisplayPartKind fromStringValue(String stringValue) {
-		switch( stringValue ) {
+	public static SymbolDisplayPartKind fromValue(String value) {
+		switch( value ) {
 			case "aliasName": return ALIAS_NAME;
 			case "className": return CLASS_NAME;
 			case "enumName": return ENUM_NAME;

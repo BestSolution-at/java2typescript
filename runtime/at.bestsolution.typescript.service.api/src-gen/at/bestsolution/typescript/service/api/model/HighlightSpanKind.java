@@ -6,18 +6,18 @@ public enum HighlightSpanKind {
 	, REFERENCE("reference")
 	, WRITTEN_REFERENCE("writtenReference");
 
-	private final String stringValue;
+	private final String value;
 
-	HighlightSpanKind(String stringValue) {
-		this.stringValue = stringValue;
+	HighlightSpanKind(String value) {
+		this.value = value;
 	}
 
-	public String asStringValue() {
-		return this.stringValue;
+	public String asValue() {
+		return this.value;
 	}
 
-	public static HighlightSpanKind fromStringValue(String stringValue) {
-		switch( stringValue ) {
+	public static HighlightSpanKind fromValue(String value) {
+		switch( value ) {
 			case "none": return NONE;
 			case "definition": return DEFINITION;
 			case "reference": return REFERENCE;

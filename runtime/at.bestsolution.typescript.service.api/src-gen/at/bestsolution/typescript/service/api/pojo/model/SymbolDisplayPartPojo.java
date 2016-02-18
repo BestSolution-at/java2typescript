@@ -4,7 +4,7 @@ import at.bestsolution.typescript.service.api.model.*;
 
 public class SymbolDisplayPartPojo  implements SymbolDisplayPart {
 	private String text ;
-	private String kind  = "aliasName";
+		private String kind  = "aliasName";
 	private at.bestsolution.typescript.service.api.model.SymbolDisplayPartKind _kind = null;
 
 	public SymbolDisplayPartPojo() {
@@ -15,7 +15,7 @@ public class SymbolDisplayPartPojo  implements SymbolDisplayPart {
 	}
 	public SymbolDisplayPartKind kind() {
 		if( _kind != null ) return _kind;
-		return _kind = at.bestsolution.typescript.service.api.model.SymbolDisplayPartKind.fromStringValue(this.kind);
+		return _kind = at.bestsolution.typescript.service.api.model.SymbolDisplayPartKind.fromValue(this.kind);
 	}
 	public static Builder create(String text, SymbolDisplayPartKind kind) {
 		return new BuilderImpl(new SymbolDisplayPartPojo(), text, kind);
@@ -28,6 +28,7 @@ public class SymbolDisplayPartPojo  implements SymbolDisplayPart {
 			this.pojo = pojo;
 			this.pojo.text = (String)text;
 			this.pojo._kind = kind;
+			this.pojo.kind = kind.asValue();
 		}
 
 

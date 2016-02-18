@@ -7,7 +7,7 @@ public class EditorOptionsPojo  implements EditorOptions {
 	private int TabSize ;
 	private String NewLineCharacter ;
 	private boolean ConvertTabsToSpaces ;
-	private String IndentStyle  = "None";
+		private String IndentStyle  = "None";
 	private at.bestsolution.typescript.service.api.model.IndentStyle _IndentStyle = null;
 
 	public EditorOptionsPojo() {
@@ -27,7 +27,7 @@ public class EditorOptionsPojo  implements EditorOptions {
 	}
 	public IndentStyle IndentStyle() {
 		if( _IndentStyle != null ) return _IndentStyle;
-		return _IndentStyle = at.bestsolution.typescript.service.api.model.IndentStyle.fromStringValue(this.IndentStyle);
+		return _IndentStyle = at.bestsolution.typescript.service.api.model.IndentStyle.fromValue(this.IndentStyle);
 	}
 	public static Builder create(int IndentSize, int TabSize, String NewLineCharacter, boolean ConvertTabsToSpaces, IndentStyle IndentStyle) {
 		return new BuilderImpl(new EditorOptionsPojo(), IndentSize, TabSize, NewLineCharacter, ConvertTabsToSpaces, IndentStyle);
@@ -43,6 +43,7 @@ public class EditorOptionsPojo  implements EditorOptions {
 			this.pojo.NewLineCharacter = (String)NewLineCharacter;
 			this.pojo.ConvertTabsToSpaces = (boolean)ConvertTabsToSpaces;
 			this.pojo._IndentStyle = IndentStyle;
+			this.pojo.IndentStyle = IndentStyle.asValue();
 		}
 
 

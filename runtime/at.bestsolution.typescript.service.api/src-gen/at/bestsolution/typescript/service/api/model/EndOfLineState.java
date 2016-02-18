@@ -9,18 +9,18 @@ public enum EndOfLineState {
 	, IN_TEMPLATE_MIDDLE_OR_TAIL("InTemplateMiddleOrTail")
 	, IN_TEMPLATE_SUBSTITUTION_POSITION("InTemplateSubstitutionPosition");
 
-	private final String stringValue;
+	private final String value;
 
-	EndOfLineState(String stringValue) {
-		this.stringValue = stringValue;
+	EndOfLineState(String value) {
+		this.value = value;
 	}
 
-	public String asStringValue() {
-		return this.stringValue;
+	public String asValue() {
+		return this.value;
 	}
 
-	public static EndOfLineState fromStringValue(String stringValue) {
-		switch( stringValue ) {
+	public static EndOfLineState fromValue(String value) {
+		switch( value ) {
 			case "None": return NONE;
 			case "InMultiLineCommentTrivia": return IN_MULTILINE_COMMENT_TRIVIA;
 			case "InSingleQuoteStringLiteral": return IN_SINGLE_QUOTESTRING_LITERAL;
