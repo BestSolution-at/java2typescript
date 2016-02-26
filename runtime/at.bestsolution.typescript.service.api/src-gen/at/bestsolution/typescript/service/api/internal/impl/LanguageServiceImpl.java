@@ -33,6 +33,14 @@ public class LanguageServiceImpl implements at.bestsolution.typescript.service.a
 		dispatcher.sendVoidRequest("LanguageService","modifyContent", projectId,fileId, offset, length, text);
 	}
 
+	public void open(String fileId) {
+		dispatcher.sendVoidRequest("LanguageService","open", projectId,fileId);
+	}
+
+	public void close(String fileId) {
+		dispatcher.sendVoidRequest("LanguageService","close", projectId,fileId);
+	}
+
 	public void cleanupSemanticCache() {
 		dispatcher.sendVoidRequest("LanguageService","cleanupSemanticCache", projectId);
 	}

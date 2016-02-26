@@ -54,6 +54,12 @@ var TypeScriptServiceAPI;
         LanguageServiceWrapper.prototype.initProject = function (projectId, compilerOptions, fileList) {
             return this.projectMap[projectId].initProject(compilerOptions, fileList);
         };
+        LanguageServiceWrapper.prototype.open = function (projectId, filePath) {
+            this.projectMap[projectId].open(filePath);
+        };
+        LanguageServiceWrapper.prototype.close = function (projectId, filePath) {
+            this.projectMap[projectId].close(filePath);
+        };
         LanguageServiceWrapper.prototype.addFile = function (projectId, filePath) {
             return this.projectMap[projectId].addFile(filePath);
         };
@@ -214,7 +220,7 @@ var TypeScriptServiceAPI;
             var content = readFileContents(filePath);
             var id = "f_" + (this.fileCount++);
             this.fileIdMap[id] = filePath;
-            this.fileInfos[filePath] = new FileInfo(content, filePath);
+            this.fileInfos[filePath] = new ScriptFile(content, filePath);
             console.log("The generated file id is '" + id + "'");
             return id;
         };
@@ -231,6 +237,16 @@ var TypeScriptServiceAPI;
             }
             return [];
         };
+        Project.prototype.open = function (fileId) {
+            var filePath = this.toRealFile(fileId);
+            var content = readFileContents(filePath);
+            this.updateContent(filePath, content);
+        };
+        Project.prototype.close = function (fileId) {
+            var filePath = this.toRealFile(fileId);
+            var content = readFileContents(filePath);
+            this.updateContent(filePath, content);
+        };
         Project.prototype.modifyContent = function (fileId, offset, length, text) {
             console.log("Modify file '" + fileId + "'");
             var filePath = this.toRealFile(fileId);
@@ -238,6 +254,11 @@ var TypeScriptServiceAPI;
             if (fi) {
                 fi.editContents(offset, length, text);
             }
+        };
+        Project.prototype.updateContent = function (fileId, content) {
+            var filePath = this.toRealFile(fileId);
+            var fi = this.fileInfos[filePath];
+            fi.updateFile(content);
         };
         Project.prototype.getNavigationBarItems = function (fileId) {
             console.log("Get navigation bar items for file with id '" + fileId + "' in project '" + this.id + "'");
@@ -522,86 +543,36 @@ var TypeScriptServiceAPI;
         };
         return Project;
     }());
-    // Taken from 
-    // https://github.com/palantir/eclipse-typescript
-    var FileInfo = (function () {
-        function FileInfo(contents, path) {
-            this.changes = [];
+    var ScriptFile = (function () {
+        function ScriptFile(contents, path) {
+            this.version = 0;
             this.contents = contents;
-            this.open = false;
             this.path = path;
-            console.log("CONTENTS: " + this.contents.length);
         }
-        FileInfo.prototype.editContents = function (offset, length, text) {
+        ScriptFile.prototype.editContents = function (offset, length, text) {
             var prefix = this.contents.substring(0, offset);
             var suffix = this.contents.substring(offset + length);
-            var newContents = prefix + text + suffix;
-            var span = ts.createTextSpan(offset, length);
-            var change = ts.createTextChangeRange(span, text.length);
-            console.log("OLD content: " + this.contents.length);
-            this.contents = newContents;
-            this.changes.push(change);
-            console.log("New content: " + this.contents.length);
-            // console.log("OLD: " + oldText.length);
-            console.log(JSON.stringify(change));
+            this.contents = prefix + text + suffix;
+            this.version += 1;
         };
-        FileInfo.prototype.getOpen = function () {
-            return this.open;
+        ScriptFile.prototype.getSnapshot = function () {
+            var value = this.contents;
+            var len = value.length;
+            return {
+                getLength: function () { return len; },
+                getText: value.substring.bind(value),
+                getChangeRange: function () { return null; }
+            };
         };
-        FileInfo.prototype.setOpen = function (open) {
-            this.open = open;
+        ScriptFile.prototype.getVersion = function () {
+            return this.version.toString(10);
         };
-        FileInfo.prototype.getPath = function () {
-            return this.path;
-        };
-        FileInfo.prototype.getSnapshot = function () {
-            return new ScriptSnapshot(this.changes.slice(0), this.contents, this.changes.length);
-        };
-        FileInfo.prototype.getVersion = function () {
-            return this.changes.length.toString(10);
-        };
-        FileInfo.prototype.updateFile = function (contents) {
+        ScriptFile.prototype.updateFile = function (contents) {
             var span = ts.createTextSpan(0, this.contents.length);
             var change = ts.createTextChangeRange(span, contents.length);
             this.contents = contents;
-            this.changes.push(change);
+            this.version += 1;
         };
-        return FileInfo;
-    }());
-    // Taken from 
-    // https://github.com/palantir/eclipse-typescript
-    var ScriptSnapshot = (function () {
-        function ScriptSnapshot(changes, contents, version) {
-            this.changes = changes;
-            this.contents = contents;
-            this.version = version;
-        }
-        ScriptSnapshot.prototype.getText = function (start, end) {
-            console.log("Text: " + start + " - " + end);
-            console.log("Text: " + this.contents);
-            return this.contents.substring(start, end);
-        };
-        ScriptSnapshot.prototype.getLength = function () {
-            return this.contents.length;
-        };
-        ScriptSnapshot.prototype.getChangeRange = function (oldSnapshot) {
-            console.log("Requesting change");
-            var oldSnapshot2 = oldSnapshot;
-            if (this.version === oldSnapshot2.version) {
-                return ts.unchangedTextChangeRange;
-            }
-            else if (this.version - oldSnapshot2.version <= this.changes.length) {
-                var start = this.changes.length - (this.version - oldSnapshot2.version);
-                var changes = this.changes.slice(start);
-                console.log(JSON.stringify(changes));
-                var rv = ts.collapseTextChangeRangesAcrossMultipleVersions(changes);
-                console.log(JSON.stringify(rv));
-                return rv;
-            }
-            else {
-                return null;
-            }
-        };
-        return ScriptSnapshot;
+        return ScriptFile;
     }());
 })(TypeScriptServiceAPI || (TypeScriptServiceAPI = {}));

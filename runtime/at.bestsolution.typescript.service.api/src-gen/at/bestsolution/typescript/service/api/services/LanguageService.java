@@ -6,6 +6,8 @@ public interface LanguageService {
 	public String addFile(String filePath);
 	public java.util.List<String> initProject(CompilerOptions compilerOptions, java.util.List<String> files);
 	public void modifyContent(String fileId, int offset, int length, String text);
+	public void open(String fileId);
+	public void close(String fileId);
 	public void cleanupSemanticCache();
 	public java.util.List<Diagnostic> getSyntacticDiagnostics(String fileId);
 	public java.util.List<Diagnostic> getSemanticDiagnostics(String fileId);

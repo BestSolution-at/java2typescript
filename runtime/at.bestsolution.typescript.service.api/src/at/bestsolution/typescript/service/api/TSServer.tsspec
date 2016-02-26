@@ -401,6 +401,8 @@ LanguageService {
 		int length
 		java.lang.String text
 	) returns void
+	command open(java.lang.String fileId) returns void
+	command close(java.lang.String fileId) returns void
 
 	command cleanupSemanticCache returns void
 

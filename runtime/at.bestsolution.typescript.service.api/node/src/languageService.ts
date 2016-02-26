@@ -71,6 +71,14 @@ namespace TypeScriptServiceAPI {
         public initProject( projectId : string, compilerOptions : ts.CompilerOptions, fileList : string[] ) : string[] {
             return this.projectMap[projectId].initProject( compilerOptions, fileList );
         }
+        
+        public open(projectId : string, filePath : string) {
+            this.projectMap[projectId].open( filePath );
+        }
+        
+        public close(projectId : string, filePath : string) {
+            this.projectMap[projectId].close( filePath );
+        }
 
         public addFile(projectId : string, filePath : string) {
             return this.projectMap[projectId].addFile( filePath );
@@ -266,7 +274,7 @@ namespace TypeScriptServiceAPI {
 		private service : ts.LanguageService;
 		private compilerOptions: ts.CompilerOptions;
         // private fileFilter: (fileName: string) => boolean;
-        private fileInfos: { [filePath: string]: FileInfo } = {};
+        private fileInfos: { [filePath: string]: ScriptFile } = {};
         private fileIdMap : { [fileId : string]: string } = {};
         private fileCount : number = 0;
 
@@ -283,7 +291,7 @@ namespace TypeScriptServiceAPI {
             var content = readFileContents(filePath);
             var id = "f_" + (this.fileCount++);
             this.fileIdMap[id] = filePath;
-            this.fileInfos[filePath] = new FileInfo(content, filePath);
+            this.fileInfos[filePath] = new ScriptFile(content, filePath);
             console.log("The generated file id is '"+id+"'");
             return id;
         }
@@ -306,6 +314,18 @@ namespace TypeScriptServiceAPI {
             return [];
         }
         
+        public open(fileId : string) {
+            var filePath = this.toRealFile(fileId);
+            var content = readFileContents(filePath);
+            this.updateContent(filePath, content);
+        }
+        
+        public close(fileId : string) {
+            var filePath = this.toRealFile(fileId);
+            var content = readFileContents(filePath);
+            this.updateContent(filePath, content);
+        }
+        
         public modifyContent(fileId : string, offset: number, length: number, text: string) {
             console.log("Modify file '"+fileId+"'");
             var filePath = this.toRealFile(fileId);
@@ -313,6 +333,12 @@ namespace TypeScriptServiceAPI {
             if( fi ) {
                 fi.editContents(offset,length,text);
             }
+        }
+        
+        public updateContent(fileId : string, content : string) {
+            var filePath = this.toRealFile(fileId);
+            var fi = this.fileInfos[filePath];
+            fi.updateFile( content );
         }
 
         public getNavigationBarItems(fileId : string) {
@@ -670,58 +696,38 @@ namespace TypeScriptServiceAPI {
         details : ts.CompletionEntryDetails[];
     }
 
-    // Taken from 
-    // https://github.com/palantir/eclipse-typescript
-    class FileInfo {
+    class ScriptFile {
 
-        private changes: ts.TextChangeRange[];
         private contents: string;
-        private open: boolean;
         private path: string;
+        private version : number = 0;
 
         constructor(contents: string, path: string) {
-            this.changes = [];
             this.contents = contents;
-            this.open = false;
             this.path = path;
-            console.log("CONTENTS: " + this.contents.length);
         }
 
         public editContents(offset: number, length: number, text: string): void {
             var prefix = this.contents.substring(0, offset);
             var suffix = this.contents.substring(offset + length);
-            var newContents = prefix + text + suffix;
-            var span = ts.createTextSpan(offset, length);
-            var change = ts.createTextChangeRange(span, text.length);
+                        
+            this.contents = prefix + text + suffix;
+            this.version += 1;
+        }
+        
+        public getSnapshot() : ts.IScriptSnapshot {
+            var value = this.contents;
+                var len = value.length;
             
-            console.log("OLD content: " + this.contents.length);
-            
-            this.contents = newContents;
-
-            this.changes.push(change);
-            console.log("New content: " + this.contents.length);
-            // console.log("OLD: " + oldText.length);
-            console.log(JSON.stringify(change));
-        }
-
-        public getOpen(): boolean {
-            return this.open;
-        }
-
-        public setOpen(open: boolean) {
-            this.open = open;
-        }
-
-        public getPath() {
-            return this.path;
-        }
-
-        public getSnapshot() {
-            return new ScriptSnapshot(this.changes.slice(0), this.contents, this.changes.length);
+                return {
+                    getLength: () => len,
+		            getText: value.substring.bind(value),
+		            getChangeRange: () => null  
+                 };
         }
 
         public getVersion() {
-            return this.changes.length.toString(10);
+            return this.version.toString(10);
         }
 
         public updateFile(contents: string) {
@@ -729,51 +735,7 @@ namespace TypeScriptServiceAPI {
             var change = ts.createTextChangeRange(span, contents.length);
 
             this.contents = contents;
-
-            this.changes.push(change);
-        }
-    }
-    
-    // Taken from 
-    // https://github.com/palantir/eclipse-typescript
-	class ScriptSnapshot implements ts.IScriptSnapshot {
-
-        private changes: ts.TextChangeRange[];
-        private contents: string;
-        private version: number;
-
-        constructor(changes: ts.TextChangeRange[], contents: string, version: number) {
-            this.changes = changes;
-            this.contents = contents;
-            this.version = version;
-        }
-
-        public getText(start: number, end: number) {
-            console.log("Text: " + start + " - " + end);
-            console.log("Text: " + this.contents);
-            return this.contents.substring(start, end);
-        }
-
-        public getLength() {
-            return this.contents.length;
-        }
-
-        public getChangeRange(oldSnapshot: ts.IScriptSnapshot): ts.TextChangeRange {
-            console.log("Requesting change");
-            var oldSnapshot2 = <ScriptSnapshot> oldSnapshot;
-
-            if (this.version === oldSnapshot2.version) {
-                return ts.unchangedTextChangeRange;
-            } else if (this.version - oldSnapshot2.version <= this.changes.length) {
-                var start = this.changes.length - (this.version - oldSnapshot2.version);
-                var changes = this.changes.slice(start);
-                console.log(JSON.stringify(changes));
-                var rv = ts.collapseTextChangeRangesAcrossMultipleVersions(changes);
-                console.log(JSON.stringify(rv));
-                return rv;
-            } else {
-                return null;
-            }
+            this.version +=1;
         }
     }
 }
