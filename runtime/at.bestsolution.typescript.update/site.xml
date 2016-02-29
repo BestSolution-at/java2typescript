@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/at.bestsolution.typescript.service.feature_2.0.0.qualifier.jar" id="at.bestsolution.typescript.service.feature" version="2.0.0.qualifier">
+      <category name="service"/>
+   </feature>
+   <category-def name="service" label="Service"/>
+</site>
