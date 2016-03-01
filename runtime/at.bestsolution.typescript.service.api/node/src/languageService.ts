@@ -84,6 +84,10 @@ namespace TypeScriptServiceAPI {
             return this.projectMap[projectId].addFile( filePath );
         }
         
+        public removeFile(projectId : string, fileId : string) {
+            return this.projectMap[projectId].removeFile( fileId );
+        }
+        
         public modifyContent(projectId : string, fileId : string, offset: number, length: number, text: string) {
             return this.projectMap[projectId].modifyContent(fileId,offset,length,text);
         }
@@ -294,6 +298,14 @@ namespace TypeScriptServiceAPI {
             this.fileInfos[filePath] = new ScriptFile(content, filePath);
             console.log("The generated file id is '"+id+"'");
             return id;
+        }
+        
+        public removeFile(fileId : string) {
+            console.log("Removing file '"+filePath+"' from project '"+this.id+"'");
+            var filePath = this.toRealFile(fileId);
+            delete this.fileIdMap[fileId];
+            delete this.fileInfos[filePath];
+            //TODO Need to release from registry this.documentRegistry.releaseDocument(filePath);
         }
         
         public initProject( compilerOptions : ts.CompilerOptions, fileList : string[] ) : string[] {

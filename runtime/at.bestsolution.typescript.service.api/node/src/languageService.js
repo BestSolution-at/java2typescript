@@ -63,6 +63,9 @@ var TypeScriptServiceAPI;
         LanguageServiceWrapper.prototype.addFile = function (projectId, filePath) {
             return this.projectMap[projectId].addFile(filePath);
         };
+        LanguageServiceWrapper.prototype.removeFile = function (projectId, fileId) {
+            return this.projectMap[projectId].removeFile(fileId);
+        };
         LanguageServiceWrapper.prototype.modifyContent = function (projectId, fileId, offset, length, text) {
             return this.projectMap[projectId].modifyContent(fileId, offset, length, text);
         };
@@ -223,6 +226,13 @@ var TypeScriptServiceAPI;
             this.fileInfos[filePath] = new ScriptFile(content, filePath);
             console.log("The generated file id is '" + id + "'");
             return id;
+        };
+        Project.prototype.removeFile = function (fileId) {
+            console.log("Removing file '" + filePath + "' from project '" + this.id + "'");
+            var filePath = this.toRealFile(fileId);
+            delete this.fileIdMap[fileId];
+            delete this.fileInfos[filePath];
+            //TODO Need to release from registry this.documentRegistry.releaseDocument(filePath);
         };
         Project.prototype.initProject = function (compilerOptions, fileList) {
             console.log("Init project");

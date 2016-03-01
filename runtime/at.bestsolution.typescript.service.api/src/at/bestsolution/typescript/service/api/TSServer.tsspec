@@ -395,6 +395,8 @@ enum model.ScriptTarget (
 
 LanguageService {
 	command addFile(java.lang.String filePath) returns java.lang.String
+	command removeFile(java.lang.String fileId) returns void
+
 	command initProject( model.CompilerOptions compilerOptions  java.lang.String[] files ) returns java.lang.String[]
 	command modifyContent(java.lang.String fileId
 		int offset
