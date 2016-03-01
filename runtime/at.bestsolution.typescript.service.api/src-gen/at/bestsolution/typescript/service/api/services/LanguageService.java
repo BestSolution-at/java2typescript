@@ -4,6 +4,7 @@ import at.bestsolution.typescript.service.api.model.*;
 
 public interface LanguageService {
 	public String addFile(String filePath);
+	public void removeFile(String fileId);
 	public java.util.List<String> initProject(CompilerOptions compilerOptions, java.util.List<String> files);
 	public void modifyContent(String fileId, int offset, int length, String text);
 	public void open(String fileId);

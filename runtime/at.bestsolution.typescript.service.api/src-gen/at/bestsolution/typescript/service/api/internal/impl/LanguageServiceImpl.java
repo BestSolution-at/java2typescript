@@ -21,6 +21,10 @@ public class LanguageServiceImpl implements at.bestsolution.typescript.service.a
 		}
 	}
 
+	public void removeFile(String fileId) {
+		dispatcher.sendVoidRequest("LanguageService","removeFile", projectId,fileId);
+	}
+
 	public java.util.List<String> initProject(CompilerOptions compilerOptions, java.util.List<String> files) {
 		try {
 			return dispatcher.sendMultiValueRequest("LanguageService","initProject",String.class, projectId,compilerOptions, files).get();
