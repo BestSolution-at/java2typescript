@@ -9,6 +9,7 @@ public interface LanguageService {
 	public void modifyContent(String fileId, int offset, int length, String text);
 	public void open(String fileId);
 	public void close(String fileId);
+	public void updateContent(String fileId, String content);
 	public void cleanupSemanticCache();
 	public java.util.List<Diagnostic> getSyntacticDiagnostics(String fileId);
 	public java.util.List<Diagnostic> getSemanticDiagnostics(String fileId);

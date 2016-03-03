@@ -69,6 +69,9 @@ var TypeScriptServiceAPI;
         LanguageServiceWrapper.prototype.modifyContent = function (projectId, fileId, offset, length, text) {
             return this.projectMap[projectId].modifyContent(fileId, offset, length, text);
         };
+        LanguageServiceWrapper.prototype.updateContent = function (projectId, fileId, content) {
+            return this.projectMap[projectId].updateContent(fileId, content);
+        };
         LanguageServiceWrapper.prototype.getNavigationBarItems = function (projectId, fileId) {
             return this.projectMap[projectId].getNavigationBarItems(fileId);
         };

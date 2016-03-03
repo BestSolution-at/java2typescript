@@ -91,6 +91,10 @@ namespace TypeScriptServiceAPI {
         public modifyContent(projectId : string, fileId : string, offset: number, length: number, text: string) {
             return this.projectMap[projectId].modifyContent(fileId,offset,length,text);
         }
+        
+        public updateContent(projectId : string, fileId : string, content : string) {
+            return this.projectMap[projectId].updateContent(fileId,content);
+        }
 
         public getNavigationBarItems(projectId: string, fileId: string) : ts.NavigationBarItem[] {
             return this.projectMap[projectId].getNavigationBarItems(fileId);
