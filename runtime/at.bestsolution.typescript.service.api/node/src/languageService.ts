@@ -256,7 +256,7 @@ namespace TypeScriptServiceAPI {
         message : DiagnosticMessage;
         
         constructor( original : ts.Diagnostic ) {
-            this.file = original.file;
+            // this.file = original.file;
             this.start = original.start;
             this.length = original.length;
             this.category = original.category;

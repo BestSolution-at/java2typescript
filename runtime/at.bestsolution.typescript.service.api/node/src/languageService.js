@@ -189,7 +189,7 @@ var TypeScriptServiceAPI;
     TypeScriptServiceAPI.LanguageServiceWrapper = LanguageServiceWrapper;
     var DiagnosticEx = (function () {
         function DiagnosticEx(original) {
-            this.file = original.file;
+            // this.file = original.file;
             this.start = original.start;
             this.length = original.length;
             this.category = original.category;
